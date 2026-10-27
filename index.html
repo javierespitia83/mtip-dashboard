@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>MTIP · Seguimiento de Fase 1</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#resumen" aria-label="MTIP, inicio">
+        <span class="brand-mark">M</span>
+        <span><strong>MTIP</strong><small>Municipal Tax Intelligence</small></span>
+      </a>
+      <div class="sidebar-label">FASE 1</div>
+      <nav class="main-nav" aria-label="Secciones del dashboard">
+        <button class="nav-item active" data-tab="resumen"><span class="nav-icon">▦</span>Resumen</button>
+        <button class="nav-item" data-tab="buscador"><span class="nav-icon">⌕</span>Buscador</button>
+        <button class="nav-item" data-tab="pendientes"><span class="nav-icon">◷</span>Pendientes<span class="nav-count" id="nav-pending-count">—</span></button>
+        <button class="nav-item" data-tab="calidad"><span class="nav-icon">◈</span>Plataforma y calidad</button>
+        <button class="nav-item" data-tab="salud"><span class="nav-icon">⌁</span>Salud tributaria</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="live-dot"></span><span>Datos locales · solo lectura</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="crumb"><span>MTIP</span><span class="crumb-sep">/</span><strong id="topbar-section">Resumen</strong></div>
+        <div class="topbar-meta"><span class="data-badge"><i></i> Fase 1 · Mapa de fuentes</span><span id="generated-date">Cargando datos…</span></div>
+      </header>
+
+      <div id="load-error" class="load-error" hidden></div>
+
+      <section class="view active" id="view-resumen" aria-labelledby="title-resumen">
+        <div class="page-heading">
+          <div><p class="eyebrow">SEGUIMIENTO DE COBERTURA</p><h1 id="title-resumen">Resumen de Fase 1</h1><p class="subheading">Mapa de sitios oficiales, cobertura de API y cosecha tributaria.</p></div>
+          <div class="data-source-note"><span class="source-dot"></span><span>Fuente: Registro MTIP y archivos locales</span></div>
+        </div>
+        <div class="kpi-grid" id="summary-kpis"></div>
+        <div class="summary-layout">
+          <article class="panel funnel-panel">
+            <div class="panel-heading"><div><p class="eyebrow">COBERTURA</p><h2>Embudo de descubrimiento</h2></div><span class="quiet-label" id="funnel-universe"></span></div>
+            <div id="funnel" class="funnel"></div>
+          </article>
+          <article class="panel summary-groups-panel">
+            <div class="panel-heading"><div><p class="eyebrow">SIGUIENTE ACCIÓN</p><h2>Trabajo pendiente</h2></div><button class="text-button" data-go-tab="pendientes">Ver tabla <span>→</span></button></div>
+            <div id="summary-groups" class="group-summary"></div>
+          </article>
+        </div>
+        <article class="panel chart-panel">
+          <div class="panel-heading"><div><p class="eyebrow">DISTRIBUCIÓN TERRITORIAL</p><h2>Cobertura por departamento</h2><p class="panel-description">API, sitio identificado sin API y municipios pendientes.</p></div><div class="legend" id="department-legend"></div></div>
+          <div class="chart-scroll" id="department-chart" aria-label="Barras apiladas por departamento"></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-buscador" aria-labelledby="title-buscador">
+        <div class="page-heading"><div><p class="eyebrow">CONSULTA POR MUNICIPIO</p><h1 id="title-buscador">Buscador</h1><p class="subheading">Busca por municipio, departamento o código DIVIPOLA.</p></div></div>
+        <div class="search-panel panel">
+          <label for="municipality-search">Municipio o DIVIPOLA</label>
+          <div class="search-box"><span aria-hidden="true">⌕</span><input id="municipality-search" type="search" placeholder="Ej. Palmira, Valle o 76520" autocomplete="off" aria-autocomplete="list" aria-controls="search-suggestions"><button id="clear-search" class="clear-search" type="button" aria-label="Limpiar búsqueda">×</button></div>
+          <div id="search-suggestions" class="suggestions" role="listbox" hidden></div>
+        </div>
+        <div id="municipality-detail" class="municipality-detail empty-state panel"><span class="empty-icon">⌕</span><h2>Encuentra un municipio</h2><p>Escribe un nombre, departamento o código para ver su ficha y documentos.</p></div>
+      </section>
+
+      <section class="view" id="view-pendientes" aria-labelledby="title-pendientes">
+        <div class="page-heading"><div><p class="eyebrow">COLA DE TRABAJO</p><h1 id="title-pendientes">Pendientes y revisión</h1><p class="subheading">Filtra por grupo y departamento; la lista se ordena por población.</p></div></div>
+        <article class="panel pending-panel">
+          <div class="filters-row">
+            <label>Grupo de trabajo<select id="group-filter"></select></label>
+            <label>Departamento<select id="department-filter"></select></label>
+            <label>Orden<select id="population-sort"><option value="desc">Mayor población</option><option value="asc">Menor población</option></select></label>
+            <div class="result-count" id="pending-result-count"></div>
+          </div>
+          <div class="table-wrap"><table><thead><tr><th>DIVIPOLA</th><th>Municipio</th><th>Departamento</th><th class="numeric">Población</th><th>Grupo / motivo</th><th>Confianza</th><th>Enlace</th></tr></thead><tbody id="pending-table-body"></tbody></table></div>
+          <div id="pending-empty" class="table-empty" hidden>No hay municipios para estos filtros.</div>
+        </article>
+      </section>
+
+      <section class="view" id="view-calidad" aria-labelledby="title-calidad">
+        <div class="page-heading"><div><p class="eyebrow">FUENTES Y CONFIANZA</p><h1 id="title-calidad">Plataforma y calidad</h1><p class="subheading">La etiqueta “Sin clasificar” indica que la plataforma no está confirmada.</p></div></div>
+        <div class="two-column">
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">PLATAFORMA</p><h2>Clasificación de sitios</h2></div></div><div id="platform-bars" class="bar-list"></div><div id="platform-breakdown" class="sub-breakdown"></div><p id="platform-breakdown-note" class="panel-description"></p></article>
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">CONFIANZA</p><h2>Confianza del registro</h2></div></div><div id="confidence-bars" class="bar-list"></div></article>
+        </div>
+        <div class="two-column quality-bottom">
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">MÉTODO</p><h2>Cómo se encontró el sitio</h2></div></div><div id="method-bars" class="bar-list compact-bars"></div></article>
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">POBLACIÓN DANE 2026</p><h2>Cobertura por tamaño</h2></div></div><div id="population-bars" class="bar-list"></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="view-salud" aria-labelledby="title-salud">
+        <div class="page-heading"><div><p class="eyebrow">COSECHA DE MI COLOMBIA DIGITAL</p><h1 id="title-salud">Salud tributaria</h1><p class="subheading">La actividad se mide con la última norma registrada, no con noticias o avisos recientes.</p></div></div>
+        <div class="three-column">
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">FRESCURA</p><h2>Última norma</h2></div></div><div id="freshness-bars" class="bar-list"></div><p id="freshness-cutoff" class="panel-description"></p></article>
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">CALENDARIO</p><h2>Vigencia detectada</h2></div></div><div id="calendar-bars" class="bar-list"></div></article>
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">COBERTURA</p><h2>Contenido tributario</h2></div></div><div id="coverage-bars" class="bar-list"></div><p id="tax-document-count" class="panel-description"></p></article>
+        </div>
+        <article class="panel health-risk-panel"><div class="panel-heading"><div><p class="eyebrow">REVISIÓN SUGERIDA</p><h2>Municipios en riesgo</h2><p class="panel-description">Sin norma en los últimos 45 días o sin calendario confirmado.</p></div><span class="risk-count" id="risk-count">—</span></div><div class="table-wrap"><table><thead><tr><th>Municipio</th><th>Departamento</th><th>Última norma</th><th>Calendario</th><th>Motivo</th><th>Normatividad</th></tr></thead><tbody id="risk-table-body"></tbody></table></div></article>
+        <article class="panel heatmap-panel"><div class="panel-heading"><div><p class="eyebrow">DISTRIBUCIÓN DE HALLAZGOS</p><h2>Mapa de calor por departamento</h2><p class="panel-description">Municipios con contenido detectado sobre el total con API.</p></div></div><div class="table-wrap heatmap-wrap"><table><thead id="heatmap-head"></thead><tbody id="heatmap-body"></tbody></table></div></article>
+      </section>
+
+      <footer class="app-footer"><span>MTIP · Dashboard de Fase 1</span><span>Los datos reflejan los archivos locales generados</span></footer>
+    </main>
+  </div>
+</body>
+</html>
