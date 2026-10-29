@@ -103,7 +103,7 @@
             <label>Municipio o documento<input id="wk-texto" type="search" placeholder="Buscar"></label>
             <div class="result-count" id="wk-count"></div>
           </div>
-          <div class="table-wrap"><table><thead><tr><th>Municipio</th><th>Documento</th><th>Clase</th><th>Entregables</th><th>Cambio</th><th>Fecha</th><th>Enlace</th></tr></thead><tbody id="wk-body"></tbody></table></div>
+          <div class="table-wrap"><table><thead><tr><th>Municipio</th><th>Documento</th><th>Clase</th><th>Fuente</th><th>Entregables</th><th>Cambio</th><th>Fecha</th><th>Enlace</th></tr></thead><tbody id="wk-body"></tbody></table></div>
           <div id="wk-more" class="matrix-more"></div>
         </article>
       </section>
@@ -135,7 +135,7 @@
       </section>
 
       <section class="view" id="view-pendientes" aria-labelledby="title-pendientes">
-        <div class="page-heading"><div><p class="eyebrow">COLA DE TRABAJO</p><h1 id="title-pendientes">Lista de municipios</h1><p class="subheading">Elige un grupo (con API, sin clasificar, sin sitio…) y un departamento; haz clic en un municipio para ver sus documentos. El número junto al título es lo que falta por resolver.</p></div></div>
+        <div class="page-heading"><div><p class="eyebrow">COLA DE TRABAJO</p><h1 id="title-pendientes">Lista de municipios</h1><p class="subheading">Elige un grupo (con API, sin API, sin sitio…) y un departamento; haz clic en un municipio para ver sus documentos. El número junto al título es lo que falta por resolver.</p></div></div>
         <article class="panel pending-panel">
           <div class="filters-row">
             <label>Grupo de trabajo<select id="group-filter"></select></label>
@@ -149,7 +149,7 @@
       </section>
 
       <section class="view" id="view-calidad" aria-labelledby="title-calidad">
-        <div class="page-heading"><div><p class="eyebrow">FUENTES Y CONFIANZA</p><h1 id="title-calidad">Plataforma y calidad</h1><p class="subheading">La etiqueta “Sin clasificar” indica que la plataforma no está confirmada.</p></div></div>
+        <div class="page-heading"><div><p class="eyebrow">FUENTES Y CONFIANZA</p><h1 id="title-calidad">Plataforma y calidad</h1><p class="subheading">«Sin API» agrupa los municipios que no usan Mi Colombia Digital; cada uno tiene asignada la técnica con la que se recolectará.</p></div></div>
         <div class="two-column">
           <article class="panel"><div class="panel-heading"><div><p class="eyebrow">PLATAFORMA</p><h2>Clasificación de sitios</h2></div></div><div id="platform-bars" class="bar-list"></div><div id="platform-breakdown" class="sub-breakdown"></div><p id="platform-breakdown-note" class="panel-description"></p></article>
           <article class="panel"><div class="panel-heading"><div><p class="eyebrow">CONFIANZA</p><h2>Confianza del registro</h2></div></div><div id="confidence-bars" class="bar-list"></div></article>

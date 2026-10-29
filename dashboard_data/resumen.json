@@ -37,37 +37,45 @@
   ],
   "sin_clasificar_desglose": [
     {
-      "nombre": "Otra (sin confirmar)",
-      "cantidad": 122
-    },
-    {
-      "nombre": "Sin dato en Registro",
-      "cantidad": 44
+      "nombre": "SharePoint",
+      "cantidad": 110
     },
     {
       "nombre": "Nexura",
-      "cantidad": 2
+      "cantidad": 20
     },
     {
-      "nombre": "SharePoint",
-      "cantidad": 2
-    },
-    {
-      "nombre": "No responde",
-      "cantidad": 1
+      "nombre": "Otro / HTML propio",
+      "cantidad": 20
     },
     {
       "nombre": "WordPress",
+      "cantidad": 15
+    },
+    {
+      "nombre": "Joomla",
+      "cantidad": 3
+    },
+    {
+      "nombre": "Drupal",
+      "cantidad": 2
+    },
+    {
+      "nombre": "Playwright (navegador)",
+      "cantidad": 1
+    },
+    {
+      "nombre": "Sin técnica asignada",
       "cantidad": 1
     }
   ],
   "documentos_tributarios": {
-    "total": 53241,
+    "total": 53242,
     "referencia_excel": 44074,
     "por_clase": [
       {
         "nombre": "otro",
-        "cantidad": 32304
+        "cantidad": 32305
       },
       {
         "nombre": "ica",
@@ -457,11 +465,11 @@
   "por_frescura": [
     {
       "nombre": "Últimos 45 días",
-      "cantidad": 739
+      "cantidad": 745
     },
     {
       "nombre": "Entre 46 días y 1 año",
-      "cantidad": 164
+      "cantidad": 158
     },
     {
       "nombre": "Hace más de 1 año",
@@ -1357,19 +1365,6 @@
       ],
       "sitio_url": "https://www.lamacarena-meta.gov.co/",
       "url_normativa": "https://www.lamacarena-meta.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "05467",
-      "municipio": "MONTEBELLO",
-      "departamento": "ANTIOQUIA",
-      "dias_desde_ultima": 239,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Sin norma reciente",
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://montebello-antioquia.gov.co/",
-      "url_normativa": "https://montebello-antioquia.gov.co/tema/normatividad"
     },
     {
       "divipola": "15180",
@@ -2330,18 +2325,6 @@
       "url_normativa": "https://www.carmendecarupa-cundinamarca.gov.co/tema/normatividad"
     },
     {
-      "divipola": "50270",
-      "municipio": "EL DORADO",
-      "departamento": "META",
-      "dias_desde_ultima": 69,
-      "calendario_vigente": "Sí",
-      "motivos": [
-        "Sin norma reciente"
-      ],
-      "sitio_url": "https://www.eldorado-meta.gov.co/",
-      "url_normativa": "https://www.eldorado-meta.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "13268",
       "municipio": "EL PEÑÓN",
       "departamento": "BOLÍVAR",
@@ -2510,19 +2493,6 @@
       "url_normativa": "https://www.toluviejo-sucre.gov.co/tema/normatividad"
     },
     {
-      "divipola": "15403",
-      "municipio": "LA UVITA",
-      "departamento": "BOYACÁ",
-      "dias_desde_ultima": 59,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Sin norma reciente",
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.lauvita-boyaca.gov.co/",
-      "url_normativa": "https://www.lauvita-boyaca.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "50330",
       "municipio": "MESETAS",
       "departamento": "META",
@@ -2560,19 +2530,6 @@
       ],
       "sitio_url": "https://www.puli-cundinamarca.gov.co/",
       "url_normativa": "https://www.puli-cundinamarca.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "25596",
-      "municipio": "QUIPILE",
-      "departamento": "CUNDINAMARCA",
-      "dias_desde_ultima": 59,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Sin norma reciente",
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.quipile-cundinamarca.gov.co/",
-      "url_normativa": "https://www.quipile-cundinamarca.gov.co/tema/normatividad"
     },
     {
       "divipola": "15600",
@@ -2687,19 +2644,6 @@
       ],
       "sitio_url": "https://www.pazderio-boyaca.gov.co/",
       "url_normativa": "https://www.pazderio-boyaca.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "41319",
-      "municipio": "GUADALUPE",
-      "departamento": "HUILA",
-      "dias_desde_ultima": 57,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Sin norma reciente",
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.guadalupe-huila.gov.co/",
-      "url_normativa": "https://www.guadalupe-huila.gov.co/tema/normatividad"
     },
     {
       "divipola": "15494",
@@ -2840,19 +2784,6 @@
       ],
       "sitio_url": "https://www.ventaquemada-boyaca.gov.co/",
       "url_normativa": "https://www.ventaquemada-boyaca.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "13006",
-      "municipio": "ACHÍ",
-      "departamento": "BOLÍVAR",
-      "dias_desde_ultima": 52,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Sin norma reciente",
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.achi-bolivar.gov.co/",
-      "url_normativa": "https://www.achi-bolivar.gov.co/tema/normatividad"
     },
     {
       "divipola": "50245",
@@ -3758,18 +3689,6 @@
       "url_normativa": "https://www.zetaquira-boyaca.gov.co/tema/normatividad"
     },
     {
-      "divipola": "13140",
-      "municipio": "CALAMAR",
-      "departamento": "BOLÍVAR",
-      "dias_desde_ultima": 35,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.calamar-bolivar.gov.co/",
-      "url_normativa": "https://www.calamar-bolivar.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "15135",
       "municipio": "CAMPOHERMOSO",
       "departamento": "BOYACÁ",
@@ -4082,6 +4001,18 @@
       "url_normativa": "https://www.valparaiso-antioquia.gov.co/tema/normatividad"
     },
     {
+      "divipola": "13006",
+      "municipio": "ACHÍ",
+      "departamento": "BOLÍVAR",
+      "dias_desde_ultima": 28,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.achi-bolivar.gov.co/",
+      "url_normativa": "https://www.achi-bolivar.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "17042",
       "municipio": "ANSERMA",
       "departamento": "CALDAS",
@@ -4322,18 +4253,6 @@
       "url_normativa": "https://www.pinchote-santander.gov.co/tema/normatividad"
     },
     {
-      "divipola": "08634",
-      "municipio": "SABANAGRANDE",
-      "departamento": "ATLÁNTICO",
-      "dias_desde_ultima": 27,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.sabanagrande-atlantico.gov.co/",
-      "url_normativa": "https://www.sabanagrande-atlantico.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "13780",
       "municipio": "TALAIGUA NUEVO",
       "departamento": "BOLÍVAR",
@@ -4440,18 +4359,6 @@
       ],
       "sitio_url": "https://guepsasantander.micolombiadigital.gov.co/",
       "url_normativa": "https://guepsasantander.micolombiadigital.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "05347",
-      "municipio": "HELICONIA",
-      "departamento": "ANTIOQUIA",
-      "dias_desde_ultima": 24,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.heliconia-antioquia.gov.co/",
-      "url_normativa": "https://www.heliconia-antioquia.gov.co/tema/normatividad"
     },
     {
       "divipola": "44430",
@@ -5894,18 +5801,6 @@
       "url_normativa": "https://www.argelia-antioquia.gov.co/tema/normatividad"
     },
     {
-      "divipola": "18150",
-      "municipio": "CARTAGENA DEL CHAIRÁ",
-      "departamento": "CAQUETÁ",
-      "dias_desde_ultima": 14,
-      "calendario_vigente": "Probable",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.cartagenadelchaira-caqueta.gov.co/",
-      "url_normativa": "https://www.cartagenadelchaira-caqueta.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "68162",
       "municipio": "CERRITO",
       "departamento": "SANTANDER",
@@ -6218,18 +6113,6 @@
       "url_normativa": "https://elcantondelsanpablochoco.micolombiadigital.gov.co/tema/normatividad"
     },
     {
-      "divipola": "50251",
-      "municipio": "EL CASTILLO",
-      "departamento": "META",
-      "dias_desde_ultima": 13,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.elcastillo-meta.gov.co/",
-      "url_normativa": "https://www.elcastillo-meta.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "44110",
       "municipio": "EL MOLINO",
       "departamento": "LA GUAJIRA",
@@ -6338,6 +6221,18 @@
       "url_normativa": "https://www.puertolibertador-cordoba.gov.co/tema/normatividad"
     },
     {
+      "divipola": "25596",
+      "municipio": "QUIPILE",
+      "departamento": "CUNDINAMARCA",
+      "dias_desde_ultima": 13,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.quipile-cundinamarca.gov.co/",
+      "url_normativa": "https://www.quipile-cundinamarca.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "15599",
       "municipio": "RAMIRIQUÍ",
       "departamento": "BOYACÁ",
@@ -6372,18 +6267,6 @@
       ],
       "sitio_url": "https://www.saldana-tolima.gov.co/",
       "url_normativa": "https://www.saldana-tolima.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "41770",
-      "municipio": "SUAZA",
-      "departamento": "HUILA",
-      "dias_desde_ultima": 13,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.suaza-huila.gov.co/",
-      "url_normativa": "https://www.suaza-huila.gov.co/tema/normatividad"
     },
     {
       "divipola": "25769",
@@ -6986,18 +6869,6 @@
       "url_normativa": "https://www.elcolegio-cundinamarca.gov.co/tema/normatividad"
     },
     {
-      "divipola": "68245",
-      "municipio": "EL GUACAMAYO",
-      "departamento": "SANTANDER",
-      "dias_desde_ultima": 9,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.elguacamayo-santander.gov.co/",
-      "url_normativa": "https://www.elguacamayo-santander.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "70235",
       "municipio": "GALERAS",
       "departamento": "SUCRE",
@@ -7068,18 +6939,6 @@
       ],
       "sitio_url": "https://www.lajaguadelpilar-laguajira.gov.co/",
       "url_normativa": "https://www.lajaguadelpilar-laguajira.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "70429",
-      "municipio": "MAJAGUAL",
-      "departamento": "SUCRE",
-      "dias_desde_ultima": 9,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.majagual-sucre.gov.co/",
-      "url_normativa": "https://www.majagual-sucre.gov.co/tema/normatividad"
     },
     {
       "divipola": "68444",
@@ -7236,18 +7095,6 @@
       ],
       "sitio_url": "https://www.sevilla-valle.gov.co/",
       "url_normativa": "https://www.sevilla-valle.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "15763",
-      "municipio": "SOTAQUIRÁ",
-      "departamento": "BOYACÁ",
-      "dias_desde_ultima": 9,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.sotaquira-boyaca.gov.co/",
-      "url_normativa": "https://www.sotaquira-boyaca.gov.co/tema/normatividad"
     },
     {
       "divipola": "73770",
@@ -7500,18 +7347,6 @@
       ],
       "sitio_url": "https://www.fuentedeoro-meta.gov.co/",
       "url_normativa": "https://www.fuentedeoro-meta.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "41298",
-      "municipio": "GARZÓN",
-      "departamento": "HUILA",
-      "dias_desde_ultima": 8,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.garzon-huila.gov.co/",
-      "url_normativa": "https://www.garzon-huila.gov.co/tema/normatividad"
     },
     {
       "divipola": "17388",
@@ -7802,18 +7637,6 @@
       "url_normativa": "https://www.villacaro-nortedesantander.gov.co/tema/normatividad"
     },
     {
-      "divipola": "68895",
-      "municipio": "ZAPATOCA",
-      "departamento": "SANTANDER",
-      "dias_desde_ultima": 8,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.zapatoca-santander.gov.co/",
-      "url_normativa": "https://www.zapatoca-santander.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "85010",
       "municipio": "AGUAZUL",
       "departamento": "CASANARE",
@@ -7874,18 +7697,6 @@
       "url_normativa": "https://www.beteitiva-boyaca.gov.co/tema/normatividad"
     },
     {
-      "divipola": "15104",
-      "municipio": "BOYACÁ",
-      "departamento": "BOYACÁ",
-      "dias_desde_ultima": 7,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://boyacaboyaca.micolombiadigital.gov.co/",
-      "url_normativa": "https://boyacaboyaca.micolombiadigital.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "05138",
       "municipio": "CAÑASGORDAS",
       "departamento": "ANTIOQUIA",
@@ -7932,30 +7743,6 @@
       ],
       "sitio_url": "https://coromorosantander.micolombiadigital.gov.co/",
       "url_normativa": "https://coromorosantander.micolombiadigital.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "52224",
-      "municipio": "CUASPUD CARLOSAMA",
-      "departamento": "NARIÑO",
-      "dias_desde_ultima": 7,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.cuaspud-narino.gov.co/",
-      "url_normativa": "https://www.cuaspud-narino.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "15223",
-      "municipio": "CUBARÁ",
-      "departamento": "BOYACÁ",
-      "dias_desde_ultima": 7,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.cubara-boyaca.gov.co/",
-      "url_normativa": "https://www.cubara-boyaca.gov.co/tema/normatividad"
     },
     {
       "divipola": "27245",
@@ -8198,18 +7985,6 @@
       "url_normativa": "https://www.panqueba-boyaca.gov.co/tema/normatividad"
     },
     {
-      "divipola": "15531",
-      "municipio": "PAUNA",
-      "departamento": "BOYACÁ",
-      "dias_desde_ultima": 7,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.pauna-boyaca.gov.co/",
-      "url_normativa": "https://www.pauna-boyaca.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "15533",
       "municipio": "PAYA",
       "departamento": "BOYACÁ",
@@ -8244,18 +8019,6 @@
       ],
       "sitio_url": "https://www.puertorico-caqueta.gov.co/",
       "url_normativa": "https://www.puertorico-caqueta.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "68615",
-      "municipio": "RIONEGRO",
-      "departamento": "SANTANDER",
-      "dias_desde_ultima": 7,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.rionegro-santander.gov.co/",
-      "url_normativa": "https://www.rionegro-santander.gov.co/tema/normatividad"
     },
     {
       "divipola": "15660",
@@ -8426,6 +8189,18 @@
       "url_normativa": "https://www.berbeo-boyaca.gov.co/tema/normatividad"
     },
     {
+      "divipola": "15104",
+      "municipio": "BOYACÁ",
+      "departamento": "BOYACÁ",
+      "dias_desde_ultima": 6,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://boyacaboyaca.micolombiadigital.gov.co/",
+      "url_normativa": "https://boyacaboyaca.micolombiadigital.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "68169",
       "municipio": "CHARTA",
       "departamento": "SANTANDER",
@@ -8472,18 +8247,6 @@
       ],
       "sitio_url": "https://www.cucaita-boyaca.gov.co/",
       "url_normativa": "https://www.cucaita-boyaca.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "05264",
-      "municipio": "ENTRERRÍOS",
-      "departamento": "ANTIOQUIA",
-      "dias_desde_ultima": 6,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.entrerrios-antioquia.gov.co/",
-      "url_normativa": "https://www.entrerrios-antioquia.gov.co/tema/normatividad"
     },
     {
       "divipola": "17272",
@@ -8700,30 +8463,6 @@
       ],
       "sitio_url": "https://www.paez-boyaca.gov.co/",
       "url_normativa": "https://www.paez-boyaca.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "63690",
-      "municipio": "SALENTO",
-      "departamento": "QUINDÍO",
-      "dias_desde_ultima": 6,
-      "calendario_vigente": "Probable",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.salento-quindio.gov.co/",
-      "url_normativa": "https://www.salento-quindio.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "15667",
-      "municipio": "SAN LUIS DE GACENO",
-      "departamento": "BOYACÁ",
-      "dias_desde_ultima": 6,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.sanluisdegaceno-boyaca.gov.co/",
-      "url_normativa": "https://www.sanluisdegaceno-boyaca.gov.co/tema/normatividad"
     },
     {
       "divipola": "15673",
@@ -8978,6 +8717,18 @@
       "url_normativa": "https://www.soata-boyaca.gov.co/tema/normatividad"
     },
     {
+      "divipola": "13140",
+      "municipio": "CALAMAR",
+      "departamento": "BOLÍVAR",
+      "dias_desde_ultima": 4,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.calamar-bolivar.gov.co/",
+      "url_normativa": "https://www.calamar-bolivar.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "54660",
       "municipio": "SALAZAR",
       "departamento": "NORTE DE SANTANDER",
@@ -8988,18 +8739,6 @@
       ],
       "sitio_url": "https://salazarnortedesantander.micolombiadigital.gov.co/",
       "url_normativa": "https://salazarnortedesantander.micolombiadigital.gov.co/tema/normatividad"
-    },
-    {
-      "divipola": "25001",
-      "municipio": "AGUA DE DIOS",
-      "departamento": "CUNDINAMARCA",
-      "dias_desde_ultima": 3,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.aguadedios-cundinamarca.gov.co/",
-      "url_normativa": "https://www.aguadedios-cundinamarca.gov.co/tema/normatividad"
     },
     {
       "divipola": "52019",
@@ -9134,6 +8873,18 @@
       "url_normativa": "https://www.guamal-magdalena.gov.co/tema/normatividad"
     },
     {
+      "divipola": "05347",
+      "municipio": "HELICONIA",
+      "departamento": "ANTIOQUIA",
+      "dias_desde_ultima": 3,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.heliconia-antioquia.gov.co/",
+      "url_normativa": "https://www.heliconia-antioquia.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "18410",
       "municipio": "LA MONTAÑITA",
       "departamento": "CAQUETÁ",
@@ -9182,6 +8933,18 @@
       "url_normativa": "https://www.latebaida-quindio.gov.co/tema/normatividad"
     },
     {
+      "divipola": "15403",
+      "municipio": "LA UVITA",
+      "departamento": "BOYACÁ",
+      "dias_desde_ultima": 3,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.lauvita-boyaca.gov.co/",
+      "url_normativa": "https://www.lauvita-boyaca.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "23417",
       "municipio": "LORICA",
       "departamento": "CÓRDOBA",
@@ -9204,6 +8967,18 @@
       ],
       "sitio_url": "https://www.lospalmitos-sucre.gov.co/",
       "url_normativa": "https://www.lospalmitos-sucre.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "70429",
+      "municipio": "MAJAGUAL",
+      "departamento": "SUCRE",
+      "dias_desde_ultima": 3,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.majagual-sucre.gov.co/",
+      "url_normativa": "https://www.majagual-sucre.gov.co/tema/normatividad"
     },
     {
       "divipola": "15466",
@@ -9276,6 +9051,18 @@
       ],
       "sitio_url": "https://www.sabanadetorres-santander.gov.co/",
       "url_normativa": "https://www.sabanadetorres-santander.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "08634",
+      "municipio": "SABANAGRANDE",
+      "departamento": "ATLÁNTICO",
+      "dias_desde_ultima": 3,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.sabanagrande-atlantico.gov.co/",
+      "url_normativa": "https://www.sabanagrande-atlantico.gov.co/tema/normatividad"
     },
     {
       "divipola": "08638",
@@ -9386,18 +9173,6 @@
       "url_normativa": "https://soracaboyaca.micolombiadigital.gov.co/tema/normatividad"
     },
     {
-      "divipola": "97666",
-      "municipio": "TARAIRA",
-      "departamento": "VAUPÉS",
-      "dias_desde_ultima": 3,
-      "calendario_vigente": "No",
-      "motivos": [
-        "Calendario no confirmado"
-      ],
-      "sitio_url": "https://www.taraira-vaupes.gov.co/",
-      "url_normativa": "https://www.taraira-vaupes.gov.co/tema/normatividad"
-    },
-    {
       "divipola": "76863",
       "municipio": "VERSALLES",
       "departamento": "VALLE DEL CAUCA",
@@ -9446,16 +9221,16 @@
       "url_normativa": "https://www.barichara-santander.gov.co/tema/normatividad"
     },
     {
-      "divipola": "76126",
-      "municipio": "CALIMA",
-      "departamento": "VALLE DEL CAUCA",
+      "divipola": "18150",
+      "municipio": "CARTAGENA DEL CHAIRÁ",
+      "departamento": "CAQUETÁ",
       "dias_desde_ultima": 2,
       "calendario_vigente": "Probable",
       "motivos": [
         "Calendario no confirmado"
       ],
-      "sitio_url": "https://calimavalledelcauca.micolombiadigital.gov.co/",
-      "url_normativa": "https://calimavalledelcauca.micolombiadigital.gov.co/tema/normatividad"
+      "sitio_url": "https://www.cartagenadelchaira-caqueta.gov.co/",
+      "url_normativa": "https://www.cartagenadelchaira-caqueta.gov.co/tema/normatividad"
     },
     {
       "divipola": "15162",
@@ -9480,6 +9255,18 @@
       ],
       "sitio_url": "https://www.coper-boyaca.gov.co/",
       "url_normativa": "https://www.coper-boyaca.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "52224",
+      "municipio": "CUASPUD CARLOSAMA",
+      "departamento": "NARIÑO",
+      "dias_desde_ultima": 2,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.cuaspud-narino.gov.co/",
+      "url_normativa": "https://www.cuaspud-narino.gov.co/tema/normatividad"
     },
     {
       "divipola": "50226",
@@ -9576,6 +9363,30 @@
       ],
       "sitio_url": "https://www.gachala-cundinamarca.gov.co/",
       "url_normativa": "https://www.gachala-cundinamarca.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "41298",
+      "municipio": "GARZÓN",
+      "departamento": "HUILA",
+      "dias_desde_ultima": 2,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.garzon-huila.gov.co/",
+      "url_normativa": "https://www.garzon-huila.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "41319",
+      "municipio": "GUADALUPE",
+      "departamento": "HUILA",
+      "dias_desde_ultima": 2,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.guadalupe-huila.gov.co/",
+      "url_normativa": "https://www.guadalupe-huila.gov.co/tema/normatividad"
     },
     {
       "divipola": "20383",
@@ -9686,6 +9497,18 @@
       "url_normativa": "https://www.montelibano-cordoba.gov.co/tema/normatividad"
     },
     {
+      "divipola": "15531",
+      "municipio": "PAUNA",
+      "departamento": "BOYACÁ",
+      "dias_desde_ultima": 2,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.pauna-boyaca.gov.co/",
+      "url_normativa": "https://www.pauna-boyaca.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "52560",
       "municipio": "POTOSÍ",
       "departamento": "NARIÑO",
@@ -9734,6 +9557,30 @@
       "url_normativa": "https://www.restrepo-meta.gov.co/tema/normatividad"
     },
     {
+      "divipola": "68615",
+      "municipio": "RIONEGRO",
+      "departamento": "SANTANDER",
+      "dias_desde_ultima": 2,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.rionegro-santander.gov.co/",
+      "url_normativa": "https://www.rionegro-santander.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "63690",
+      "municipio": "SALENTO",
+      "departamento": "QUINDÍO",
+      "dias_desde_ultima": 2,
+      "calendario_vigente": "Probable",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.salento-quindio.gov.co/",
+      "url_normativa": "https://www.salento-quindio.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "70708",
       "municipio": "SAN MARCOS",
       "departamento": "SUCRE",
@@ -9780,6 +9627,18 @@
       ],
       "sitio_url": "https://saravenaarauca.micolombiadigital.gov.co/",
       "url_normativa": "https://saravenaarauca.micolombiadigital.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "41770",
+      "municipio": "SUAZA",
+      "departamento": "HUILA",
+      "dias_desde_ultima": 2,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.suaza-huila.gov.co/",
+      "url_normativa": "https://www.suaza-huila.gov.co/tema/normatividad"
     },
     {
       "divipola": "15790",
@@ -9842,6 +9701,30 @@
       "url_normativa": "https://www.victoria-caldas.gov.co/tema/normatividad"
     },
     {
+      "divipola": "68895",
+      "municipio": "ZAPATOCA",
+      "departamento": "SANTANDER",
+      "dias_desde_ultima": 2,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.zapatoca-santander.gov.co/",
+      "url_normativa": "https://www.zapatoca-santander.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "25001",
+      "municipio": "AGUA DE DIOS",
+      "departamento": "CUNDINAMARCA",
+      "dias_desde_ultima": 1,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.aguadedios-cundinamarca.gov.co/",
+      "url_normativa": "https://www.aguadedios-cundinamarca.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "17013",
       "municipio": "AGUADAS",
       "departamento": "CALDAS",
@@ -9878,6 +9761,18 @@
       "url_normativa": "https://www.calarca-quindio.gov.co/tema/normatividad"
     },
     {
+      "divipola": "76126",
+      "municipio": "CALIMA",
+      "departamento": "VALLE DEL CAUCA",
+      "dias_desde_ultima": 1,
+      "calendario_vigente": "Probable",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://calimavalledelcauca.micolombiadigital.gov.co/",
+      "url_normativa": "https://calimavalledelcauca.micolombiadigital.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "25148",
       "municipio": "CAPARRAPÍ",
       "departamento": "CUNDINAMARCA",
@@ -9902,6 +9797,42 @@
       "url_normativa": "https://www.chitaraque-boyaca.gov.co/tema/normatividad"
     },
     {
+      "divipola": "15223",
+      "municipio": "CUBARÁ",
+      "departamento": "BOYACÁ",
+      "dias_desde_ultima": 1,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.cubara-boyaca.gov.co/",
+      "url_normativa": "https://www.cubara-boyaca.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "50251",
+      "municipio": "EL CASTILLO",
+      "departamento": "META",
+      "dias_desde_ultima": 1,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.elcastillo-meta.gov.co/",
+      "url_normativa": "https://www.elcastillo-meta.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "68245",
+      "municipio": "EL GUACAMAYO",
+      "departamento": "SANTANDER",
+      "dias_desde_ultima": 1,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.elguacamayo-santander.gov.co/",
+      "url_normativa": "https://www.elguacamayo-santander.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "19256",
       "municipio": "EL TAMBO",
       "departamento": "CAUCA",
@@ -9912,6 +9843,18 @@
       ],
       "sitio_url": "https://www.eltambo-cauca.gov.co/",
       "url_normativa": "https://www.eltambo-cauca.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "05264",
+      "municipio": "ENTRERRÍOS",
+      "departamento": "ANTIOQUIA",
+      "dias_desde_ultima": 1,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.entrerrios-antioquia.gov.co/",
+      "url_normativa": "https://www.entrerrios-antioquia.gov.co/tema/normatividad"
     },
     {
       "divipola": "25269",
@@ -9998,6 +9941,18 @@
       "url_normativa": "https://www.melgar-tolima.gov.co/tema/normatividad"
     },
     {
+      "divipola": "05467",
+      "municipio": "MONTEBELLO",
+      "departamento": "ANTIOQUIA",
+      "dias_desde_ultima": 1,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://montebello-antioquia.gov.co/",
+      "url_normativa": "https://montebello-antioquia.gov.co/tema/normatividad"
+    },
+    {
       "divipola": "27491",
       "municipio": "NÓVITA",
       "departamento": "CHOCÓ",
@@ -10068,6 +10023,42 @@
       ],
       "sitio_url": "https://www.sanjuandebetulia-sucre.gov.co/",
       "url_normativa": "https://www.sanjuandebetulia-sucre.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "15667",
+      "municipio": "SAN LUIS DE GACENO",
+      "departamento": "BOYACÁ",
+      "dias_desde_ultima": 1,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.sanluisdegaceno-boyaca.gov.co/",
+      "url_normativa": "https://www.sanluisdegaceno-boyaca.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "15763",
+      "municipio": "SOTAQUIRÁ",
+      "departamento": "BOYACÁ",
+      "dias_desde_ultima": 1,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.sotaquira-boyaca.gov.co/",
+      "url_normativa": "https://www.sotaquira-boyaca.gov.co/tema/normatividad"
+    },
+    {
+      "divipola": "97666",
+      "municipio": "TARAIRA",
+      "departamento": "VAUPÉS",
+      "dias_desde_ultima": 1,
+      "calendario_vigente": "No",
+      "motivos": [
+        "Calendario no confirmado"
+      ],
+      "sitio_url": "https://www.taraira-vaupes.gov.co/",
+      "url_normativa": "https://www.taraira-vaupes.gov.co/tema/normatividad"
     },
     {
       "divipola": "25839",
@@ -10153,7 +10144,7 @@
   "filas_fuente": {
     "registro": 1104,
     "municipios_api": 932,
-    "documentos_tributarios": 53241,
+    "documentos_tributarios": 53242,
     "documentos_recientes": 47550,
     "snapshot_estado": 932
   },
@@ -19332,11 +19323,11 @@
     },
     "cambios": {
       "disponible": true,
-      "total": 896,
+      "total": 899,
       "por_cambio": [
         {
           "nombre": "nuevo",
-          "cantidad": 871
+          "cantidad": 874
         },
         {
           "nombre": "modificado",
@@ -19350,7 +19341,7 @@
       "por_nivel": [
         {
           "nombre": "sin_dato",
-          "cantidad": 882
+          "cantidad": 885
         },
         {
           "nombre": "atributos",
@@ -19364,7 +19355,7 @@
       "por_clase": [
         {
           "nombre": "otro",
-          "cantidad": 892
+          "cantidad": 895
         },
         {
           "nombre": "ica",
@@ -19373,6 +19364,12 @@
         {
           "nombre": "estatuto",
           "cantidad": 1
+        }
+      ],
+      "por_fuente": [
+        {
+          "nombre": "Mi Colombia Digital",
+          "cantidad": 899
         }
       ],
       "captura_anterior": "2026-10-28",
@@ -19392,7 +19389,8 @@
           "entregables": [
             "E1",
             "E4"
-          ]
+          ],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "63130",
@@ -19405,7 +19403,8 @@
           "url": "https://www.calarca-quindio.gov.co/noticias/nuevo-acuerdo-municipal-otorga-descuentos-en-el-impuesto",
           "clase": "ica",
           "confianza": "info",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "63130",
@@ -19418,7 +19417,8 @@
           "url": "https://www.calarca-quindio.gov.co/noticias/alcaldia-de-calarca-amplia-plazos-y-otorga-descuentos",
           "clase": "ica",
           "confianza": "info",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "63130",
@@ -19431,7 +19431,8 @@
           "url": "https://www.calarca-quindio.gov.co/noticias/ultimos-dias-para-acceder-al-10-de-descuento-en-el-pago",
           "clase": "ica",
           "confianza": "info",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19444,7 +19445,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/noticias/cuidar-tambien-es-prevenir",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19457,7 +19459,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/noticias/las-bendiciones-a-nuestro-municipio-siguen-llegando",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19470,7 +19473,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/calamidad-publica0082026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19483,7 +19487,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cisop0182026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19496,7 +19501,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/sasop0112026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19509,7 +19515,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/sasop0102026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19522,7 +19529,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cmcssp0312026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19535,7 +19543,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssgg1992026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19548,7 +19557,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssgg2022026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19561,7 +19571,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssgg2032026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19574,7 +19585,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssgg2042026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19587,7 +19599,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssgg2052026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19600,7 +19613,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssgg2062026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19613,7 +19627,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssgg2002026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19626,7 +19641,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cisop0202026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19639,7 +19655,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpsssp2072026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19652,7 +19669,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/arrendamiento-001-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19665,7 +19683,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/sasop0122026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19678,7 +19697,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssgg2012026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19691,7 +19711,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/sasop0152026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19704,7 +19725,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/sasop0162026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19717,7 +19739,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpsssp2082026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19730,7 +19753,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssgg2092026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19743,7 +19767,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssh2102026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19756,7 +19781,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssh2112026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19769,7 +19795,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssh2122026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19782,7 +19809,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssh2132026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19795,7 +19823,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssh2142026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19808,7 +19837,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssh2152026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19821,7 +19851,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssh2162026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19834,7 +19865,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/sa0092026-37844",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19847,7 +19879,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cmcsgg0322026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19860,7 +19893,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssde2172026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19873,7 +19907,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpsspl2182026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19886,7 +19921,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpsspl2192026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19899,7 +19935,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpsspl2202026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19912,7 +19949,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpsspl2212026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19925,7 +19963,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpsspl2222026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19938,7 +19977,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpsspl2232026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19951,7 +19991,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpsspl2242026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19964,7 +20005,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpsspl2252026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19977,7 +20019,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/calamidad-publica0092026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -19990,7 +20033,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/sa0132026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -20003,7 +20047,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cmcsde0352026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -20016,7 +20061,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cmcsem0332026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -20029,7 +20075,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cmcssp0342026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -20042,7 +20089,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cmcsem0362026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -20055,7 +20103,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/sa0142026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -20068,7 +20117,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssde2262026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05051",
@@ -20081,7 +20131,8 @@
           "url": "https://www.arboletes-antioquia.gov.co/contrataciones/cpssop2272026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05138",
@@ -20094,7 +20145,8 @@
           "url": "https://www.canasgordas-antioquia.gov.co/metas-objetivos-e-indicadores/plan-de-gestion-integral-de-residuos-solidos-pgirs-municipio-844595",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05138",
@@ -20107,7 +20159,8 @@
           "url": "https://www.canasgordas-antioquia.gov.co/metas-objetivos-e-indicadores/esquema-de-ordenamiento-territorial-241311",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05138",
@@ -20120,7 +20173,8 @@
           "url": "https://www.canasgordas-antioquia.gov.co/metas-objetivos-e-indicadores/informes-de-rendicion-de-cuentas",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05138",
@@ -20133,7 +20187,8 @@
           "url": "https://www.canasgordas-antioquia.gov.co/metas-objetivos-e-indicadores/noticias",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05138",
@@ -20146,7 +20201,8 @@
           "url": "https://www.canasgordas-antioquia.gov.co/metas-objetivos-e-indicadores/informes-de-gestion-evaluacion-y-auditoria",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20159,7 +20215,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/normatividad-y-formatos-de-industria-y-comercio/certificacio-bancaria-cta-755-banco-de-bogota",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20172,7 +20229,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/notificaciones-por-aviso/resolucion-6924-de-19-de-octubre-2026daniel-cardona",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20185,7 +20243,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/notificaciones-por-aviso/resolucion-6924-de-19-de-octubre-2026daniel-cardona",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20198,7 +20257,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/notificaciones-por-aviso/resolucion-6925-de-19-de-octubre-2026javier-enrique",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20211,7 +20271,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/notificaciones-por-aviso/resolucion-6933-de-19-de-octubre-2026jeimer-estiven",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20224,7 +20285,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/notificaciones-por-aviso/resolucion-4063-del-13-de-noviembre-de-2024-infractor",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20237,7 +20299,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/notificaciones-por-aviso/resolucion-4074-del-13-de-noviembre-de-2024-infractor",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20250,7 +20313,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/notificaciones-por-aviso/resolucion-4069-del-13-de-noviembre-de-2024-infractor",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20263,7 +20327,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/notificaciones-por-aviso/resolucion-4067-del-13-de-noviembre-de-2024-infractor",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20276,7 +20341,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/notificaciones-por-aviso/resolucion-4066-del-13-de-noviembre-de-2024-infractor",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05148",
@@ -20289,7 +20355,8 @@
           "url": "https://www.elcarmendeviboral-antioquia.gov.co/notificaciones-por-aviso/resolucion-4065-del-13-de-noviembre-de-2024-infractor",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20302,7 +20369,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009638",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20315,7 +20383,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009639",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20328,7 +20397,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009640",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20341,7 +20411,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009641",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20354,7 +20425,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009642",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20367,7 +20439,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009643",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20380,7 +20453,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009645",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20393,7 +20467,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009646",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20406,7 +20481,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009647",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20419,7 +20495,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009649",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20432,7 +20509,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009650",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20445,7 +20523,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009651",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20458,7 +20537,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009652",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20471,7 +20551,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009653",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20484,7 +20565,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009654",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20497,7 +20579,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009655",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20510,7 +20593,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009656",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20523,7 +20607,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009657",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20536,7 +20621,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009658",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20549,7 +20635,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009660",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20562,7 +20649,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009661",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20575,7 +20663,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009662",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20588,7 +20677,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009663",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20601,7 +20691,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009664",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20614,7 +20705,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009666",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20627,7 +20719,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009668",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20640,7 +20733,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009669",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20653,7 +20747,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009670",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20666,7 +20761,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009671",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20679,7 +20775,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009672",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20692,7 +20789,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009673",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20705,7 +20803,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009674",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20718,7 +20817,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009675",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20731,7 +20831,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009677",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20744,7 +20845,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009678",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20757,7 +20859,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009679",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20770,7 +20873,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009680",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20783,7 +20887,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009681",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20796,7 +20901,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009682",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20809,7 +20915,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009683",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20822,7 +20929,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009684",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20835,7 +20943,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009685",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20848,7 +20957,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009690",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20861,7 +20971,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009691",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20874,7 +20985,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009694",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20887,7 +20999,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009695",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20900,7 +21013,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009696",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20913,7 +21027,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009697",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20926,7 +21041,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009698",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20939,7 +21055,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009699",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20952,7 +21069,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009701",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20965,7 +21083,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009702",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20978,7 +21097,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009702",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -20991,7 +21111,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009704",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21004,7 +21125,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009705",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21017,7 +21139,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009707",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21030,7 +21153,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009708",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21043,7 +21167,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009708",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21056,7 +21181,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009709",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21069,7 +21195,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009715",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21082,7 +21209,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009717",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21095,7 +21223,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009720",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21108,7 +21237,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009722",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21121,7 +21251,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009724",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21134,7 +21265,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009725",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21147,7 +21279,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009728",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21160,7 +21293,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009729",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21173,7 +21307,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009731",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21186,7 +21321,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009733",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21199,7 +21335,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009737",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21212,7 +21349,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009741",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21225,7 +21363,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009742",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21238,7 +21377,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009744",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21251,7 +21391,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009745",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21264,7 +21405,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009749",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21277,7 +21419,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009750",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21290,7 +21433,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009752",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21303,7 +21447,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009753",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21316,7 +21461,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009754",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21329,7 +21475,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009755",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21342,7 +21489,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009756",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21355,7 +21503,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009757",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21368,7 +21517,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009757-478891",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21381,7 +21531,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009758",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21394,7 +21545,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009759",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21407,7 +21559,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009761",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21420,7 +21573,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009762",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21433,7 +21587,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009763",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21446,7 +21601,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009764",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21459,7 +21615,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009766",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21472,7 +21629,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009767",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21485,7 +21643,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009771",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21498,7 +21657,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009772",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21511,7 +21671,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009773",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21524,7 +21685,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009775",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21537,7 +21699,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009776",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21550,7 +21713,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009777",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21563,7 +21727,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009777-434563",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21576,7 +21741,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009778",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21589,7 +21755,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009781",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21602,7 +21769,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009782",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21615,7 +21783,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009782",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21628,7 +21797,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009789",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21641,7 +21811,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009791",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21654,7 +21825,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009793",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21667,7 +21839,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009795",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21680,7 +21853,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009796",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21693,7 +21867,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009798",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21706,7 +21881,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009799",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21719,7 +21895,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009801",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21732,7 +21909,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009802",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21745,7 +21923,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009803",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21758,7 +21937,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009805",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21771,7 +21951,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009807",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21784,7 +21965,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009809",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21797,7 +21979,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009811",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21810,7 +21993,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009813",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21823,7 +22007,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009814",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21836,7 +22021,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009817",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21849,7 +22035,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009818",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21862,7 +22049,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009821",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21875,7 +22063,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009822",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21888,7 +22077,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009823",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21901,7 +22091,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009825",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21914,7 +22105,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009826",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21927,7 +22119,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009828",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21940,7 +22133,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009829",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21953,7 +22147,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009830",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21966,7 +22161,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009832",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21979,7 +22175,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009833",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -21992,7 +22189,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009834",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22005,7 +22203,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009836",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22018,7 +22217,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009840",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22031,7 +22231,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009842",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22044,7 +22245,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009844",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22057,7 +22259,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009845",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22070,7 +22273,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009846",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22083,7 +22287,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009847",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22096,7 +22301,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009849",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22109,7 +22315,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009852",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22122,7 +22329,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009853",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22135,7 +22343,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009854",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22148,7 +22357,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009855",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22161,7 +22371,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009856",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22174,7 +22385,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009858",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22187,7 +22399,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009861",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22200,7 +22413,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009862",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22213,7 +22427,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009864",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22226,7 +22441,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009865",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22239,7 +22455,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009866",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22252,7 +22469,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009868",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22265,7 +22483,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009870",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22278,7 +22497,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009872",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22291,7 +22511,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009875",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22304,7 +22525,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009877",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22317,7 +22539,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009878",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22330,7 +22553,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009879",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22343,7 +22567,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009881",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22356,7 +22581,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009882",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22369,7 +22595,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009883",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22382,7 +22609,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009884",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22395,7 +22623,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009885",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22408,7 +22637,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009888",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22421,7 +22651,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009890",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22434,7 +22665,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009891",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22447,7 +22679,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009893",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22460,7 +22693,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009894",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22473,7 +22707,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009895",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22486,7 +22721,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009897",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22499,7 +22735,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009898",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22512,7 +22749,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009900",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22525,7 +22763,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009905",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22538,7 +22777,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009907",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22551,7 +22791,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009909",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22564,7 +22805,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009910",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22577,7 +22819,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009912",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22590,7 +22833,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009913",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22603,7 +22847,8 @@
           "url": "https://envigado.gov.co/notificaciones/oficio-10320264351-del-19102026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22616,7 +22861,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009914",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22629,7 +22875,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009916",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22642,7 +22889,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009917",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22655,7 +22903,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009918",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22668,7 +22917,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009920",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22681,7 +22931,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009922",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22694,7 +22945,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009925",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22707,7 +22959,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009926",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22720,7 +22973,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009927",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22733,7 +22987,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009928",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22746,7 +23001,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009929",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22759,7 +23015,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009931",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22772,7 +23029,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009932",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22785,7 +23043,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009933",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22798,7 +23057,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009934",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22811,7 +23071,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009935",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22824,7 +23085,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009939",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22837,7 +23099,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009940",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22850,7 +23113,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009941",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22863,7 +23127,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009943",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22876,7 +23141,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009945",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22889,7 +23155,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009946",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22902,7 +23169,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009948",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22915,7 +23183,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009950",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22928,7 +23197,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009951",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22941,7 +23211,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009952",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22954,7 +23225,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009954",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22967,7 +23239,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009955",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22980,7 +23253,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009956",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -22993,7 +23267,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009957",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23006,7 +23281,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009958",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23019,7 +23295,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009959",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23032,7 +23309,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009960",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23045,7 +23323,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009962",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23058,7 +23337,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009963",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23071,7 +23351,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009967",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23084,7 +23365,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009968",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23097,7 +23379,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009969",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23110,7 +23393,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009970",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23123,7 +23407,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009974",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23136,7 +23421,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009975",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23149,7 +23435,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009976",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23162,7 +23449,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009977",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23175,7 +23463,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009979",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23188,7 +23477,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009980",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23201,7 +23491,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009982",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23214,7 +23505,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009986",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23227,7 +23519,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009989",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23240,7 +23533,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009990",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23253,7 +23547,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009992",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23266,7 +23561,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009993",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23279,7 +23575,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009995",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23292,7 +23589,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009996",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23305,7 +23603,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009997",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23318,7 +23617,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009998",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23331,7 +23631,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000009999",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23344,7 +23645,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010000",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23357,7 +23659,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010001",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23370,7 +23673,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010002",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23383,7 +23687,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010003",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23396,7 +23701,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010004",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23409,7 +23715,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010005",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23422,7 +23729,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010010",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23435,7 +23743,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010012",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23448,7 +23757,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010013",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23461,7 +23771,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010014",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23474,7 +23785,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010016",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23487,7 +23799,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010018",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23500,7 +23813,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010019",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23513,7 +23827,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010020",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23526,7 +23841,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010021",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23539,7 +23855,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010023",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23552,7 +23869,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010024",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23565,7 +23883,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010025",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23578,7 +23897,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23591,7 +23911,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010027",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23604,7 +23925,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010028",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23617,7 +23939,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010029",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23630,7 +23953,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010030",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23643,7 +23967,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010032",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23656,7 +23981,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010038",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23669,7 +23995,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010039",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23682,7 +24009,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010040",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23695,7 +24023,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010041",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23708,7 +24037,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010044",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23721,7 +24051,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010045",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05266",
@@ -23734,7 +24065,8 @@
           "url": "https://envigado.gov.co/notificaciones/notificacion-aviso-mandamiento-de-pago-000000000010046",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05347",
@@ -23747,7 +24079,8 @@
           "url": "https://www.heliconia-antioquia.gov.co/normatividad/decreto-n-095-26-de-octubre-del-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05347",
@@ -23760,7 +24093,8 @@
           "url": "https://www.heliconia-antioquia.gov.co/noticias/auto-que-concede-3-dias--jose-de-jesus-bedoya",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05467",
@@ -23773,7 +24107,8 @@
           "url": "https://montebello-antioquia.gov.co/normatividad/decretos-de-la-administracion-municipal-vigencia-2026-402015",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05467",
@@ -23786,7 +24121,8 @@
           "url": "https://montebello-antioquia.gov.co/normatividad/decretos-de-la-administracion-municipal-vigencia-2026-537724",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05467",
@@ -23799,7 +24135,8 @@
           "url": "https://montebello-antioquia.gov.co/normatividad/decretos-de-la-administracion-municipal-vigencia-2026-551935",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05467",
@@ -23812,7 +24149,8 @@
           "url": "https://montebello-antioquia.gov.co/normatividad/decretos-de-la-administracion-municipal-vigencia-2026-361519",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05467",
@@ -23825,7 +24163,8 @@
           "url": "https://montebello-antioquia.gov.co/normatividad/decretos-de-la-administracion-municipal-vigencia-2026-709241",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05467",
@@ -23838,7 +24177,8 @@
           "url": "https://montebello-antioquia.gov.co/normatividad/decretos-de-la-administracion-municipal-vigencia-2026-193492",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05467",
@@ -23851,7 +24191,8 @@
           "url": "https://montebello-antioquia.gov.co/noticias/montebello-un-mundo-de-fantasia-donde-la-alegria-se",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05475",
@@ -23864,7 +24205,8 @@
           "url": "https://www.murindo-antioquia.gov.co/noticias/decreto-053-medidas-de-control-para-intervenciones-construcciones",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "05670",
@@ -23877,7 +24219,8 @@
           "url": "https://www.sanroque-antioquia.gov.co/noticias/compartiendo-sonrisas",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "13006",
@@ -23890,7 +24233,22 @@
           "url": "https://www.achi-bolivar.gov.co/normatividad/decreto-no-04-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
+        },
+        {
+          "divipola": "13248",
+          "municipio": "EL GUAMO",
+          "nombre": "DECRETO AMENG N° 051 DE 25 DE AGOSTO DE 2025 - CATEGORIZACION MUNICIPIO GUAMO BOLIVAR VIGENCIA- 2025_0001",
+          "cambio": "nuevo",
+          "nivel": "",
+          "campos": "",
+          "fecha": "2026-10-29",
+          "url": "https://www.elguamo-bolivar.gov.co/normatividad/decreto-ameng-n-051-de-25-de-agosto-de-2025-categorizacion",
+          "clase": "otro",
+          "confianza": "",
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "13670",
@@ -23903,7 +24261,8 @@
           "url": "https://www.sanpablo-bolivar.gov.co/normatividad/aviso-de-notificacion-no-da28102026001-articulo-69-inciso",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "13670",
@@ -23916,7 +24275,8 @@
           "url": "https://www.sanpablo-bolivar.gov.co/normatividad/auto-no-002-28-de-octubre-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "13670",
@@ -23929,7 +24289,8 @@
           "url": "https://www.sanpablo-bolivar.gov.co/noticias/cronograma-de-pago-colombia-mayor-2026-ciclo-viii",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "13670",
@@ -23942,7 +24303,8 @@
           "url": "https://www.sanpablo-bolivar.gov.co/noticias/san-pablo-esta-cumple",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "13670",
@@ -23955,7 +24317,8 @@
           "url": "https://www.sanpablo-bolivar.gov.co/noticias/villa-esperanza-avanza-hacia-la-legalizacion-de-sus",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "13670",
@@ -23968,7 +24331,8 @@
           "url": "https://www.sanpablo-bolivar.gov.co/noticias/entrega-de-obras-en-san-pablo",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "13670",
@@ -23981,7 +24345,8 @@
           "url": "https://www.sanpablo-bolivar.gov.co/noticias/se-acuerdan-de-como-era-la-cancha-del-barrio-belen-de",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "13670",
@@ -23994,7 +24359,8 @@
           "url": "https://www.sanpablo-bolivar.gov.co/normatividad/decreto-no-da27102026-001-octubre-27-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "13670",
@@ -24007,7 +24373,8 @@
           "url": "https://www.sanpablo-bolivar.gov.co/normatividad/decreto-no-da09102026-001-octubre-09-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15001",
@@ -24020,7 +24387,8 @@
           "url": "https://www.tunja-boyaca.gov.co/normatividad/decreto-n-0298-del-27-de-octubre-de-2026-por-medio-del",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15001",
@@ -24033,7 +24401,8 @@
           "url": "https://www.tunja-boyaca.gov.co/noticias/tunja-convoca-a-las-juventudes-para-actualizar-su-plataforma",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15001",
@@ -24046,7 +24415,8 @@
           "url": "https://www.tunja-boyaca.gov.co/noticias/en-noviembre-tunja-vivira-una-nueva-jornada-del-dia",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15001",
@@ -24059,7 +24429,8 @@
           "url": "https://www.tunja-boyaca.gov.co/notificaciones-citaciones/notificacion-por-aviso-orden-de-policia-no-079-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15162",
@@ -24072,7 +24443,8 @@
           "url": "https://www.cerinza-boyaca.gov.co/noticias/cerinza-en-cifras",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15162",
@@ -24085,7 +24457,8 @@
           "url": "https://www.cerinza-boyaca.gov.co/noticias/buenas-noticias-para-los-beneficiarios-de-colombia-mayor",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15162",
@@ -24098,7 +24471,8 @@
           "url": "https://www.cerinza-boyaca.gov.co/noticias/celebremos-un-dia-dulce-seguro-y-lleno-de-alegria",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15223",
@@ -24111,7 +24485,8 @@
           "url": "https://www.cubara-boyaca.gov.co/normatividad/resolucion-no-0351-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15238",
@@ -24124,7 +24499,8 @@
           "url": "https://www.duitama-boyaca.gov.co/noticias/informacion-sobre-cierre-vial-temporal-en-inmediaciones",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15403",
@@ -24137,7 +24513,8 @@
           "url": "https://www.lauvita-boyaca.gov.co/normatividad/decreto-058-por-medio-del-cual-se-concede-vacaciones",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15507",
@@ -24150,7 +24527,8 @@
           "url": "https://www.otanche-boyaca.gov.co/festival-campesino/otanche-se-prepara-para-vivir-una-gran-celebracion",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15646",
@@ -24163,7 +24541,8 @@
           "url": "https://samacaboyaca.micolombiadigital.gov.co/estrategia-de-rendicion-de-cuentas/estrategia-de-rendicion-de-cuentas-vigencia-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15667",
@@ -24176,7 +24555,8 @@
           "url": "https://www.sanluisdegaceno-boyaca.gov.co/normatividad/acuerdo-no-014-903165",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15681",
@@ -24189,7 +24569,8 @@
           "url": "https://www.sanpablodeborbur-boyaca.gov.co/rendicion-de-cuentas/acta-0032026-comite-institucional-de-gestion-y-desempeno",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15681",
@@ -24202,7 +24583,8 @@
           "url": "https://www.sanpablodeborbur-boyaca.gov.co/calendario-de-actividades/vacunar-es-proteger",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15681",
@@ -24215,7 +24597,8 @@
           "url": "https://www.sanpablodeborbur-boyaca.gov.co/calendario-de-actividades/te-invitamos-a-la-fiesta-de-halloween-en-san-pablo-de",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15681",
@@ -24228,7 +24611,8 @@
           "url": "https://www.sanpablodeborbur-boyaca.gov.co/turismo/san-pablo-de-borbur-tiene-mucho-por-descubrir",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15762",
@@ -24241,7 +24625,8 @@
           "url": "https://www.sora-boyaca.gov.co/calendario-de-actividades/grandes-festividades-en-honor-a-santa-barbara-y-san",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15762",
@@ -24254,7 +24639,8 @@
           "url": "https://www.sora-boyaca.gov.co/calendario-de-actividades/buenas-noticias-para-nuestros-mayores-en-sora",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15806",
@@ -24267,7 +24653,8 @@
           "url": "https://www.tibasosa-boyaca.gov.co/normatividad/decreto-no-064-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15842",
@@ -24280,7 +24667,8 @@
           "url": "https://umbitaboyaca.micolombiadigital.gov.co/directorio-de-funcionarios/jeinny-rocio-casallas-martin",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "15842",
@@ -24293,7 +24681,8 @@
           "url": "https://umbitaboyaca.micolombiadigital.gov.co/contrataciones/mumc0312026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17013",
@@ -24306,7 +24695,8 @@
           "url": "https://www.aguadas-caldas.gov.co/informacion-sobre-desastres-naturales-o-catastroficos/arma-avanza-con-dialogo-articulacion-institucional-y",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17013",
@@ -24319,7 +24709,8 @@
           "url": "https://www.aguadas-caldas.gov.co/noticias/arma-avanza-con-dialogo-articulacion-institucional-y-520089",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17013",
@@ -24332,7 +24723,8 @@
           "url": "https://www.aguadas-caldas.gov.co/noticias/22-jovenes-de-aguadas-se-graduan-como-embajadores-de",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17042",
@@ -24345,7 +24737,8 @@
           "url": "https://www.anserma-caldas.gov.co/licencias-expedidas/resolucion-n-140-del-26-de-septiembre-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17042",
@@ -24358,7 +24751,8 @@
           "url": "https://www.anserma-caldas.gov.co/licencias-expedidas/resolucion-n-133-del-23-de-septiembre-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17042",
@@ -24371,7 +24765,8 @@
           "url": "https://www.anserma-caldas.gov.co/licencias-expedidas/resolucion-n-143-del-02-de-octubre-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17042",
@@ -24384,7 +24779,8 @@
           "url": "https://www.anserma-caldas.gov.co/licencias-expedidas/resolucion-n-072-del-18-de-abril-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24397,7 +24793,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0185-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24410,7 +24807,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0186-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24423,7 +24821,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0187-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24436,7 +24835,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0543-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24449,7 +24849,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0544-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24462,7 +24863,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0545-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24475,7 +24877,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0546-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24488,7 +24891,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0549-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24501,7 +24905,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0552-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24514,7 +24919,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0552-de-2026-97840",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24527,7 +24933,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0553-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24540,7 +24947,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0554-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24553,7 +24961,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0555-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         },
         {
           "divipola": "17050",
@@ -24566,20 +24975,8 @@
           "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0556-de-2026",
           "clase": "otro",
           "confianza": "",
-          "entregables": []
-        },
-        {
-          "divipola": "17050",
-          "municipio": "ARANZAZU",
-          "nombre": "Resolución Municipal Nro. 0558 de 2026.",
-          "cambio": "nuevo",
-          "nivel": "",
-          "campos": "",
-          "fecha": "2026-10-28",
-          "url": "https://www.aranzazu-caldas.gov.co/normatividad/resolucion-municipal-nro-0558-de-2026",
-          "clase": "otro",
-          "confianza": "",
-          "entregables": []
+          "entregables": [],
+          "fuente": "Mi Colombia Digital"
         }
       ],
       "municipios_sin_captura": 0

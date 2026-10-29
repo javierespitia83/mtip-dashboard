@@ -5,7 +5,7 @@
   const GROUP_LABELS = {
     sin_sitio: "Sin sitio",
     revision_manual: "Revisión manual",
-    sin_clasificar: "Sin clasificar",
+    sin_clasificar: "Sin API",
     api_sin_cosecha: "API sin cosecha",
     ok: "Sin acción pendiente",
   };
@@ -146,7 +146,7 @@
     const reviewWork = summary.grupo_trabajo.find((item) => item.nombre === "revision_manual")?.cantidad || 0;
     const unclassifiedFoot = totals.sin_clasificar !== unclassifiedWork
       ? `${formatNumber(totals.sin_clasificar)} sitios; ${formatNumber(reviewWork)} priorizados para revisión manual`
-      : "Con sitio, plataforma no confirmada";
+      : "Con sitio; se recolectan con otra técnica";
     const container = $("#summary-kpis");
     clear(container);
     const cards = [
@@ -154,7 +154,7 @@
       { label: "Sitio identificado", value: totals.identificados, foot: `${formatPercent(totals.porcentaje_identificados)} del registro`, color: "#28766a", filter: "identificado" },
       { label: "Sin sitio hallado", value: totals.pendientes, foot: "Revisar candidatos y fuentes", color: "#c16d5f", filter: "sin_sitio" },
       { label: "Con API", value: totals.api, foot: `${formatPercent(totals.porcentaje_api)} del registro`, color: "#4e7eaa", filter: "api" },
-      { label: "Sin clasificar", value: totals.sin_clasificar, foot: unclassifiedFoot, color: "#8393a1", filter: "sin_clasificar" },
+      { label: "Sin API", value: totals.sin_clasificar, foot: unclassifiedFoot, color: "#8393a1", filter: "sin_clasificar" },
     ];
     cards.forEach((card) => container.append(kpiCard(card)));
   }
@@ -325,7 +325,7 @@
     const total = summary.totales.municipios;
     const platformRows = [
       { nombre: "Mi Colombia Digital · API", cantidad: summary.totales.api, color: "#28766a" },
-      { nombre: "Sin clasificar", cantidad: summary.totales.sin_clasificar, color: "#7390a8" },
+      { nombre: "Sin API (otra técnica)", cantidad: summary.totales.sin_clasificar, color: "#7390a8" },
       { nombre: "Sin sitio hallado", cantidad: summary.totales.pendientes, color: "#d59655" },
     ];
     renderBarList("#platform-bars", platformRows);
@@ -337,10 +337,8 @@
       appendText(chip, "strong", formatNumber(item.cantidad));
       breakdown.append(chip);
     });
-    const platformCounts = Object.fromEntries(summary.sin_clasificar_desglose.map((item) => [item.nombre, item.cantidad]));
-    const excelPlatformCount = (platformCounts["Otra (sin confirmar)"] || 0) + (platformCounts["No responde"] || 0);
-    const noPlatformData = platformCounts["Sin dato en Registro"] || 0;
-    $("#platform-breakdown-note").textContent = `El Excel informa ${formatNumber(excelPlatformCount)} (${formatNumber(platformCounts["Otra (sin confirmar)"] || 0)} “Otra” + ${formatNumber(platformCounts["No responde"] || 0)} “No responde”); el tablero agrega ${formatNumber(noPlatformData)} registros sin dato en Registro, para un total de ${formatNumber(summary.totales.sin_clasificar)}.`;
+    const withoutTechnique = (summary.sin_clasificar_desglose.find((item) => item.nombre === "Sin técnica asignada") || {}).cantidad || 0;
+    $("#platform-breakdown-note").textContent = `Los ${formatNumber(summary.totales.sin_clasificar)} municipios sin API se agrupan por la técnica con la que se recolectarán (columna «Adaptador» del Excel). ${withoutTechnique ? `${formatNumber(withoutTechnique)} sin técnica asignada.` : "Todos tienen técnica asignada."}`;
     renderBarList("#confidence-bars", summary.por_confianza);
     renderBarList("#method-bars", summary.por_metodo_hallazgo.slice(0, 14));
     renderBarList("#population-bars", summary.por_rango_poblacion);
@@ -433,7 +431,7 @@
     switch (item.grupo_trabajo) {
       case "sin_sitio": return item.notas || item.metodo_hallazgo || "No se encontró un sitio; falta localizar y verificar un candidato.";
       case "revision_manual": return item.notas || "El registro requiere confirmación manual.";
-      case "sin_clasificar": return `Sitio identificado; plataforma sin confirmar (${item.plataforma_origen.replaceAll("_", " ")}).`;
+      case "sin_clasificar": return `Sin API: se recolecta con otra técnica (${item.tecnica || "sin asignar"}).`;
       case "api_sin_cosecha": return "API identificada; falta la cosecha tributaria local.";
       default: return "Sin acción pendiente registrada.";
     }
@@ -498,7 +496,7 @@
       ["all", "Todos los municipios"],
       ["sin_sitio", "Sin sitio"],
       ["revision_manual", "Revisión manual"],
-      ["sin_clasificar", "Sin clasificar"],
+      ["sin_clasificar", "Sin API"],
       ["api_sin_cosecha", "API sin cosecha"],
       ["ok", "Sin acción pendiente"],
       ["identificado", "Con sitio identificado"],
@@ -884,7 +882,7 @@
       button.setAttribute("aria-selected", "false");
       const identity = node("span");
       appendText(identity, "span", item.municipio, "suggestion-name");
-      appendText(identity, "span", `${item.departamento} · ${item.estado === "pendiente" ? "Sin sitio" : item.plataforma === "api" ? "Con API" : "Sin clasificar"}`, "suggestion-meta");
+      appendText(identity, "span", `${item.departamento} · ${item.estado === "pendiente" ? "Sin sitio" : item.plataforma === "api" ? "Con API" : "Sin API"}`, "suggestion-meta");
       button.append(identity);
       appendText(button, "span", item.divipola, "suggestion-code");
       button.addEventListener("click", () => {
@@ -1090,6 +1088,7 @@
       appendText(tr, "td", row.municipio);
       appendText(tr, "td", row.nombre);
       appendText(tr, "td", CLASE_LABELS[row.clase] || "Sin clasificar");
+      appendText(tr, "td", row.fuente === "SharePoint" ? "SharePoint" : "API");
       appendText(tr, "td", (row.entregables || []).join(" · ") || "—");
       const kindCell = node("td");
       setBadge(kindCell, row.cambio === "modificado" && row.nivel === "solo_fecha" ? "modificado (solo fecha)" : row.cambio, row.cambio === "nuevo" ? "success" : row.cambio === "desaparecido" ? "danger" : "warning");
