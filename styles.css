@@ -247,3 +247,34 @@ td.numeric, th.numeric { text-align: right; font-variant-numeric: tabular-nums; 
 .doc-files { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; font-size: 10px; }
 .file-link { font-size: 10px; }
 .change-list { margin-top: 10px; }
+
+/* Ficha de municipio */
+.ficha-section { margin-top: 6px; }
+.summary-cards { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin: 4px 0 12px; }
+.summary-card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: #fafcfc; display: flex; flex-direction: column; gap: 2px; }
+.summary-card span { color: #5d717c; font-size: 11px; font-weight: 600; }
+.summary-card strong { font: 800 26px Manrope, sans-serif; color: #8b99a0; line-height: 1.1; }
+.summary-card.has strong { color: var(--teal); }
+.summary-card small { color: #7d8c94; font-size: 10px; }
+.doc-filter { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 10px; }
+.filter-chip { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 5px 11px; font-size: 11px; cursor: pointer; color: #4a606c; }
+.filter-chip.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+.filter-chip:focus-visible, .ficha-details summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.doc-table th { text-align: left; color: #73818b; font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.doc-table td { padding: 9px 10px; border-bottom: 1px solid #eef2f4; vertical-align: top; font-size: 12px; }
+.doc-table .table-name { font-size: 12px; }
+.doc-type { display: inline-block; padding: 3px 7px; border-radius: 4px; background: var(--blue-soft); color: #3d6a93; font-size: 10px; font-weight: 600; }
+.nowrap { white-space: nowrap; }
+.doc-table .doc-link { margin-right: 8px; }
+.ficha-details { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+.ficha-details summary { cursor: pointer; font: 700 12px Manrope, sans-serif; color: #3e5663; padding: 4px 0; }
+.ficha-details[open] summary { margin-bottom: 8px; }
+@media (max-width: 900px) { .summary-cards { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+/* Subpestañas */
+.subtabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 14px 28px 0; border-bottom: 1px solid var(--line); background: var(--paper); }
+.subtabs[hidden], .subtab[hidden] { display: none; }
+.subtab { border: 0; background: transparent; padding: 9px 14px; font-size: 12px; font-weight: 600; color: #5d717c; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.subtab:hover { color: var(--ink); }
+.subtab.active { color: var(--teal); border-bottom-color: var(--teal); }
+.subtab:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }

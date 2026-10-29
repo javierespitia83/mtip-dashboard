@@ -83,21 +83,35 @@
   async function loadData() {
     if (window.location.protocol === "file:") throw new Error(SERVER_GUIDANCE);
     const [municipalityResponse, summaryResponse] = await Promise.all([
-      fetch("data_dashboard/municipios.json", { cache: "no-store" }),
-      fetch("data_dashboard/resumen.json", { cache: "no-store" }),
+      fetch("dashboard_data/municipios.json", { cache: "no-store" }),
+      fetch("dashboard_data/resumen.json", { cache: "no-store" }),
     ]);
     if (!municipalityResponse.ok || !summaryResponse.ok) throw new Error(SERVER_GUIDANCE);
     const [items, totals] = await Promise.all([municipalityResponse.json(), summaryResponse.json()]);
     return { municipios: items, resumen: totals };
   }
 
+  const GROUPS = {
+    inicio: { label: "Inicio", views: ["resumen"] },
+    semana: { label: "Esta semana", views: ["semana", "validacion"] },
+    municipios: { label: "Municipios", views: ["buscador", "pendientes"] },
+    cobertura: { label: "Cobertura", views: ["entregables", "calidad", "salud"] },
+  };
+  const VIEW_LABELS = { resumen: "Resumen", entregables: "Entregables", semana: "Cambios de la semana", validacion: "Validar documentos", buscador: "Buscar un municipio", pendientes: "Lista de municipios", calidad: "Plataforma y calidad", salud: "Salud tributaria" };
+  const groupOf = (view) => Object.keys(GROUPS).find((key) => GROUPS[key].views.includes(view)) || "inicio";
+
   function activateTab(name) {
     const view = $(`#view-${name}`);
     if (!view) return;
+    const group = groupOf(name);
     $$(".view").forEach((item) => item.classList.toggle("active", item === view));
-    $$(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.tab === name));
-    const labels = { resumen: "Resumen", entregables: "Entregables", semana: "Esta semana", validacion: "Validación", buscador: "Buscador", pendientes: "Pendientes", calidad: "Plataforma y calidad", salud: "Salud tributaria" };
-    $("#topbar-section").textContent = labels[name] || "Resumen";
+    $$(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.group === group));
+    $("#subtabs").hidden = GROUPS[group].views.length < 2;
+    $$(".subtab").forEach((item) => {
+      item.hidden = item.dataset.group !== group;
+      item.classList.toggle("active", item.dataset.tab === name);
+    });
+    $("#topbar-section").textContent = GROUPS[group].views.length < 2 ? GROUPS[group].label : `${GROUPS[group].label} · ${VIEW_LABELS[name]}`;
     if (window.location.hash !== `#${name}`) history.replaceState(null, "", `#${name}`);
     if (name === "pendientes") renderPendingTable();
   }
@@ -589,11 +603,104 @@
     parent.append(list);
   }
 
+  const CLASE_ROTULO = { calendario: "Calendario", estatuto: "Estatuto", ica: "ICA", reteica: "ReteICA" };
+  const REGLAS_PREVISTAS = [
+    { clase: "ica", entregable: "E1", nombre: "Tarifas de ICA por actividad", valor: "Tarifa (‰ o %) por actividad económica" },
+    { clase: "reteica", entregable: "E2", nombre: "Reglas de ReteICA", valor: "Quién retiene, base mínima y tarifa" },
+    { clase: "calendario", entregable: "E3", nombre: "Fechas y descuentos del calendario", valor: "Fechas de pago y % de descuento por pronto pago" },
+  ];
+
+  function fichaSection(parent, title, hint = "") {
+    const block = node("section", "ficha-section");
+    const header = node("div", "section-title");
+    appendText(header, "h3", title);
+    if (hint) appendText(header, "span", hint);
+    block.append(header);
+    parent.append(block);
+    return block;
+  }
+
+  function fichaDetails(parent, title) {
+    const details = node("details", "ficha-details");
+    appendText(details, "summary", title);
+    parent.append(details);
+    return details;
+  }
+
+  function renderFichaDocs(block, item) {
+    const docs = item.documentos_tributarios || [];
+    const counts = item.conteo_documentos || {};
+    if (!docs.length) {
+      appendText(block, "p", "Todavía no hay documentos tributarios para este municipio.", "panel-description");
+      return;
+    }
+    let active = "todos";
+    const filters = node("div", "doc-filter");
+    const body = node("tbody");
+    const table = node("table", "doc-table");
+    const head = node("thead");
+    const hr = node("tr");
+    ["Tipo", "Documento", "Fecha", "Estado", "Abrir"].forEach((label) => appendText(hr, "th", label));
+    head.append(hr);
+    table.append(head, body);
+    const paint = () => {
+      clear(body);
+      docs.filter((d) => active === "todos" || d.clase === active).forEach((doc) => {
+        const tr = node("tr");
+        const tipo = node("td");
+        appendText(tipo, "span", CLASE_ROTULO[doc.clase] || doc.clase, "doc-type");
+        const nombre = node("td");
+        appendText(nombre, "div", doc.nombre, "table-name");
+        if (doc.entregables && doc.entregables.length) appendText(nombre, "div", `Sirve para: ${doc.entregables.join(" · ")}`, "doc-meta");
+        const fecha = node("td", "nowrap", doc.fecha || "Sin fecha");
+        const estado = node("td");
+        const firme = doc.confianza === "alta" || doc.confianza === "probable";
+        appendText(estado, "span", doc.validacion ? `Validación: ${doc.validacion}` : firme ? "Candidato" : "Por revisar", `doc-tag ${doc.validacion === "validado" ? "alta" : firme ? "probable" : ""}`);
+        const abrir = node("td", "nowrap");
+        if (doc.url_pagina) addLink(abrir, doc.url_tipo === "enlace_general" ? "Enlace general" : "Abrir", doc.url_pagina, "doc-link");
+        (doc.archivos || []).forEach((file) => {
+          const ext = (file.extension || "").replace(".", "").toUpperCase() || "Archivo";
+          addLink(abrir, ext, file.url, "doc-link file-link");
+        });
+        if (!abrir.childNodes.length) appendText(abrir, "span", "Sin enlace", "doc-meta");
+        tr.append(tipo, nombre, fecha, estado, abrir);
+        body.append(tr);
+      });
+    };
+    const addFilter = (key, label) => {
+      const button = node("button", `filter-chip${key === active ? " active" : ""}`, label);
+      button.type = "button";
+      button.addEventListener("click", () => {
+        active = key;
+        filters.querySelectorAll(".filter-chip").forEach((chip) => chip.classList.remove("active"));
+        button.classList.add("active");
+        paint();
+      });
+      filters.append(button);
+    };
+    addFilter("todos", "Todos");
+    Object.keys(CLASE_ROTULO).forEach((clase) => {
+      if (counts[clase]) addFilter(clase, `${CLASE_ROTULO[clase]} (${formatNumber(counts[clase].total)})`);
+    });
+    block.append(filters);
+    const wrap = node("div", "table-wrap");
+    wrap.append(table);
+    block.append(wrap);
+    const shown = docs.length;
+    const total = Object.values(counts).reduce((sum, c) => sum + c.total, 0);
+    if (total > shown) appendText(block, "p", `Se muestran los ${formatNumber(shown)} más recientes (hasta 8 por tipo); en total hay ${formatNumber(total)}.`, "panel-description");
+    paint();
+  }
+
   function showMunicipality(item) {
     selectedMunicipality = item;
+    if (!$("#view-buscador").classList.contains("active")) activateTab("buscador");
     const container = $("#municipality-detail");
     clear(container);
     container.className = "municipality-detail panel";
+    const counts = item.conteo_documentos || {};
+    const hasDocs = Object.keys(counts).length > 0;
+    const collected = Boolean(item.cosecha) || hasDocs;
 
     const heading = node("div", "detail-header");
     const identity = node("div");
@@ -602,11 +709,9 @@
     appendText(identity, "div", `DIVIPOLA ${item.divipola}`, "detail-code");
     heading.append(identity);
     const badges = node("div", "badge-row");
-    setBadge(badges, item.estado === "identificado" ? "Sitio identificado" : "Sin sitio hallado", item.estado === "identificado" ? "success" : "danger");
-    const platformLabel = item.plataforma === "api" ? "Mi Colombia Digital · API"
-      : item.plataforma === "sin_clasificar" ? "Sin clasificar" : "Sin sitio";
-    setBadge(badges, platformLabel, item.plataforma === "api" ? "success" : item.plataforma === "sin_clasificar" ? "warning" : "danger");
-    setBadge(badges, `Confianza ${item.confianza}`, normalize(item.confianza) === "alta" ? "success" : normalize(item.confianza) === "pendiente de revision" ? "warning" : "");
+    if (item.estado !== "identificado") setBadge(badges, "Sin sitio hallado", "danger");
+    else setBadge(badges, `Se recolecta con: ${item.tecnica || "sin técnica asignada"}`, collected ? "success" : "warning");
+    setBadge(badges, collected ? "Con documentos recolectados" : "Sin recolección todavía", collected ? "success" : "danger");
     heading.append(badges);
     container.append(heading);
 
@@ -614,20 +719,7 @@
     if (item.sitio_url) addLink(links, "Sitio municipal", item.sitio_url, "detail-link");
     if (item.url_normativa) addLink(links, "Normatividad", item.url_normativa, "detail-link");
     if (item.url_calendario) addLink(links, "Hacienda / calendario", item.url_calendario, "detail-link");
-    if (item.subdominio_api) appendText(links, "span", `API: ${item.subdominio_api}`, "badge");
     container.append(links);
-
-    const meta = node("div", "detail-meta");
-    addMeta(meta, "Método de hallazgo", item.metodo_hallazgo);
-    addMeta(meta, "Contenido verificado", item.contenido_verificado);
-    addMeta(meta, "Última verificación", item.fecha_verificacion);
-    addMeta(meta, "Última captura del sitio", item.snapshot ? item.snapshot.fecha_captura : "Sin captura");
-    container.append(meta);
-
-    if (item.notas) {
-      const note = node("p", "detail-note", item.notas);
-      container.append(note);
-    }
 
     if (item.estado === "pendiente") {
       const notice = node("div", "detail-note");
@@ -639,14 +731,83 @@
       container.append(notice);
     }
 
-    if (!item.cosecha && item.plataforma !== "api") {
-      appendText(container, "p", `Sin recolección todavía. Técnica probable: ${item.tecnica || "sin clasificar"}.`, "detail-note");
+    if (!collected && item.estado === "identificado") {
+      const sin = node("div", "detail-note");
+      appendText(sin, "strong", "Este municipio aún no se recolecta. ");
+      appendText(sin, "span", item.plataforma === "api"
+        ? "Tiene API de Mi Colombia Digital, pero todavía no aparece en la cosecha."
+        : `Técnica prevista: ${item.tecnica || "sin clasificar"}. Mientras no se construya ese adaptador no hay documentos que mostrar.`);
+      container.append(sin);
     }
 
-    if (!item.cosecha && item.plataforma === "api") {
-      appendText(container, "p", "Pendiente de cosecha: la plataforma tiene API, pero este municipio no aparece en el archivo local de cosecha.", "detail-note");
+    if (collected) {
+      const resumen = fichaSection(container, "En resumen", "Documentos candidatos hallados por nombre o descripción; aún no validados");
+      const cards = node("div", "summary-cards");
+      Object.keys(CLASE_ROTULO).forEach((clase) => {
+        const c = counts[clase] || { total: 0, firmes: 0 };
+        const card = node("div", `summary-card${c.firmes ? " has" : ""}`);
+        appendText(card, "span", CLASE_ROTULO[clase]);
+        appendText(card, "strong", formatNumber(c.firmes));
+        let foot = c.firmes ? (c.firmes === 1 ? "documento firme" : "documentos firmes") : c.total ? `${formatNumber(c.total)} por revisar` : "ninguno hallado";
+        if (item.cosecha && clase === "estatuto" && item.cosecha.estatuto_estado) foot += ` · estado: ${item.cosecha.estatuto_estado}`;
+        if (item.cosecha && clase === "calendario" && item.cosecha.calendario_estado) foot += ` · vigente: ${item.cosecha.calendario_estado}`;
+        appendText(card, "small", foot);
+        cards.append(card);
+      });
+      resumen.append(cards);
+      const chips = node("div", "entregable-chips");
+      if (summary.fase2) {
+        summary.fase2.entregables.forEach((entry) => {
+          const has = (item.entregables || []).includes(entry.codigo);
+          const chip = setBadge(chips, `${entry.codigo} · ${entry.nombre}`, has ? "success" : "muted");
+          chip.title = has ? "Hay un documento candidato" : "Sin documento candidato todavía";
+        });
+      }
+      resumen.append(chips);
     }
 
+    const docsBlock = fichaSection(container, "Documentos tributarios", "Calendario, estatuto, ICA y ReteICA");
+    if (collected) renderFichaDocs(docsBlock, item);
+    else appendText(docsBlock, "p", "Sin documentos: este municipio todavía no se recolecta.", "panel-description");
+
+    if (collected) {
+      const reglas = fichaSection(container, "Reglas extraídas", "Próxima fase: lectura de los documentos");
+      const tbl = node("table", "doc-table");
+      const th = node("thead");
+      const trh = node("tr");
+      ["Qué se va a extraer", "Documento fuente candidato", "Valor"].forEach((label) => appendText(trh, "th", label));
+      th.append(trh);
+      const tb = node("tbody");
+      REGLAS_PREVISTAS.forEach((regla) => {
+        const tr = node("tr");
+        const q = node("td");
+        appendText(q, "div", `${regla.entregable} · ${regla.nombre}`, "table-name");
+        appendText(q, "div", regla.valor, "doc-meta");
+        const fuente = node("td");
+        const key = (item.documentos_clave || {})[regla.clase];
+        if (key && key.url_pagina) addLink(fuente, key.nombre, key.url_pagina, "doc-link");
+        else appendText(fuente, "span", key ? key.nombre : "Sin documento candidato", "doc-meta");
+        const valor = node("td");
+        appendText(valor, "span", "Pendiente de lectura", "doc-tag");
+        tr.append(q, fuente, valor);
+        tb.append(tr);
+      });
+      tbl.append(th, tb);
+      const wrap = node("div", "table-wrap");
+      wrap.append(tbl);
+      reglas.append(wrap);
+    }
+
+    const registro = fichaDetails(container, "Datos del registro y de la recolección");
+    const meta = node("div", "detail-meta");
+    addMeta(meta, "Método de hallazgo del sitio", item.metodo_hallazgo);
+    addMeta(meta, "Contenido verificado", item.contenido_verificado);
+    addMeta(meta, "Última verificación", item.fecha_verificacion);
+    addMeta(meta, "Última captura del sitio", item.snapshot ? item.snapshot.fecha_captura : "Sin captura");
+    addMeta(meta, "Confianza del sitio", item.confianza);
+    if (item.subdominio_api) addMeta(meta, "Subdominio API", item.subdominio_api);
+    registro.append(meta);
+    if (item.notas) registro.append(node("p", "detail-note", item.notas));
     if (item.cosecha) {
       const harvest = item.cosecha;
       const grid = node("div", "harvest-grid");
@@ -659,69 +820,37 @@
       addHarvestCell(grid, "ICA · norma / trámite", `${formatNumber(harvest.n_ica_norma)} / ${formatNumber(harvest.n_ica_tramite)}`, true);
       addHarvestCell(grid, "Documentos ReteICA", formatNumber(harvest.n_reteica));
       addHarvestCell(grid, "Fecha de cosecha", harvest.fecha_cosecha, true);
-      container.append(grid);
-      if (harvest.ultima_norma_nombre) appendText(container, "p", `Última norma: ${harvest.ultima_norma_nombre}`, "detail-note");
+      registro.append(grid);
+      if (harvest.ultima_norma_nombre) appendText(registro, "p", `Última norma: ${harvest.ultima_norma_nombre}`, "detail-note");
+      if (harvest.mejor_estatuto) appendText(registro, "p", `Estatuto detectado: ${harvest.mejor_estatuto}`, "detail-note");
     }
-
-    if (item.cosecha && summary.fase2) {
-      const evidence = node("section");
-      const evHeader = node("div", "section-title");
-      appendText(evHeader, "h3", "Entregables con documento candidato");
-      appendText(evHeader, "span", "Hallado por nombre o descripción; aún no validado");
-      evidence.append(evHeader);
-      const chips = node("div", "entregable-chips");
-      summary.fase2.entregables.forEach((entry) => {
-        const has = (item.entregables || []).includes(entry.codigo);
-        const chip = setBadge(chips, `${entry.codigo} · ${entry.nombre}`, has ? "success" : "muted");
-        chip.title = has ? "Hay un documento candidato" : "Sin documento candidato todavía";
-      });
-      const statute = item.cosecha.estatuto_estado || "sin dato";
-      setBadge(chips, `Estatuto: ${statute}`, statute === "alta" ? "success" : statute === "probable" ? "warning" : "danger");
-      if (item.cosecha.calendario_estado) setBadge(chips, `Calendario: ${item.cosecha.calendario_estado}`, item.cosecha.calendario_estado === "Sí" ? "success" : item.cosecha.calendario_estado === "Probable" ? "warning" : "danger");
-      evidence.append(chips);
-      if (item.cosecha.mejor_estatuto) appendText(evidence, "p", `Estatuto detectado: ${item.cosecha.mejor_estatuto}`, "detail-note");
-      if (item.cosecha.estatuto_estado === "probable") appendText(evidence, "p", "Este estatuto es un candidato por palabras clave; confírmalo antes de usarlo.", "detail-note");
-      container.append(evidence);
-      const keyDocs = Object.values(item.documentos_clave || {});
-      const keySection = node("section");
-      renderDocumentSection(keySection, "Documentos tributarios clave", keyDocs, `${formatNumber(item.n_archivos)} archivos adjuntos en total`);
-      container.append(keySection);
-    }
-
-    const tax = node("section");
-    renderDocumentSection(tax, "Últimos documentos tributarios", item.documentos_tributarios, "Clasificación provisional; revisar confianza");
-    container.append(tax);
 
     const recent = item.documentos_recientes || { normatividad: [], otros: [] };
-    const recentSection = node("section");
-    const recentHeader = node("div", "section-title");
-    appendText(recentHeader, "h3", "Últimos publicados en el sitio");
-    recentSection.append(recentHeader);
-    appendText(recentSection, "p", "Ordenados por fecha disponible en el archivo local; Normatividad aparece por separado.", "panel-description");
-    const normBlock = node("div", "section-block");
-    appendText(normBlock, "h4", "Normatividad");
-    if (recent.normatividad && recent.normatividad.length) {
-      const list = node("div", "doc-list");
-      recent.normatividad.forEach((doc) => linkListItem(list, doc));
-      normBlock.append(list);
-    } else appendText(normBlock, "p", "Sin publicaciones de Normatividad en la muestra local.", "panel-description");
-    recentSection.append(normBlock);
-
-    const groups = new Map();
-    (recent.otros || []).forEach((doc) => {
-      const section = doc.seccion || "Sin sección";
-      if (!groups.has(section)) groups.set(section, []);
-      groups.get(section).push(doc);
-    });
-    [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0], "es")).forEach(([section, docs]) => {
-      const block = node("div", "section-block");
-      appendText(block, "h4", section);
-      const list = node("div", "doc-list");
-      docs.forEach((doc) => linkListItem(list, doc));
-      block.append(list);
-      recentSection.append(block);
-    });
-    container.append(recentSection);
+    if ((recent.normatividad && recent.normatividad.length) || (recent.otros && recent.otros.length)) {
+      const recentSection = fichaDetails(container, "Últimas publicaciones del sitio (de cualquier tema)");
+      const normBlock = node("div", "section-block");
+      appendText(normBlock, "h4", "Normatividad");
+      if (recent.normatividad && recent.normatividad.length) {
+        const list = node("div", "doc-list");
+        recent.normatividad.forEach((doc) => linkListItem(list, doc));
+        normBlock.append(list);
+      } else appendText(normBlock, "p", "Sin publicaciones de Normatividad en la muestra local.", "panel-description");
+      recentSection.append(normBlock);
+      const groups = new Map();
+      (recent.otros || []).forEach((doc) => {
+        const sec = doc.seccion || "Sin sección";
+        if (!groups.has(sec)) groups.set(sec, []);
+        groups.get(sec).push(doc);
+      });
+      [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0], "es")).forEach(([sec, docs]) => {
+        const block = node("div", "section-block");
+        appendText(block, "h4", sec);
+        const list = node("div", "doc-list");
+        docs.forEach((doc) => linkListItem(list, doc));
+        block.append(list);
+        recentSection.append(block);
+      });
+    }
   }
 
   function renderSuggestions(query) {
@@ -813,7 +942,9 @@
   }
 
   function setupTabs() {
-    $$(".nav-item").forEach((button) => button.addEventListener("click", () => activateTab(button.dataset.tab)));
+    $$(".nav-item").forEach((button) => button.addEventListener("click", () => activateTab(GROUPS[button.dataset.group].views[0])));
+    $$(".subtab").forEach((button) => button.addEventListener("click", () => activateTab(button.dataset.tab)));
+    activateTab("resumen");
     $$('[data-go-tab="pendientes"]').forEach((button) => button.addEventListener("click", () => navigatePending("all")));
     const hash = window.location.hash.replace("#", "");
     if (["resumen", "entregables", "semana", "validacion", "buscador", "pendientes", "calidad", "salud"].includes(hash)) activateTab(hash);

@@ -18,14 +18,10 @@
       </a>
       <div class="sidebar-label">FASE 2</div>
       <nav class="main-nav" aria-label="Secciones del dashboard">
-        <button class="nav-item active" data-tab="resumen"><span class="nav-icon">▦</span>Resumen</button>
-        <button class="nav-item" data-tab="entregables" id="nav-entregables"><span class="nav-icon">▤</span>Entregables</button>
-        <button class="nav-item" data-tab="semana"><span class="nav-icon">◷</span>Esta semana</button>
-        <button class="nav-item" data-tab="validacion"><span class="nav-icon">✓</span>Validación<span class="nav-count" id="nav-validacion-count">—</span></button>
-        <button class="nav-item" data-tab="buscador"><span class="nav-icon">⌕</span>Buscador</button>
-        <button class="nav-item" data-tab="pendientes"><span class="nav-icon">◷</span>Pendientes<span class="nav-count" id="nav-pending-count">—</span></button>
-        <button class="nav-item" data-tab="calidad"><span class="nav-icon">◈</span>Plataforma y calidad</button>
-        <button class="nav-item" data-tab="salud"><span class="nav-icon">⌁</span>Salud tributaria</button>
+        <button class="nav-item active" data-group="inicio"><span class="nav-icon">▦</span>Inicio</button>
+        <button class="nav-item" data-group="semana"><span class="nav-icon">◷</span>Esta semana<span class="nav-count" id="nav-validacion-count">—</span></button>
+        <button class="nav-item" data-group="municipios"><span class="nav-icon">⌕</span>Municipios</button>
+        <button class="nav-item" data-group="cobertura"><span class="nav-icon">▤</span>Cobertura</button>
       </nav>
       <div class="sidebar-bottom">
         <span class="live-dot"></span><span>Datos locales · solo lectura</span>
@@ -39,6 +35,15 @@
       </header>
 
       <div id="load-error" class="load-error" hidden></div>
+      <nav class="subtabs" id="subtabs" aria-label="Vistas de la sección">
+        <button type="button" class="subtab" data-group="semana" data-tab="semana">Cambios de la semana</button>
+        <button type="button" class="subtab" data-group="semana" data-tab="validacion">Validar documentos</button>
+        <button type="button" class="subtab" data-group="municipios" data-tab="buscador">Buscar un municipio</button>
+        <button type="button" class="subtab" data-group="municipios" data-tab="pendientes">Lista de municipios <span class="nav-count" id="nav-pending-count">—</span></button>
+        <button type="button" class="subtab" data-group="cobertura" data-tab="entregables" id="nav-entregables">Entregables</button>
+        <button type="button" class="subtab" data-group="cobertura" data-tab="calidad">Plataforma y calidad</button>
+        <button type="button" class="subtab" data-group="cobertura" data-tab="salud">Salud tributaria</button>
+      </nav>
 
       <section class="view active" id="view-resumen" aria-labelledby="title-resumen">
         <div class="page-heading">
@@ -130,7 +135,7 @@
       </section>
 
       <section class="view" id="view-pendientes" aria-labelledby="title-pendientes">
-        <div class="page-heading"><div><p class="eyebrow">COLA DE TRABAJO</p><h1 id="title-pendientes">Pendientes y revisión</h1><p class="subheading">Filtra por grupo y departamento; la lista se ordena por población.</p></div></div>
+        <div class="page-heading"><div><p class="eyebrow">COLA DE TRABAJO</p><h1 id="title-pendientes">Lista de municipios</h1><p class="subheading">Elige un grupo (con API, sin clasificar, sin sitio…) y un departamento; haz clic en un municipio para ver sus documentos. El número junto al título es lo que falta por resolver.</p></div></div>
         <article class="panel pending-panel">
           <div class="filters-row">
             <label>Grupo de trabajo<select id="group-filter"></select></label>
