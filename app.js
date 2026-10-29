@@ -96,7 +96,7 @@
     if (!view) return;
     $$(".view").forEach((item) => item.classList.toggle("active", item === view));
     $$(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.tab === name));
-    const labels = { resumen: "Resumen", entregables: "Entregables", buscador: "Buscador", pendientes: "Pendientes", calidad: "Plataforma y calidad", salud: "Salud tributaria" };
+    const labels = { resumen: "Resumen", entregables: "Entregables", semana: "Esta semana", validacion: "Validación", buscador: "Buscador", pendientes: "Pendientes", calidad: "Plataforma y calidad", salud: "Salud tributaria" };
     $("#topbar-section").textContent = labels[name] || "Resumen";
     if (window.location.hash !== `#${name}`) history.replaceState(null, "", `#${name}`);
     if (name === "pendientes") renderPendingTable();
@@ -639,6 +639,10 @@
       container.append(notice);
     }
 
+    if (!item.cosecha && item.plataforma !== "api") {
+      appendText(container, "p", `Sin recolección todavía. Técnica probable: ${item.tecnica || "sin clasificar"}.`, "detail-note");
+    }
+
     if (!item.cosecha && item.plataforma === "api") {
       appendText(container, "p", "Pendiente de cosecha: la plataforma tiene API, pero este municipio no aparece en el archivo local de cosecha.", "detail-note");
     }
@@ -662,14 +666,14 @@
     if (item.cosecha && summary.fase2) {
       const evidence = node("section");
       const evHeader = node("div", "section-title");
-      appendText(evHeader, "h3", "Entregables con evidencia");
-      appendText(evHeader, "span", "Documento encontrado; aún no validado");
+      appendText(evHeader, "h3", "Entregables con documento candidato");
+      appendText(evHeader, "span", "Hallado por nombre o descripción; aún no validado");
       evidence.append(evHeader);
       const chips = node("div", "entregable-chips");
       summary.fase2.entregables.forEach((entry) => {
         const has = (item.entregables || []).includes(entry.codigo);
         const chip = setBadge(chips, `${entry.codigo} · ${entry.nombre}`, has ? "success" : "muted");
-        chip.title = has ? "Hay documentos que lo respaldan" : "Sin evidencia todavía";
+        chip.title = has ? "Hay un documento candidato" : "Sin documento candidato todavía";
       });
       const statute = item.cosecha.estatuto_estado || "sin dato";
       setBadge(chips, `Estatuto: ${statute}`, statute === "alta" ? "success" : statute === "probable" ? "warning" : "danger");
@@ -812,7 +816,7 @@
     $$(".nav-item").forEach((button) => button.addEventListener("click", () => activateTab(button.dataset.tab)));
     $$('[data-go-tab="pendientes"]').forEach((button) => button.addEventListener("click", () => navigatePending("all")));
     const hash = window.location.hash.replace("#", "");
-    if (["resumen", "entregables", "buscador", "pendientes", "calidad", "salud"].includes(hash)) activateTab(hash);
+    if (["resumen", "entregables", "semana", "validacion", "buscador", "pendientes", "calidad", "salud"].includes(hash)) activateTab(hash);
   }
 
   function staticKpi({ label, value, foot, color }) {
@@ -830,6 +834,12 @@
   function matrixRows() {
     const department = $("#matrix-department").value;
     const missing = $("#matrix-missing").value;
+    if ($("#matrix-group").value === "sin_api") {
+      return municipalities
+        .filter((item) => !item.cosecha && item.plataforma !== "api")
+        .filter((item) => department === "all" || item.departamento === department)
+        .sort((a, b) => (b.poblacion || 0) - (a.poblacion || 0));
+    }
     return municipalities
       .filter((item) => item.cosecha)
       .filter((item) => department === "all" || item.departamento === department)
@@ -843,13 +853,51 @@
     setBadge(parent, text, tone);
   }
 
+  function renderMatrixHead(sinApi) {
+    const head = $("#matrix-head");
+    clear(head);
+    const headRow = node("tr");
+    const f2 = summary.fase2;
+    ["Municipio", "Departamento", "Población"].forEach((label) => appendText(headRow, "th", label, label === "Población" ? "numeric" : ""));
+    if (sinApi) {
+      ["Técnica probable", "Recolección", "Sitio"].forEach((label) => appendText(headRow, "th", label));
+    } else {
+      f2.entregables.forEach((entry) => { const th = appendText(headRow, "th", entry.codigo); th.title = entry.nombre; });
+      ["Estatuto", "Calendario", "Archivos"].forEach((label) => appendText(headRow, "th", label));
+    }
+    head.append(headRow);
+  }
+
   function renderMatrix() {
     const body = $("#matrix-body");
     clear(body);
+    const sinApi = $("#matrix-group").value === "sin_api";
+    $("#matrix-missing").disabled = sinApi;
+    renderMatrixHead(sinApi);
     const rows = matrixRows();
     $("#matrix-count").textContent = `${formatNumber(rows.length)} municipios`;
     rows.slice(0, matrixVisible).forEach((item) => {
       const tr = node("tr");
+      if (sinApi) {
+        appendText(tr, "td", item.municipio);
+        appendText(tr, "td", item.departamento);
+        appendText(tr, "td", formatNumber(item.poblacion), "numeric");
+        appendText(tr, "td", item.tecnica || "Sin clasificar");
+        const state = node("td");
+        setBadge(state, "Sin recolección", "danger");
+        tr.append(state);
+        const siteCell = node("td");
+        if (item.sitio_url) addLink(siteCell, "Sitio", item.sitio_url, "doc-link"); else siteCell.textContent = "—";
+        tr.append(siteCell);
+        tr.addEventListener("click", (event) => {
+          if (event.target.closest("a")) return;
+          activateTab("buscador");
+          showMunicipality(item);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        body.append(tr);
+        return;
+      }
       appendText(tr, "td", item.municipio);
       appendText(tr, "td", item.departamento);
       appendText(tr, "td", formatNumber(item.poblacion), "numeric");
@@ -882,6 +930,180 @@
     }
   }
 
+  const CLASE_LABELS = { ica: "ICA", reteica: "ReteICA", estatuto: "Estatuto", calendario: "Calendario", otro: "Otro" };
+  let weekVisible = 100;
+
+  function weekRows() {
+    const week = summary.fase2.cambios;
+    if (!week.disponible) return [];
+    const kind = $("#wk-clase").value;
+    const change = $("#wk-cambio").value;
+    const level = $("#wk-nivel").value;
+    const text = normalize($("#wk-texto").value);
+    return week.filas.filter((row) => {
+      if (kind === "tributarias" && (!row.clase || row.clase === "otro")) return false;
+      if (!["tributarias", "todas"].includes(kind) && row.clase !== kind) return false;
+      if (change !== "all" && row.cambio !== change) return false;
+      if (level !== "all" && row.nivel !== level) return false;
+      return !text || normalize(`${row.municipio} ${row.nombre}`).includes(text);
+    });
+  }
+
+  function renderWeekTable() {
+    const body = $("#wk-body");
+    clear(body);
+    const rows = weekRows();
+    $("#wk-count").textContent = `${formatNumber(rows.length)} cambios`;
+    rows.slice(0, weekVisible).forEach((row) => {
+      const tr = node("tr");
+      appendText(tr, "td", row.municipio);
+      appendText(tr, "td", row.nombre);
+      appendText(tr, "td", CLASE_LABELS[row.clase] || "Sin clasificar");
+      appendText(tr, "td", (row.entregables || []).join(" · ") || "—");
+      const kindCell = node("td");
+      setBadge(kindCell, row.cambio === "modificado" && row.nivel === "solo_fecha" ? "modificado (solo fecha)" : row.cambio, row.cambio === "nuevo" ? "success" : row.cambio === "desaparecido" ? "danger" : "warning");
+      tr.append(kindCell);
+      appendText(tr, "td", row.fecha || "—");
+      const link = node("td");
+      if (row.url) addLink(link, "Abrir", row.url, "doc-link"); else link.textContent = "—";
+      tr.append(link);
+      body.append(tr);
+    });
+    const more = $("#wk-more");
+    clear(more);
+    if (rows.length > weekVisible) {
+      const button = node("button", "text-button", `Ver más (${formatNumber(rows.length - weekVisible)} restantes)`);
+      button.type = "button";
+      button.addEventListener("click", () => { weekVisible += 100; renderWeekTable(); });
+      more.append(button);
+    }
+  }
+
+  function renderSemana() {
+    const week = summary.fase2.cambios;
+    const kpis = $("#wk-kpis");
+    clear(kpis);
+    const empty = $("#wk-empty");
+    const tools = $("#wk-tools");
+    if (!week.disponible) {
+      empty.hidden = false;
+      tools.hidden = true;
+      empty.textContent = `${week.motivo} Cuando exista, aquí se verán los documentos nuevos y modificados de ICA, ReteICA, estatuto y calendario, por municipio.`;
+      return;
+    }
+    empty.hidden = true;
+    tools.hidden = false;
+    const by = Object.fromEntries(week.por_cambio.map((entry) => [entry.nombre, entry.cantidad]));
+    const lvl = Object.fromEntries(week.por_nivel.map((entry) => [entry.nombre, entry.cantidad]));
+    const tax = week.filas.filter((row) => row.clase && row.clase !== "otro").length;
+    kpis.append(
+      staticKpi({ label: "Documentos nuevos", value: formatNumber(by.nuevo || 0), foot: `${week.captura_anterior} → ${week.captura_actual}`, color: "#28766a" }),
+      staticKpi({ label: "Modificados con cambio real", value: formatNumber(lvl.atributos || 0), foot: "Cambió nombre, descripción o archivo", color: "#be842f" }),
+      staticKpi({ label: "Modificados solo de fecha", value: formatNumber(lvl.solo_fecha || 0), foot: "Probable edición sin cambio visible", color: "#8b989e" }),
+      staticKpi({ label: "Retirados", value: formatNumber(by.desaparecido || 0), foot: "Dejaron de aparecer", color: "#bd655b" }),
+      staticKpi({ label: "Tributarios en la lista", value: formatNumber(tax), foot: week.municipios_sin_captura ? `${formatNumber(week.municipios_sin_captura)} municipios sin captura buena` : "De ICA, ReteICA, estatuto o calendario", color: "#4e7eaa" }),
+    );
+    if (!$("#wk-clase").dataset.ready) {
+      $("#wk-clase").dataset.ready = "1";
+      [["tributarias", "Solo tributarias"], ["todas", "Todas"], ["ica", "ICA"], ["reteica", "ReteICA"], ["estatuto", "Estatuto"], ["calendario", "Calendario"]].forEach(([value, label]) => $("#wk-clase").append(new Option(label, value)));
+      [["all", "Todos"], ["nuevo", "Nuevo"], ["modificado", "Modificado"], ["desaparecido", "Retirado"]].forEach(([value, label]) => $("#wk-cambio").append(new Option(label, value)));
+      [["all", "Todos"], ["atributos", "Cambio real"], ["solo_fecha", "Solo fecha"]].forEach(([value, label]) => $("#wk-nivel").append(new Option(label, value)));
+      ["#wk-clase", "#wk-cambio", "#wk-nivel"].forEach((id) => $(id).addEventListener("change", () => { weekVisible = 100; renderWeekTable(); }));
+      $("#wk-texto").addEventListener("input", () => { weekVisible = 100; renderWeekTable(); });
+    }
+    renderWeekTable();
+  }
+
+  let queueVisible = 80;
+
+  function queueRows() {
+    const kind = $("#vq-tipo").value;
+    const state = $("#vq-estado").value;
+    const department = $("#vq-depto").value;
+    return summary.fase2.cola_validacion.filter((row) => (kind === "all" || row.tipo === kind)
+      && (department === "all" || row.departamento === department)
+      && (state === "all" || (state === "pendientes" ? !row.validacion : Boolean(row.validacion))));
+  }
+
+  async function copyQueueRow(row, button) {
+    const doc = row.documento || {};
+    const line = [row.divipola, row.municipio, doc.content_id || "", row.clase, doc.nombre || ""].join("\t");
+    try {
+      await navigator.clipboard.writeText(line);
+      button.textContent = "Copiado";
+    } catch (_) {
+      button.textContent = "No se pudo copiar";
+    }
+    setTimeout(() => { button.textContent = "Copiar fila"; }, 1800);
+  }
+
+  function renderQueueTable() {
+    const body = $("#vq-body");
+    clear(body);
+    const rows = queueRows();
+    $("#vq-count").textContent = `${formatNumber(rows.length)} por revisar`;
+    rows.slice(0, queueVisible).forEach((row) => {
+      const tr = node("tr");
+      appendText(tr, "td", row.municipio);
+      appendText(tr, "td", row.departamento);
+      appendText(tr, "td", formatNumber(row.poblacion), "numeric");
+      appendText(tr, "td", row.tipo);
+      const docCell = node("td");
+      const doc = row.documento;
+      if (doc) {
+        appendText(docCell, "div", doc.nombre, "doc-name");
+        appendText(docCell, "div", `${doc.fecha || "Sin fecha"} · ${doc.confianza}`, "doc-meta");
+        const links = node("div", "doc-files");
+        if (doc.url_pagina) addLink(links, "Página", doc.url_pagina, "doc-link file-link");
+        (doc.archivos || []).forEach((file) => addLink(links, `${(file.extension || "").replace(".", "").toUpperCase() || "Archivo"}${file.tamano_bytes ? " · " + formatBytes(file.tamano_bytes) : ""}`, file.url, "doc-link file-link"));
+        docCell.append(links);
+      } else docCell.textContent = "Sin documento candidato";
+      tr.append(docCell);
+      const stateCell = node("td");
+      setBadge(stateCell, row.validacion || "pendiente", row.validacion === "validado" ? "success" : row.validacion === "descartado" ? "danger" : row.validacion ? "warning" : "muted");
+      tr.append(stateCell);
+      const action = node("td");
+      const button = node("button", "text-button", "Copiar fila");
+      button.type = "button";
+      button.addEventListener("click", () => copyQueueRow(row, button));
+      action.append(button);
+      tr.append(action);
+      body.append(tr);
+    });
+    const more = $("#vq-more");
+    clear(more);
+    if (rows.length > queueVisible) {
+      const button = node("button", "text-button", `Ver más (${formatNumber(rows.length - queueVisible)} restantes)`);
+      button.type = "button";
+      button.addEventListener("click", () => { queueVisible += 80; renderQueueTable(); });
+      more.append(button);
+    }
+  }
+
+  function renderValidacion() {
+    const f2 = summary.fase2;
+    const v = f2.validaciones;
+    $("#nav-validacion-count").textContent = formatNumber(v.pendientes);
+    const kpis = $("#vq-kpis");
+    clear(kpis);
+    kpis.append(
+      staticKpi({ label: "En la cola", value: formatNumber(v.en_cola), foot: "Estatutos y calendarios «probable»", color: "#8876a5" }),
+      staticKpi({ label: "Pendientes", value: formatNumber(v.pendientes), foot: "Sin decisión registrada", color: "#be842f" }),
+      staticKpi({ label: "Validados", value: formatNumber(v.validado), foot: "Documento correcto", color: "#28766a" }),
+      staticKpi({ label: "Descartados", value: formatNumber(v.descartado), foot: "No es el documento", color: "#bd655b" }),
+      staticKpi({ label: "Por corregir", value: formatNumber(v.corregir), foot: "Clasificación equivocada", color: "#4e7eaa" }),
+    );
+    const department = $("#vq-depto");
+    if (!department.dataset.ready) {
+      department.dataset.ready = "1";
+      department.append(new Option("Todos", "all"));
+      [...new Set(f2.cola_validacion.map((row) => row.departamento))].sort((a, b) => a.localeCompare(b, "es"))
+        .forEach((name) => department.append(new Option(name, name)));
+      ["#vq-tipo", "#vq-estado", "#vq-depto"].forEach((id) => $(id).addEventListener("change", () => { queueVisible = 80; renderQueueTable(); }));
+    }
+    renderQueueTable();
+  }
+
   function renderFase2() {
     const f2 = summary.fase2;
     if (!f2) {
@@ -893,56 +1115,36 @@
     const pdf = (f2.archivos.por_extension || []).find((entry) => entry.nombre === ".pdf");
     kpis.append(
       staticKpi({ label: "Población en municipios con API", value: formatPercent(f2.pct_poblacion_con_api), foot: `${formatNumber(f2.municipios_sin_api)} municipios sin API suman ${formatPercent(f2.pct_poblacion_sin_api)} de la población`, color: "#28766a" }),
-      staticKpi({ label: "Municipios cosechados", value: formatNumber(f2.municipios_cosechados), foot: "Con documentos tributarios revisados", color: "#4e7eaa" }),
+      ...(f2.sharepoint && f2.sharepoint.municipios ? [staticKpi({ label: "Sin API con documentos (SharePoint)", value: formatNumber(f2.sharepoint.municipios), foot: `${formatPercent(f2.sharepoint.pct_poblacion)} de la población; son candidatos por nombre, sin validar`, color: "#6b8f3a" })] : []),
+      staticKpi({ label: "Municipios cosechados", value: formatNumber(f2.municipios_cosechados), foot: "Con documentos tributarios hallados", color: "#4e7eaa" }),
       staticKpi({ label: "Documentos con archivo", value: formatNumber(f2.archivos.documentos_con_archivo), foot: `${formatNumber(f2.archivos.total)} archivos${pdf ? `; ${formatNumber(pdf.cantidad)} PDF` : ""}`, color: "#be842f" }),
       staticKpi({ label: "Estatuto por validar", value: formatNumber((f2.estatuto.find((entry) => entry.nombre === "probable") || {}).cantidad || 0), foot: "Candidatos «probable» sin confirmar", color: "#8876a5" }),
       staticKpi({ label: "Cambios de la semana", value: f2.cambios.disponible ? formatNumber(f2.cambios.total) : "—", foot: f2.cambios.disponible ? `${f2.cambios.captura_anterior} → ${f2.cambios.captura_actual}` : "Falta la segunda captura semanal", color: "#bd655b" }),
     );
-    $("#f2-municipios-note").textContent = `Sobre ${formatNumber(f2.municipios_cosechados)} municipios cosechados.`;
+    const tarifa = f2.e1_con_tarifa;
+    $("#f2-municipios-note").textContent = `Sobre ${formatNumber(f2.municipios_cosechados)} municipios cosechados. E1 cuenta cualquier documento de ICA; con un documento de tarifas propiamente dicho hay ${formatNumber(tarifa.municipios)} (${formatPercent(tarifa.pct_cosechados)}).`;
     renderBarList("#f2-ent-municipios", f2.entregables.map((entry) => ({ nombre: `${entry.codigo} · ${entry.nombre}`, cantidad: entry.municipios })));
     renderBarList("#f2-ent-poblacion", f2.entregables.map((entry) => ({ nombre: `${entry.codigo} · ${entry.nombre}`, cantidad: Math.round(entry.pct_poblacion * 1000) / 10 })), { suffix: "%", color: "#4e7eaa" });
     const stateColors = { alta: "#28766a", probable: "#be842f", no: "#bd655b", "Sí": "#28766a", Probable: "#be842f", No: "#bd655b" };
     renderBarList("#f2-estatuto", f2.estatuto.map((entry) => ({ ...entry, color: stateColors[entry.nombre] })));
     renderBarList("#f2-calendario", f2.calendario.map((entry) => ({ ...entry, color: stateColors[entry.nombre] })));
 
-    const changes = $("#f2-cambios");
-    clear(changes);
-    if (!f2.cambios.disponible) {
-      appendText(changes, "p", f2.cambios.motivo, "panel-description");
-    } else {
-      appendText(changes, "p", `Comparación ${f2.cambios.captura_anterior} → ${f2.cambios.captura_actual}.`, "panel-description");
-      const list = node("div", "bar-list");
-      changes.append(list);
-      f2.cambios.por_cambio.forEach((entry) => {
-        const row = node("div", "bar-row");
-        appendText(row, "span", entry.nombre, "bar-label");
-        appendText(row, "span", "");
-        appendText(row, "strong", formatNumber(entry.cantidad), "bar-value");
-        list.append(row);
-      });
-      const rows = node("div", "doc-list change-list");
-      f2.cambios.filas.slice(0, 30).forEach((entry) => linkListItem(rows, { nombre: `${entry.municipio} · ${entry.nombre}`, seccion: `${entry.cambio} (${entry.nivel})`, fecha: entry.fecha, url_pagina: entry.url, tipo_contenido: entry.campos }));
-      changes.append(rows);
-    }
+    renderBarList("#f2-sin-api", (f2.sin_api_por_tecnica || []).map((entry) => ({ nombre: `${entry.nombre} · ${formatNumber(entry.municipios)} municipios`, cantidad: Math.round(entry.pct_poblacion * 1000) / 10 })), { suffix: "%", color: "#bd655b" });
 
-    const head = $("#matrix-head");
-    clear(head);
-    const headRow = node("tr");
-    ["Municipio", "Departamento", "Población"].forEach((label) => appendText(headRow, "th", label, label === "Población" ? "numeric" : ""));
-    f2.entregables.forEach((entry) => { const th = appendText(headRow, "th", entry.codigo); th.title = entry.nombre; });
-    ["Estatuto", "Calendario", "Archivos"].forEach((label) => appendText(headRow, "th", label));
-    head.append(headRow);
-    $("#f2-matrix-note").textContent = `Solo municipios cosechados (${formatNumber(f2.municipios_cosechados)}). Los ${formatNumber(f2.municipios_sin_api)} sin API aún no tienen recolección y no aparecen aquí. Haz clic en una fila para abrir su ficha.`;
+    renderSemana();
+    renderValidacion();
+
+    $("#f2-matrix-note").textContent = `Con API: ${formatNumber(f2.municipios_cosechados)} municipios con recolección. Sin API: ${formatNumber(f2.municipios_sin_api)} municipios; ${formatNumber((f2.sharepoint || {}).municipios || 0)} ya tienen documentos candidatos por SharePoint y el resto aún no se recolecta (cambia el grupo para verlos). Haz clic en una fila para abrir su ficha.`;
     const departmentSelect = $("#matrix-department");
     clear(departmentSelect);
     departmentSelect.append(new Option("Todos", "all"));
-    [...new Set(municipalities.filter((item) => item.cosecha).map((item) => item.departamento))]
+    [...new Set(municipalities.map((item) => item.departamento))]
       .sort((a, b) => a.localeCompare(b, "es")).forEach((name) => departmentSelect.append(new Option(name, name)));
     const missingSelect = $("#matrix-missing");
     clear(missingSelect);
     missingSelect.append(new Option("Ninguno", "all"));
     f2.entregables.forEach((entry) => missingSelect.append(new Option(`${entry.codigo} · ${entry.nombre}`, entry.codigo)));
-    [departmentSelect, missingSelect].forEach((select) => select.addEventListener("change", () => { matrixVisible = 60; renderMatrix(); }));
+    [departmentSelect, missingSelect, $("#matrix-group")].forEach((select) => select.addEventListener("change", () => { matrixVisible = 60; renderMatrix(); }));
     renderMatrix();
   }
 

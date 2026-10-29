@@ -20,6 +20,8 @@
       <nav class="main-nav" aria-label="Secciones del dashboard">
         <button class="nav-item active" data-tab="resumen"><span class="nav-icon">▦</span>Resumen</button>
         <button class="nav-item" data-tab="entregables" id="nav-entregables"><span class="nav-icon">▤</span>Entregables</button>
+        <button class="nav-item" data-tab="semana"><span class="nav-icon">◷</span>Esta semana</button>
+        <button class="nav-item" data-tab="validacion"><span class="nav-icon">✓</span>Validación<span class="nav-count" id="nav-validacion-count">—</span></button>
         <button class="nav-item" data-tab="buscador"><span class="nav-icon">⌕</span>Buscador</button>
         <button class="nav-item" data-tab="pendientes"><span class="nav-icon">◷</span>Pendientes<span class="nav-count" id="nav-pending-count">—</span></button>
         <button class="nav-item" data-tab="calidad"><span class="nav-icon">◈</span>Plataforma y calidad</button>
@@ -62,24 +64,58 @@
 
       <section class="view" id="view-entregables" aria-labelledby="title-entregables">
         <div class="page-heading">
-          <div><p class="eyebrow">LO QUE VALORAN LOS CLIENTES</p><h1 id="title-entregables">Cobertura por entregable</h1><p class="subheading">Qué evidencia hay por municipio para cada entregable de Péntica. Evidencia significa documento encontrado, no dato validado.</p></div>
+          <div><p class="eyebrow">LO QUE VALORAN LOS CLIENTES</p><h1 id="title-entregables">Cobertura por entregable</h1><p class="subheading">Qué documentos candidatos hay por municipio para cada entregable de Péntica. Candidato significa documento hallado por su nombre o descripción; aún no está leído ni validado.</p></div>
         </div>
         <div class="kpi-grid" id="f2-kpis"></div>
         <div class="three-column">
-          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">MUNICIPIOS</p><h2>Con evidencia por entregable</h2><p class="panel-description" id="f2-municipios-note"></p></div></div><div id="f2-ent-municipios" class="bar-list"></div></article>
-          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">POBLACIÓN</p><h2>Habitantes cubiertos</h2><p class="panel-description">Sobre la población total de los 1.104 municipios.</p></div></div><div id="f2-ent-poblacion" class="bar-list"></div></article>
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">MUNICIPIOS</p><h2>Con documento candidato por entregable</h2><p class="panel-description" id="f2-municipios-note"></p></div></div><div id="f2-ent-municipios" class="bar-list"></div></article>
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">POBLACIÓN</p><h2>Habitantes con candidato</h2><p class="panel-description">Sobre la población total de los 1.104 municipios.</p></div></div><div id="f2-ent-poblacion" class="bar-list"></div></article>
           <article class="panel"><div class="panel-heading"><div><p class="eyebrow">NORMA BASE</p><h2>Estatuto y calendario</h2><p class="panel-description">«Probable» es un candidato por palabras clave: hay que validarlo a mano.</p></div></div><div class="section-block"><h4>Estatuto tributario</h4><div id="f2-estatuto" class="bar-list"></div></div><div class="section-block"><h4>Calendario tributario</h4><div id="f2-calendario" class="bar-list"></div></div></article>
         </div>
-        <article class="panel" id="f2-cambios-panel"><div class="panel-heading"><div><p class="eyebrow">DETECCIÓN DE CAMBIOS</p><h2>Cambios de la semana</h2></div></div><div id="f2-cambios"></div></article>
+        <article class="panel sin-api-panel"><div class="panel-heading"><div><p class="eyebrow">LO QUE AÚN NO SE RECOLECTA</p><h2>Municipios sin API, por técnica de recolección</h2><p class="panel-description">Hoy tienen 0 % de recolección. Es el trabajo principal de la Fase 2.</p></div></div><div id="f2-sin-api" class="bar-list"></div></article>
         <article class="panel matrix-panel">
           <div class="panel-heading"><div><p class="eyebrow">MATRIZ</p><h2>Municipio por entregable</h2><p class="panel-description" id="f2-matrix-note"></p></div></div>
           <div class="filters-row">
             <label>Departamento<select id="matrix-department"></select></label>
-            <label>Sin evidencia de<select id="matrix-missing"></select></label>
+            <label>Grupo<select id="matrix-group"><option value="api">Con API (cosechados)</option><option value="sin_api">Sin API (sin recolección)</option></select></label>
+            <label>Sin candidato de<select id="matrix-missing"></select></label>
             <div class="result-count" id="matrix-count"></div>
           </div>
           <div class="table-wrap"><table class="matrix-table"><thead id="matrix-head"></thead><tbody id="matrix-body"></tbody></table></div>
           <div id="matrix-more" class="matrix-more"></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-semana" aria-labelledby="title-semana">
+        <div class="page-heading"><div><p class="eyebrow">DETECCIÓN DE CAMBIOS</p><h1 id="title-semana">Esta semana</h1><p class="subheading">Documentos nuevos, modificados o retirados desde la captura anterior. Por defecto solo los de ICA, ReteICA, estatuto y calendario.</p></div></div>
+        <div class="kpi-grid" id="wk-kpis"></div>
+        <article class="panel" id="wk-empty" hidden></article>
+        <article class="panel" id="wk-tools">
+          <div class="filters-row">
+            <label>Clase<select id="wk-clase"></select></label>
+            <label>Cambio<select id="wk-cambio"></select></label>
+            <label>Nivel<select id="wk-nivel"></select></label>
+            <label>Municipio o documento<input id="wk-texto" type="search" placeholder="Buscar"></label>
+            <div class="result-count" id="wk-count"></div>
+          </div>
+          <div class="table-wrap"><table><thead><tr><th>Municipio</th><th>Documento</th><th>Clase</th><th>Entregables</th><th>Cambio</th><th>Fecha</th><th>Enlace</th></tr></thead><tbody id="wk-body"></tbody></table></div>
+          <div id="wk-more" class="matrix-more"></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-validacion" aria-labelledby="title-validacion">
+        <div class="page-heading"><div><p class="eyebrow">REVISIÓN HUMANA</p><h1 id="title-validacion">Validación</h1><p class="subheading">Estatutos y calendarios «probable»: son candidatos y alguien debe confirmar si el documento es el correcto.</p></div></div>
+        <div class="kpi-grid" id="vq-kpis"></div>
+        <article class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">CÓMO VALIDAR</p><h2>Tres pasos</h2><p class="panel-description">1. Abre el documento y confirma si es el estatuto o el calendario vigente. 2. Pulsa «Copiar fila» y pégala en la hoja «Validaciones» del Excel del Registro. 3. Completa decisión (validado, descartado o corregir), validador y fecha; al regenerar los datos, la app muestra el estado.</p></div></div>
+          <div class="filters-row">
+            <label>Tipo<select id="vq-tipo"><option value="all">Todos</option><option value="Estatuto">Estatuto</option><option value="Calendario">Calendario</option></select></label>
+            <label>Estado<select id="vq-estado"><option value="pendientes">Pendientes</option><option value="all">Todos</option></select></label>
+            <label>Departamento<select id="vq-depto"></select></label>
+            <div class="result-count" id="vq-count"></div>
+          </div>
+          <div class="table-wrap"><table><thead><tr><th>Municipio</th><th>Departamento</th><th class="numeric">Población</th><th>Tipo</th><th>Documento candidato</th><th>Estado</th><th></th></tr></thead><tbody id="vq-body"></tbody></table></div>
+          <div id="vq-more" class="matrix-more"></div>
         </article>
       </section>
 
