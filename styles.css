@@ -230,3 +230,20 @@ td.numeric, th.numeric { text-align: right; font-variant-numeric: tabular-nums; 
   .doc-link { justify-self: start; }
   .app-footer { gap: 8px; flex-wrap: wrap; }
 }
+
+.kpi-static { cursor: default; }
+.kpi-static:hover { transform: none; box-shadow: var(--shadow); }
+.section-block h4 { margin: 4px 0 8px; color: #54707c; font: 700 11px Manrope, sans-serif; }
+.matrix-panel { margin-top: 14px; }
+.matrix-table td, .matrix-table th { text-align: center; }
+.matrix-table td:first-child, .matrix-table th:first-child, .matrix-table td:nth-child(2), .matrix-table th:nth-child(2) { text-align: left; }
+.matrix-table tbody tr { cursor: pointer; }
+.matrix-table tbody tr:hover { background: #f4f8f7; }
+.ev-yes { color: var(--teal); font-weight: 700; }
+.ev-no { color: #c3ccd1; }
+.matrix-more { text-align: center; padding: 12px 0 2px; }
+.entregable-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px; }
+.badge.muted { background: #f1f4f5; color: #9aa7ae; }
+.doc-files { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; font-size: 10px; }
+.file-link { font-size: 10px; }
+.change-list { margin-top: 10px; }

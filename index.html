@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>MTIP · Seguimiento de Fase 1</title>
+  <title>MTIP · Seguimiento de Fase 2</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -16,9 +16,10 @@
         <span class="brand-mark">M</span>
         <span><strong>MTIP</strong><small>Municipal Tax Intelligence</small></span>
       </a>
-      <div class="sidebar-label">FASE 1</div>
+      <div class="sidebar-label">FASE 2</div>
       <nav class="main-nav" aria-label="Secciones del dashboard">
         <button class="nav-item active" data-tab="resumen"><span class="nav-icon">▦</span>Resumen</button>
+        <button class="nav-item" data-tab="entregables" id="nav-entregables"><span class="nav-icon">▤</span>Entregables</button>
         <button class="nav-item" data-tab="buscador"><span class="nav-icon">⌕</span>Buscador</button>
         <button class="nav-item" data-tab="pendientes"><span class="nav-icon">◷</span>Pendientes<span class="nav-count" id="nav-pending-count">—</span></button>
         <button class="nav-item" data-tab="calidad"><span class="nav-icon">◈</span>Plataforma y calidad</button>
@@ -32,14 +33,14 @@
     <main class="main-content">
       <header class="topbar">
         <div class="crumb"><span>MTIP</span><span class="crumb-sep">/</span><strong id="topbar-section">Resumen</strong></div>
-        <div class="topbar-meta"><span class="data-badge"><i></i> Fase 1 · Mapa de fuentes</span><span id="generated-date">Cargando datos…</span></div>
+        <div class="topbar-meta"><span class="data-badge"><i></i> Fase 2 · Recolección inteligente</span><span id="generated-date">Cargando datos…</span></div>
       </header>
 
       <div id="load-error" class="load-error" hidden></div>
 
       <section class="view active" id="view-resumen" aria-labelledby="title-resumen">
         <div class="page-heading">
-          <div><p class="eyebrow">SEGUIMIENTO DE COBERTURA</p><h1 id="title-resumen">Resumen de Fase 1</h1><p class="subheading">Mapa de sitios oficiales, cobertura de API y cosecha tributaria.</p></div>
+          <div><p class="eyebrow">SEGUIMIENTO DE COBERTURA</p><h1 id="title-resumen">Resumen de cobertura</h1><p class="subheading">Mapa de sitios oficiales, cobertura de API y cosecha tributaria.</p></div>
           <div class="data-source-note"><span class="source-dot"></span><span>Fuente: Registro MTIP y archivos locales</span></div>
         </div>
         <div class="kpi-grid" id="summary-kpis"></div>
@@ -56,6 +57,29 @@
         <article class="panel chart-panel">
           <div class="panel-heading"><div><p class="eyebrow">DISTRIBUCIÓN TERRITORIAL</p><h2>Cobertura por departamento</h2><p class="panel-description">API, sitio identificado sin API y municipios pendientes.</p></div><div class="legend" id="department-legend"></div></div>
           <div class="chart-scroll" id="department-chart" aria-label="Barras apiladas por departamento"></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-entregables" aria-labelledby="title-entregables">
+        <div class="page-heading">
+          <div><p class="eyebrow">LO QUE VALORAN LOS CLIENTES</p><h1 id="title-entregables">Cobertura por entregable</h1><p class="subheading">Qué evidencia hay por municipio para cada entregable de Péntica. Evidencia significa documento encontrado, no dato validado.</p></div>
+        </div>
+        <div class="kpi-grid" id="f2-kpis"></div>
+        <div class="three-column">
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">MUNICIPIOS</p><h2>Con evidencia por entregable</h2><p class="panel-description" id="f2-municipios-note"></p></div></div><div id="f2-ent-municipios" class="bar-list"></div></article>
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">POBLACIÓN</p><h2>Habitantes cubiertos</h2><p class="panel-description">Sobre la población total de los 1.104 municipios.</p></div></div><div id="f2-ent-poblacion" class="bar-list"></div></article>
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">NORMA BASE</p><h2>Estatuto y calendario</h2><p class="panel-description">«Probable» es un candidato por palabras clave: hay que validarlo a mano.</p></div></div><div class="section-block"><h4>Estatuto tributario</h4><div id="f2-estatuto" class="bar-list"></div></div><div class="section-block"><h4>Calendario tributario</h4><div id="f2-calendario" class="bar-list"></div></div></article>
+        </div>
+        <article class="panel" id="f2-cambios-panel"><div class="panel-heading"><div><p class="eyebrow">DETECCIÓN DE CAMBIOS</p><h2>Cambios de la semana</h2></div></div><div id="f2-cambios"></div></article>
+        <article class="panel matrix-panel">
+          <div class="panel-heading"><div><p class="eyebrow">MATRIZ</p><h2>Municipio por entregable</h2><p class="panel-description" id="f2-matrix-note"></p></div></div>
+          <div class="filters-row">
+            <label>Departamento<select id="matrix-department"></select></label>
+            <label>Sin evidencia de<select id="matrix-missing"></select></label>
+            <div class="result-count" id="matrix-count"></div>
+          </div>
+          <div class="table-wrap"><table class="matrix-table"><thead id="matrix-head"></thead><tbody id="matrix-body"></tbody></table></div>
+          <div id="matrix-more" class="matrix-more"></div>
         </article>
       </section>
 
@@ -106,7 +130,7 @@
         <article class="panel heatmap-panel"><div class="panel-heading"><div><p class="eyebrow">DISTRIBUCIÓN DE HALLAZGOS</p><h2>Mapa de calor por departamento</h2><p class="panel-description">Municipios con contenido detectado sobre el total con API.</p></div></div><div class="table-wrap heatmap-wrap"><table><thead id="heatmap-head"></thead><tbody id="heatmap-body"></tbody></table></div></article>
       </section>
 
-      <footer class="app-footer"><span>MTIP · Dashboard de Fase 1</span><span>Los datos reflejan los archivos locales generados</span></footer>
+      <footer class="app-footer"><span>MTIP · Dashboard de Fase 2</span><span>Los datos reflejan los archivos locales generados</span></footer>
     </main>
   </div>
 </body>

@@ -25,6 +25,7 @@
   let selectedMunicipality = null;
   let suggestionIndex = -1;
   let riskVisible = 100;
+  let matrixVisible = 60;
 
   function node(tag, className = "", text = "") {
     const item = document.createElement(tag);
@@ -95,7 +96,7 @@
     if (!view) return;
     $$(".view").forEach((item) => item.classList.toggle("active", item === view));
     $$(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.tab === name));
-    const labels = { resumen: "Resumen", buscador: "Buscador", pendientes: "Pendientes", calidad: "Plataforma y calidad", salud: "Salud tributaria" };
+    const labels = { resumen: "Resumen", entregables: "Entregables", buscador: "Buscador", pendientes: "Pendientes", calidad: "Plataforma y calidad", salud: "Salud tributaria" };
     $("#topbar-section").textContent = labels[name] || "Resumen";
     if (window.location.hash !== `#${name}`) history.replaceState(null, "", `#${name}`);
     if (name === "pendientes") renderPendingTable();
@@ -301,7 +302,7 @@
       fill.style.setProperty("--bar-color", item.color || options.color || "#28766a");
       track.append(fill);
       row.append(track);
-      appendText(row, "strong", formatNumber(value), "bar-value");
+      appendText(row, "strong", formatNumber(value) + (options.suffix || ""), "bar-value");
       container.append(row);
     });
   }
@@ -546,7 +547,16 @@
       : item.fecha_fuente === "modificacion" ? "fecha de modificación" : "sin fecha de origen";
     appendText(meta, "span", sourceLabel);
     if (item.tipo_contenido) appendText(meta, "span", item.tipo_contenido);
+    if (item.entregables && item.entregables.length) appendText(meta, "span", item.entregables.join(" · "), "doc-tag");
     body.append(meta);
+    if (item.archivos && item.archivos.length) {
+      const files = node("div", "doc-files");
+      item.archivos.forEach((file) => {
+        const ext = (file.extension || "").replace(".", "").toUpperCase() || "Archivo";
+        addLink(files, `${ext}${file.tamano_bytes ? " · " + formatBytes(file.tamano_bytes) : ""}`, file.url, "doc-link file-link");
+      });
+      body.append(files);
+    }
     row.append(body);
     const linkCell = node("div");
     if (item.url_pagina) {
@@ -557,6 +567,12 @@
     }
     row.append(linkCell);
     parent.append(row);
+  }
+
+  function formatBytes(value) {
+    const bytes = Number(value || 0);
+    if (bytes >= 1048576) return `${(bytes / 1048576).toLocaleString("es-CO", { maximumFractionDigits: 1 })} MB`;
+    return `${Math.max(1, Math.round(bytes / 1024))} KB`;
   }
 
   function renderDocumentSection(parent, title, docs, hint = "") {
@@ -641,6 +657,31 @@
       addHarvestCell(grid, "Fecha de cosecha", harvest.fecha_cosecha, true);
       container.append(grid);
       if (harvest.ultima_norma_nombre) appendText(container, "p", `Última norma: ${harvest.ultima_norma_nombre}`, "detail-note");
+    }
+
+    if (item.cosecha && summary.fase2) {
+      const evidence = node("section");
+      const evHeader = node("div", "section-title");
+      appendText(evHeader, "h3", "Entregables con evidencia");
+      appendText(evHeader, "span", "Documento encontrado; aún no validado");
+      evidence.append(evHeader);
+      const chips = node("div", "entregable-chips");
+      summary.fase2.entregables.forEach((entry) => {
+        const has = (item.entregables || []).includes(entry.codigo);
+        const chip = setBadge(chips, `${entry.codigo} · ${entry.nombre}`, has ? "success" : "muted");
+        chip.title = has ? "Hay documentos que lo respaldan" : "Sin evidencia todavía";
+      });
+      const statute = item.cosecha.estatuto_estado || "sin dato";
+      setBadge(chips, `Estatuto: ${statute}`, statute === "alta" ? "success" : statute === "probable" ? "warning" : "danger");
+      if (item.cosecha.calendario_estado) setBadge(chips, `Calendario: ${item.cosecha.calendario_estado}`, item.cosecha.calendario_estado === "Sí" ? "success" : item.cosecha.calendario_estado === "Probable" ? "warning" : "danger");
+      evidence.append(chips);
+      if (item.cosecha.mejor_estatuto) appendText(evidence, "p", `Estatuto detectado: ${item.cosecha.mejor_estatuto}`, "detail-note");
+      if (item.cosecha.estatuto_estado === "probable") appendText(evidence, "p", "Este estatuto es un candidato por palabras clave; confírmalo antes de usarlo.", "detail-note");
+      container.append(evidence);
+      const keyDocs = Object.values(item.documentos_clave || {});
+      const keySection = node("section");
+      renderDocumentSection(keySection, "Documentos tributarios clave", keyDocs, `${formatNumber(item.n_archivos)} archivos adjuntos en total`);
+      container.append(keySection);
     }
 
     const tax = node("section");
@@ -771,7 +812,138 @@
     $$(".nav-item").forEach((button) => button.addEventListener("click", () => activateTab(button.dataset.tab)));
     $$('[data-go-tab="pendientes"]').forEach((button) => button.addEventListener("click", () => navigatePending("all")));
     const hash = window.location.hash.replace("#", "");
-    if (["resumen", "buscador", "pendientes", "calidad", "salud"].includes(hash)) activateTab(hash);
+    if (["resumen", "entregables", "buscador", "pendientes", "calidad", "salud"].includes(hash)) activateTab(hash);
+  }
+
+  function staticKpi({ label, value, foot, color }) {
+    const card = node("div", "kpi-card kpi-static");
+    card.style.setProperty("--kpi-color", color);
+    const title = node("span", "kpi-label");
+    appendText(title, "i", "", "kpi-marker");
+    appendText(title, "span", label);
+    card.append(title);
+    appendText(card, "strong", value, "kpi-value");
+    appendText(card, "span", foot, "kpi-foot");
+    return card;
+  }
+
+  function matrixRows() {
+    const department = $("#matrix-department").value;
+    const missing = $("#matrix-missing").value;
+    return municipalities
+      .filter((item) => item.cosecha)
+      .filter((item) => department === "all" || item.departamento === department)
+      .filter((item) => missing === "all" || !(item.entregables || []).includes(missing))
+      .sort((a, b) => (b.poblacion || 0) - (a.poblacion || 0));
+  }
+
+  function stateBadge(parent, value) {
+    const text = value || "sin dato";
+    const tone = ["alta", "Sí"].includes(text) ? "success" : ["probable", "Probable"].includes(text) ? "warning" : "danger";
+    setBadge(parent, text, tone);
+  }
+
+  function renderMatrix() {
+    const body = $("#matrix-body");
+    clear(body);
+    const rows = matrixRows();
+    $("#matrix-count").textContent = `${formatNumber(rows.length)} municipios`;
+    rows.slice(0, matrixVisible).forEach((item) => {
+      const tr = node("tr");
+      appendText(tr, "td", item.municipio);
+      appendText(tr, "td", item.departamento);
+      appendText(tr, "td", formatNumber(item.poblacion), "numeric");
+      summary.fase2.entregables.forEach((entry) => {
+        const has = (item.entregables || []).includes(entry.codigo);
+        const cell = appendText(tr, "td", has ? "✓" : "·", has ? "ev-yes" : "ev-no");
+        cell.title = `${entry.codigo} · ${entry.nombre}`;
+      });
+      const statuteCell = node("td");
+      stateBadge(statuteCell, item.cosecha.estatuto_estado);
+      tr.append(statuteCell);
+      const calendarCell = node("td");
+      stateBadge(calendarCell, item.cosecha.calendario_estado);
+      tr.append(calendarCell);
+      appendText(tr, "td", formatNumber(item.n_archivos), "numeric");
+      tr.addEventListener("click", () => {
+        activateTab("buscador");
+        showMunicipality(item);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      body.append(tr);
+    });
+    const more = $("#matrix-more");
+    clear(more);
+    if (rows.length > matrixVisible) {
+      const button = node("button", "text-button", `Ver más (${formatNumber(rows.length - matrixVisible)} restantes)`);
+      button.type = "button";
+      button.addEventListener("click", () => { matrixVisible += 60; renderMatrix(); });
+      more.append(button);
+    }
+  }
+
+  function renderFase2() {
+    const f2 = summary.fase2;
+    if (!f2) {
+      $("#nav-entregables").hidden = true;
+      return;
+    }
+    const kpis = $("#f2-kpis");
+    clear(kpis);
+    const pdf = (f2.archivos.por_extension || []).find((entry) => entry.nombre === ".pdf");
+    kpis.append(
+      staticKpi({ label: "Población en municipios con API", value: formatPercent(f2.pct_poblacion_con_api), foot: `${formatNumber(f2.municipios_sin_api)} municipios sin API suman ${formatPercent(f2.pct_poblacion_sin_api)} de la población`, color: "#28766a" }),
+      staticKpi({ label: "Municipios cosechados", value: formatNumber(f2.municipios_cosechados), foot: "Con documentos tributarios revisados", color: "#4e7eaa" }),
+      staticKpi({ label: "Documentos con archivo", value: formatNumber(f2.archivos.documentos_con_archivo), foot: `${formatNumber(f2.archivos.total)} archivos${pdf ? `; ${formatNumber(pdf.cantidad)} PDF` : ""}`, color: "#be842f" }),
+      staticKpi({ label: "Estatuto por validar", value: formatNumber((f2.estatuto.find((entry) => entry.nombre === "probable") || {}).cantidad || 0), foot: "Candidatos «probable» sin confirmar", color: "#8876a5" }),
+      staticKpi({ label: "Cambios de la semana", value: f2.cambios.disponible ? formatNumber(f2.cambios.total) : "—", foot: f2.cambios.disponible ? `${f2.cambios.captura_anterior} → ${f2.cambios.captura_actual}` : "Falta la segunda captura semanal", color: "#bd655b" }),
+    );
+    $("#f2-municipios-note").textContent = `Sobre ${formatNumber(f2.municipios_cosechados)} municipios cosechados.`;
+    renderBarList("#f2-ent-municipios", f2.entregables.map((entry) => ({ nombre: `${entry.codigo} · ${entry.nombre}`, cantidad: entry.municipios })));
+    renderBarList("#f2-ent-poblacion", f2.entregables.map((entry) => ({ nombre: `${entry.codigo} · ${entry.nombre}`, cantidad: Math.round(entry.pct_poblacion * 1000) / 10 })), { suffix: "%", color: "#4e7eaa" });
+    const stateColors = { alta: "#28766a", probable: "#be842f", no: "#bd655b", "Sí": "#28766a", Probable: "#be842f", No: "#bd655b" };
+    renderBarList("#f2-estatuto", f2.estatuto.map((entry) => ({ ...entry, color: stateColors[entry.nombre] })));
+    renderBarList("#f2-calendario", f2.calendario.map((entry) => ({ ...entry, color: stateColors[entry.nombre] })));
+
+    const changes = $("#f2-cambios");
+    clear(changes);
+    if (!f2.cambios.disponible) {
+      appendText(changes, "p", f2.cambios.motivo, "panel-description");
+    } else {
+      appendText(changes, "p", `Comparación ${f2.cambios.captura_anterior} → ${f2.cambios.captura_actual}.`, "panel-description");
+      const list = node("div", "bar-list");
+      changes.append(list);
+      f2.cambios.por_cambio.forEach((entry) => {
+        const row = node("div", "bar-row");
+        appendText(row, "span", entry.nombre, "bar-label");
+        appendText(row, "span", "");
+        appendText(row, "strong", formatNumber(entry.cantidad), "bar-value");
+        list.append(row);
+      });
+      const rows = node("div", "doc-list change-list");
+      f2.cambios.filas.slice(0, 30).forEach((entry) => linkListItem(rows, { nombre: `${entry.municipio} · ${entry.nombre}`, seccion: `${entry.cambio} (${entry.nivel})`, fecha: entry.fecha, url_pagina: entry.url, tipo_contenido: entry.campos }));
+      changes.append(rows);
+    }
+
+    const head = $("#matrix-head");
+    clear(head);
+    const headRow = node("tr");
+    ["Municipio", "Departamento", "Población"].forEach((label) => appendText(headRow, "th", label, label === "Población" ? "numeric" : ""));
+    f2.entregables.forEach((entry) => { const th = appendText(headRow, "th", entry.codigo); th.title = entry.nombre; });
+    ["Estatuto", "Calendario", "Archivos"].forEach((label) => appendText(headRow, "th", label));
+    head.append(headRow);
+    $("#f2-matrix-note").textContent = `Solo municipios cosechados (${formatNumber(f2.municipios_cosechados)}). Los ${formatNumber(f2.municipios_sin_api)} sin API aún no tienen recolección y no aparecen aquí. Haz clic en una fila para abrir su ficha.`;
+    const departmentSelect = $("#matrix-department");
+    clear(departmentSelect);
+    departmentSelect.append(new Option("Todos", "all"));
+    [...new Set(municipalities.filter((item) => item.cosecha).map((item) => item.departamento))]
+      .sort((a, b) => a.localeCompare(b, "es")).forEach((name) => departmentSelect.append(new Option(name, name)));
+    const missingSelect = $("#matrix-missing");
+    clear(missingSelect);
+    missingSelect.append(new Option("Ninguno", "all"));
+    f2.entregables.forEach((entry) => missingSelect.append(new Option(`${entry.codigo} · ${entry.nombre}`, entry.codigo)));
+    [departmentSelect, missingSelect].forEach((select) => select.addEventListener("change", () => { matrixVisible = 60; renderMatrix(); }));
+    renderMatrix();
   }
 
   function renderAll() {
@@ -784,6 +956,7 @@
     renderDepartmentChart();
     renderPlatformQuality();
     renderHealth();
+    renderFase2();
     setupPendingFilters();
     setupSearch();
     setupTabs();
