@@ -10,13 +10,13 @@
     ok: "Sin acción pendiente",
   };
   const GROUP_COLORS = {
-    sin_sitio: "#bd655b",
-    revision_manual: "#be842f",
+    sin_sitio: "#B4483F",
+    revision_manual: "#D69E00",
     sin_clasificar: "#6686a4",
     api_sin_cosecha: "#8876a5",
-    ok: "#438574",
+    ok: "#395B0C",
   };
-  const PLATFORM_COLORS = { api: "#28766a", sin_clasificar: "#7390a8", sin_sitio: "#d59a56" };
+  const PLATFORM_COLORS = { api: "#6DB500", sin_clasificar: "#7390a8", sin_sitio: "#E0A400" };
   const NUMBER = new Intl.NumberFormat("es-CO");
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -150,10 +150,10 @@
     const container = $("#summary-kpis");
     clear(container);
     const cards = [
-      { label: "Municipios en registro", value: totals.municipios, foot: "Ver cola completa", color: "#3f7480", filter: "all" },
-      { label: "Sitio identificado", value: totals.identificados, foot: `${formatPercent(totals.porcentaje_identificados)} del registro`, color: "#28766a", filter: "identificado" },
-      { label: "Sin sitio hallado", value: totals.pendientes, foot: "Revisar candidatos y fuentes", color: "#c16d5f", filter: "sin_sitio" },
-      { label: "Con API", value: totals.api, foot: `${formatPercent(totals.porcentaje_api)} del registro`, color: "#4e7eaa", filter: "api" },
+      { label: "Municipios en registro", value: totals.municipios, foot: "Ver cola completa", color: "#395B0C", filter: "all" },
+      { label: "Sitio identificado", value: totals.identificados, foot: `${formatPercent(totals.porcentaje_identificados)} del registro`, color: "#6DB500", filter: "identificado" },
+      { label: "Sin sitio hallado", value: totals.pendientes, foot: "Revisar candidatos y fuentes", color: "#B4483F", filter: "sin_sitio" },
+      { label: "Con API", value: totals.api, foot: `${formatPercent(totals.porcentaje_api)} del registro`, color: "#2D3431", filter: "api" },
       { label: "Sin API", value: totals.sin_clasificar, foot: unclassifiedFoot, color: "#8393a1", filter: "sin_clasificar" },
     ];
     cards.forEach((card) => container.append(kpiCard(card)));
@@ -163,10 +163,10 @@
     const totals = summary.totales;
     $("#funnel-universe").textContent = `De ${formatNumber(totals.municipios)} municipios`;
     const steps = [
-      { label: "Municipios del alcance", value: totals.municipios, color: "#27465a", filter: "all" },
-      { label: "Con sitio identificado", value: totals.identificados, color: "#4d8190", filter: "identificado" },
-      { label: "Con API Mi Colombia Digital", value: totals.api, color: "#28766a", filter: "api" },
-      { label: "Calendario confirmado", value: totals.calendario_confirmado, color: "#92ae68", filter: "api" },
+      { label: "Municipios del alcance", value: totals.municipios, color: "#141817", filter: "all" },
+      { label: "Con sitio identificado", value: totals.identificados, color: "#528902", filter: "identificado" },
+      { label: "Con API Mi Colombia Digital", value: totals.api, color: "#6DB500", filter: "api" },
+      { label: "Calendario confirmado", value: totals.calendario_confirmado, color: "#ADFB20", filter: "api" },
     ];
     const container = $("#funnel");
     clear(container);
@@ -205,7 +205,7 @@
       row.style.background = "transparent";
       row.style.border = "0";
       row.style.cursor = "pointer";
-      row.style.setProperty("--group-color", GROUP_COLORS[item.nombre] || "#28766a");
+      row.style.setProperty("--group-color", GROUP_COLORS[item.nombre] || "#6DB500");
       appendText(row, "i", "", "group-dot");
       appendText(row, "span", GROUP_LABELS[item.nombre] || item.nombre, "group-label");
       appendText(row, "strong", formatNumber(item.cantidad), "group-count");
@@ -218,9 +218,9 @@
     const legend = $("#department-legend");
     clear(legend);
     const categories = [
-      { key: "api", label: "Con API", color: "#28766a" },
+      { key: "api", label: "Con API", color: "#6DB500" },
       { key: "sin_api", label: "Sitio sin API", color: "#aebec8" },
-      { key: "pendientes", label: "Sin sitio", color: "#d59655" },
+      { key: "pendientes", label: "Sin sitio", color: "#E0A400" },
     ];
     categories.forEach((item) => {
       const wrapper = node("span", "legend-item");
@@ -256,9 +256,9 @@
       svg.append(text);
       let x = margin.left;
       const pieces = [
-        { count: item.api, color: "#28766a", title: "Con API" },
+        { count: item.api, color: "#6DB500", title: "Con API" },
         { count: Math.max(0, item.identificados - item.api), color: "#aebec8", title: "Sitio identificado sin API" },
-        { count: item.pendientes, color: "#d59655", title: "Sin sitio hallado" },
+        { count: item.pendientes, color: "#E0A400", title: "Sin sitio hallado" },
       ];
       pieces.forEach((piece) => {
         const barWidth = piece.count * scale;
@@ -313,7 +313,7 @@
       const track = node("span", "bar-track");
       const fill = node("span", "bar-fill");
       fill.style.width = `${Math.max(0, (value / max) * 100)}%`;
-      fill.style.setProperty("--bar-color", item.color || options.color || "#28766a");
+      fill.style.setProperty("--bar-color", item.color || options.color || "#6DB500");
       track.append(fill);
       row.append(track);
       appendText(row, "strong", formatNumber(value) + (options.suffix || ""), "bar-value");
@@ -324,9 +324,9 @@
   function renderPlatformQuality() {
     const total = summary.totales.municipios;
     const platformRows = [
-      { nombre: "Mi Colombia Digital · API", cantidad: summary.totales.api, color: "#28766a" },
+      { nombre: "Mi Colombia Digital · API", cantidad: summary.totales.api, color: "#6DB500" },
       { nombre: "Sin API (otra técnica)", cantidad: summary.totales.sin_clasificar, color: "#7390a8" },
-      { nombre: "Sin sitio hallado", cantidad: summary.totales.pendientes, color: "#d59655" },
+      { nombre: "Sin sitio hallado", cantidad: summary.totales.pendientes, color: "#E0A400" },
     ];
     renderBarList("#platform-bars", platformRows);
     const breakdown = $("#platform-breakdown");
@@ -380,14 +380,14 @@
   }
 
   function renderHealth() {
-    renderBarList("#freshness-bars", summary.por_frescura, { color: "#4e7eaa" });
+    renderBarList("#freshness-bars", summary.por_frescura, { color: "#2D3431" });
     $("#freshness-cutoff").textContent = `Snapshot cutoff: ${summary.fecha_corte_snapshot || "unavailable"}`;
-    const calendarColors = { "Sí": "#438574", "Probable": "#d09a4b", "No": "#7d92a0", "Sin dato": "#bfc9ce" };
+    const calendarColors = { "Sí": "#395B0C", "Probable": "#D69E00", "No": "#7d92a0", "Sin dato": "#bfc9ce" };
     renderBarList("#calendar-bars", summary.por_calendario.map((item) => ({ ...item, color: calendarColors[item.nombre] || "#8899a1" })));
     renderBarList("#coverage-bars", summary.cobertura_contenido.map((item) => ({
       ...item,
       nombre: `${item.nombre} · ${formatPercent(item.porcentaje)}`,
-      color: "#4e8d7f",
+      color: "#528902",
     })));
     const taxDocs = summary.documentos_tributarios || {};
     const taxClasses = taxDocs.por_clase || [];
@@ -1142,12 +1142,12 @@
     const lvl = Object.fromEntries(week.por_nivel.map((entry) => [entry.nombre, entry.cantidad]));
     const tax = week.filas.filter((row) => row.clase && row.clase !== "otro").length;
     kpis.append(
-      staticKpi({ label: "Documentos nuevos", value: formatNumber(by.nuevo || 0), foot: `${week.captura_anterior} → ${week.captura_actual}`, color: "#28766a" }),
-      staticKpi({ label: "Modificados con cambio real", value: formatNumber(lvl.atributos || 0), foot: "Cambió nombre, descripción o archivo", color: "#be842f" }),
+      staticKpi({ label: "Documentos nuevos", value: formatNumber(by.nuevo || 0), foot: `${week.captura_anterior} → ${week.captura_actual}`, color: "#6DB500" }),
+      staticKpi({ label: "Modificados con cambio real", value: formatNumber(lvl.atributos || 0), foot: "Cambió nombre, descripción o archivo", color: "#D69E00" }),
       staticKpi({ label: "Modificados solo de fecha", value: formatNumber(lvl.solo_fecha || 0), foot: "Probable edición sin cambio visible", color: "#8b989e" }),
-      staticKpi({ label: "Retirados", value: formatNumber(by.desaparecido || 0), foot: "Dejaron de aparecer", color: "#bd655b" }),
+      staticKpi({ label: "Retirados", value: formatNumber(by.desaparecido || 0), foot: "Dejaron de aparecer", color: "#B4483F" }),
       staticKpi({ label: "Primera vista", value: formatNumber(by.primera_vista || 0), foot: "Ya existían; entraron a la ventana (no cuentan como cambio)", color: "#8b989e" }),
-      staticKpi({ label: "Por revisar (tributarios)", value: formatNumber(week.por_revisar ?? tax), foot: week.municipios_monitoreados ? `${formatNumber(week.municipios_por_revisar)} de ${formatNumber(week.municipios_monitoreados)} municipios; ${formatNumber(week.municipios_monitoreados - week.municipios_por_revisar)} sin trabajo esta semana` : "De ICA, ReteICA, estatuto, calendario o norma", color: "#4e7eaa" }),
+      staticKpi({ label: "Por revisar (tributarios)", value: formatNumber(week.por_revisar ?? tax), foot: week.municipios_monitoreados ? `${formatNumber(week.municipios_por_revisar)} de ${formatNumber(week.municipios_monitoreados)} municipios; ${formatNumber(week.municipios_monitoreados - week.municipios_por_revisar)} sin trabajo esta semana` : "De ICA, ReteICA, estatuto, calendario o norma", color: "#2D3431" }),
     );
     if (!$("#wk-clase").dataset.ready) {
       $("#wk-clase").dataset.ready = "1";
@@ -1234,10 +1234,10 @@
     clear(kpis);
     kpis.append(
       staticKpi({ label: "En la cola", value: formatNumber(v.en_cola), foot: "Estatutos y calendarios «probable»", color: "#8876a5" }),
-      staticKpi({ label: "Pendientes", value: formatNumber(v.pendientes), foot: "Sin decisión registrada", color: "#be842f" }),
-      staticKpi({ label: "Validados", value: formatNumber(v.validado), foot: "Documento correcto", color: "#28766a" }),
-      staticKpi({ label: "Descartados", value: formatNumber(v.descartado), foot: "No es el documento", color: "#bd655b" }),
-      staticKpi({ label: "Por corregir", value: formatNumber(v.corregir), foot: "Clasificación equivocada", color: "#4e7eaa" }),
+      staticKpi({ label: "Pendientes", value: formatNumber(v.pendientes), foot: "Sin decisión registrada", color: "#D69E00" }),
+      staticKpi({ label: "Validados", value: formatNumber(v.validado), foot: "Documento correcto", color: "#6DB500" }),
+      staticKpi({ label: "Descartados", value: formatNumber(v.descartado), foot: "No es el documento", color: "#B4483F" }),
+      staticKpi({ label: "Por corregir", value: formatNumber(v.corregir), foot: "Clasificación equivocada", color: "#2D3431" }),
     );
     const department = $("#vq-depto");
     if (!department.dataset.ready) {
@@ -1260,22 +1260,22 @@
     clear(kpis);
     const pdf = (f2.archivos.por_extension || []).find((entry) => entry.nombre === ".pdf");
     kpis.append(
-      staticKpi({ label: "Población en municipios con API", value: formatPercent(f2.pct_poblacion_con_api), foot: `${formatNumber(f2.municipios_sin_api)} municipios sin API suman ${formatPercent(f2.pct_poblacion_sin_api)} de la población`, color: "#28766a" }),
-      ...(f2.sharepoint && f2.sharepoint.municipios ? [staticKpi({ label: "Sin API con documentos (SharePoint)", value: formatNumber(f2.sharepoint.municipios), foot: `${formatPercent(f2.sharepoint.pct_poblacion)} de la población; son candidatos por nombre, sin validar`, color: "#6b8f3a" })] : []),
-      staticKpi({ label: "Municipios cosechados", value: formatNumber(f2.municipios_cosechados), foot: "Con documentos tributarios hallados", color: "#4e7eaa" }),
-      staticKpi({ label: "Documentos con archivo", value: formatNumber(f2.archivos.documentos_con_archivo), foot: `${formatNumber(f2.archivos.total)} archivos${pdf ? `; ${formatNumber(pdf.cantidad)} PDF` : ""}`, color: "#be842f" }),
+      staticKpi({ label: "Población en municipios con API", value: formatPercent(f2.pct_poblacion_con_api), foot: `${formatNumber(f2.municipios_sin_api)} municipios sin API suman ${formatPercent(f2.pct_poblacion_sin_api)} de la población`, color: "#6DB500" }),
+      ...(f2.sharepoint && f2.sharepoint.municipios ? [staticKpi({ label: "Sin API con documentos (SharePoint)", value: formatNumber(f2.sharepoint.municipios), foot: `${formatPercent(f2.sharepoint.pct_poblacion)} de la población; son candidatos por nombre, sin validar`, color: "#436C08" })] : []),
+      staticKpi({ label: "Municipios cosechados", value: formatNumber(f2.municipios_cosechados), foot: "Con documentos tributarios hallados", color: "#2D3431" }),
+      staticKpi({ label: "Documentos con archivo", value: formatNumber(f2.archivos.documentos_con_archivo), foot: `${formatNumber(f2.archivos.total)} archivos${pdf ? `; ${formatNumber(pdf.cantidad)} PDF` : ""}`, color: "#D69E00" }),
       staticKpi({ label: "Estatuto por validar", value: formatNumber((f2.estatuto.find((entry) => entry.nombre === "probable") || {}).cantidad || 0), foot: "Candidatos «probable» sin confirmar", color: "#8876a5" }),
-      staticKpi({ label: "Cambios de la semana", value: f2.cambios.disponible ? formatNumber(f2.cambios.total) : "—", foot: f2.cambios.disponible ? `${f2.cambios.captura_anterior} → ${f2.cambios.captura_actual}` : "Falta la segunda captura semanal", color: "#bd655b" }),
+      staticKpi({ label: "Cambios de la semana", value: f2.cambios.disponible ? formatNumber(f2.cambios.total) : "—", foot: f2.cambios.disponible ? `${f2.cambios.captura_anterior} → ${f2.cambios.captura_actual}` : "Falta la segunda captura semanal", color: "#B4483F" }),
     );
     const tarifa = f2.e1_con_tarifa;
     $("#f2-municipios-note").textContent = `Sobre ${formatNumber(f2.municipios_cosechados)} municipios cosechados. E1 cuenta cualquier documento de ICA; con un documento de tarifas propiamente dicho hay ${formatNumber(tarifa.municipios)} (${formatPercent(tarifa.pct_cosechados)}).`;
     renderBarList("#f2-ent-municipios", f2.entregables.map((entry) => ({ nombre: `${entry.codigo} · ${entry.nombre}`, cantidad: entry.municipios })));
-    renderBarList("#f2-ent-poblacion", f2.entregables.map((entry) => ({ nombre: `${entry.codigo} · ${entry.nombre}`, cantidad: Math.round(entry.pct_poblacion * 1000) / 10 })), { suffix: "%", color: "#4e7eaa" });
-    const stateColors = { alta: "#28766a", probable: "#be842f", no: "#bd655b", "Sí": "#28766a", Probable: "#be842f", No: "#bd655b" };
+    renderBarList("#f2-ent-poblacion", f2.entregables.map((entry) => ({ nombre: `${entry.codigo} · ${entry.nombre}`, cantidad: Math.round(entry.pct_poblacion * 1000) / 10 })), { suffix: "%", color: "#2D3431" });
+    const stateColors = { alta: "#6DB500", probable: "#D69E00", no: "#B4483F", "Sí": "#6DB500", Probable: "#D69E00", No: "#B4483F" };
     renderBarList("#f2-estatuto", f2.estatuto.map((entry) => ({ ...entry, color: stateColors[entry.nombre] })));
     renderBarList("#f2-calendario", f2.calendario.map((entry) => ({ ...entry, color: stateColors[entry.nombre] })));
 
-    renderBarList("#f2-sin-api", (f2.sin_api_por_tecnica || []).map((entry) => ({ nombre: `${entry.nombre} · ${formatNumber(entry.municipios)} municipios`, cantidad: Math.round(entry.pct_poblacion * 1000) / 10 })), { suffix: "%", color: "#bd655b" });
+    renderBarList("#f2-sin-api", (f2.sin_api_por_tecnica || []).map((entry) => ({ nombre: `${entry.nombre} · ${formatNumber(entry.municipios)} municipios`, cantidad: Math.round(entry.pct_poblacion * 1000) / 10 })), { suffix: "%", color: "#B4483F" });
 
     renderSemana();
     renderValidacion();
