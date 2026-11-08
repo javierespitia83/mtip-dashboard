@@ -254,7 +254,7 @@ td.numeric, th.numeric { text-align: right; font-variant-numeric: tabular-nums; 
 
 /* Ficha de municipio */
 .ficha-section { margin-top: 6px; }
-.summary-cards { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin: 4px 0 12px; }
+.summary-cards { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 10px; margin: 4px 0 12px; }
 .summary-card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: #fafcfc; display: flex; flex-direction: column; gap: 2px; }
 .summary-card span { color: #5d717c; font-size: 11px; font-weight: 600; }
 .summary-card strong { font: 800 26px 'DM Sans', sans-serif; color: #8b99a0; line-height: 1.1; }

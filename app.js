@@ -601,11 +601,12 @@
     parent.append(list);
   }
 
-  const CLASE_ROTULO = { calendario: "Calendario", estatuto: "Estatuto", ica: "ICA", reteica: "ReteICA" };
+  const CLASE_ROTULO = { calendario: "Calendario", estatuto: "Estatuto", ica: "ICA", reteica: "ReteICA", exogena: "Medios magnéticos" };
   const REGLAS_PREVISTAS = [
     { clase: "ica", entregable: "E1", nombre: "Tarifas de ICA por actividad", valor: "Tarifa (‰ o %) por actividad económica" },
     { clase: "reteica", entregable: "E2", nombre: "Reglas de ReteICA", valor: "Quién retiene, base mínima y tarifa" },
     { clase: "calendario", entregable: "E3", nombre: "Fechas y descuentos del calendario", valor: "Fechas de pago y % de descuento por pronto pago" },
+    { clase: "exogena", entregable: "E8", nombre: "Medios magnéticos (exógena)", valor: "Quién reporta, qué información, plazos y formato" },
   ];
 
   function fichaSection(parent, title, hint = "") {
@@ -643,10 +644,10 @@
     table.append(head, body);
     const paint = () => {
       clear(body);
-      docs.filter((d) => active === "todos" || d.clase === active).forEach((doc) => {
+      docs.filter((d) => active === "todos" || d.clase === active || (active === "autorretencion" && d.subtipo === "autorretencion")).forEach((doc) => {
         const tr = node("tr");
         const tipo = node("td");
-        appendText(tipo, "span", CLASE_ROTULO[doc.clase] || doc.clase, "doc-type");
+        appendText(tipo, "span", doc.subtipo === "autorretencion" ? "ReteICA · autorretención" : (CLASE_ROTULO[doc.clase] || doc.clase), "doc-type");
         const nombre = node("td");
         appendText(nombre, "div", doc.nombre, "table-name");
         if (doc.entregables && doc.entregables.length) appendText(nombre, "div", `Sirve para: ${doc.entregables.join(" · ")}`, "doc-meta");
@@ -679,6 +680,10 @@
     addFilter("todos", "Todos");
     Object.keys(CLASE_ROTULO).forEach((clase) => {
       if (counts[clase]) addFilter(clase, `${CLASE_ROTULO[clase]} (${formatNumber(counts[clase].total)})`);
+      if (clase === "reteica") {
+        const nAuto = docs.filter((d) => d.subtipo === "autorretencion").length;
+        if (nAuto) addFilter("autorretencion", `Autorretención (${formatNumber(nAuto)})`);
+      }
     });
     block.append(filters);
     const wrap = node("div", "table-wrap");
@@ -1064,7 +1069,7 @@
     }
   }
 
-  const CLASE_LABELS = { ica: "ICA", reteica: "ReteICA", estatuto: "Estatuto", calendario: "Calendario", norma: "Norma tributaria (posible E4)", otro: "Otro" };
+  const CLASE_LABELS = { ica: "ICA", reteica: "ReteICA", estatuto: "Estatuto", calendario: "Calendario", exogena: "Medios magnéticos (E8)", norma: "Norma tributaria (posible E4)", otro: "Otro" };
   const CAMBIO_LABELS = { nuevo: "nuevo", modificado: "modificado", desaparecido: "retirado", primera_vista: "primera vista" };
   let weekVisible = 100;
 
@@ -1151,7 +1156,7 @@
     );
     if (!$("#wk-clase").dataset.ready) {
       $("#wk-clase").dataset.ready = "1";
-      [["tributarias", "Solo tributarias"], ["todas", "Todas"], ["ica", "ICA"], ["reteica", "ReteICA"], ["estatuto", "Estatuto"], ["calendario", "Calendario"], ["norma", "Norma tributaria (E4)"]].forEach(([value, label]) => $("#wk-clase").append(new Option(label, value)));
+      [["tributarias", "Solo tributarias"], ["todas", "Todas"], ["ica", "ICA"], ["reteica", "ReteICA"], ["estatuto", "Estatuto"], ["calendario", "Calendario"], ["exogena", "Medios magnéticos (E8)"], ["norma", "Norma tributaria (E4)"]].forEach(([value, label]) => $("#wk-clase").append(new Option(label, value)));
       [["all", "Todos"], ["nuevo", "Nuevo"], ["modificado", "Modificado"], ["desaparecido", "Retirado"], ["primera_vista", "Primera vista"]].forEach(([value, label]) => $("#wk-cambio").append(new Option(label, value)));
       [["all", "Todos"], ["atributos", "Cambio real"], ["solo_fecha", "Solo fecha"]].forEach(([value, label]) => $("#wk-nivel").append(new Option(label, value)));
       ["#wk-clase", "#wk-cambio", "#wk-nivel"].forEach((id) => $(id).addEventListener("change", () => { weekVisible = 100; renderWeekTable(); }));
@@ -1268,7 +1273,7 @@
       staticKpi({ label: "Cambios de la semana", value: f2.cambios.disponible ? formatNumber(f2.cambios.total) : "—", foot: f2.cambios.disponible ? `${f2.cambios.captura_anterior} → ${f2.cambios.captura_actual}` : "Falta la segunda captura semanal", color: "#B4483F" }),
     );
     const tarifa = f2.e1_con_tarifa;
-    $("#f2-municipios-note").textContent = `Sobre ${formatNumber(f2.municipios_cosechados)} municipios cosechados. E1 cuenta cualquier documento de ICA; con un documento de tarifas propiamente dicho hay ${formatNumber(tarifa.municipios)} (${formatPercent(tarifa.pct_cosechados)}).`;
+    $("#f2-municipios-note").textContent = `Sobre ${formatNumber(f2.municipios_cosechados)} municipios cosechados. E1 cuenta cualquier documento de ICA; con un documento de tarifas propiamente dicho hay ${formatNumber(tarifa.municipios)} (${formatPercent(tarifa.pct_cosechados)}). E2 incluye la autorretención (autorreteica): documentos específicos en ${formatNumber(municipalities.filter((m) => m.n_autorreteica > 0).length)} municipios. E8 (medios magnéticos) es clase propia desde el 8-nov.`;
     renderBarList("#f2-ent-municipios", f2.entregables.map((entry) => ({ nombre: `${entry.codigo} · ${entry.nombre}`, cantidad: entry.municipios })));
     renderBarList("#f2-ent-poblacion", f2.entregables.map((entry) => ({ nombre: `${entry.codigo} · ${entry.nombre}`, cantidad: Math.round(entry.pct_poblacion * 1000) / 10 })), { suffix: "%", color: "#2D3431" });
     const stateColors = { alta: "#6DB500", probable: "#D69E00", no: "#B4483F", "Sí": "#6DB500", Probable: "#D69E00", No: "#B4483F" };
