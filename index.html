@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Javier Espitia">
   <meta name="color-scheme" content="light">
   <title>MTIP · Propuesta para Péntica</title>
   <link rel="icon" href="data:,">
@@ -17,7 +18,7 @@
     <aside class="sidebar">
       <a class="brand" href="#resumen" aria-label="MTIP, inicio">
         <span class="brand-mark">M</span>
-        <span><strong>MTIP</strong><small>Propuesta para Péntica</small></span>
+        <span><strong>MTIP</strong><small>Propuesta para Péntica</small><small class="brand-author">por Javier Espitia</small></span>
       </a>
       <div class="sidebar-label">FASE 2</div>
       <nav class="main-nav" aria-label="Secciones del dashboard">
@@ -34,7 +35,7 @@
     <main class="main-content">
       <header class="topbar">
         <div class="crumb"><span>MTIP</span><span class="crumb-sep">/</span><strong id="topbar-section">Resumen</strong></div>
-        <div class="topbar-meta"><span class="data-badge"><i></i> Fase 2 · Recolección inteligente</span><span id="generated-date">Cargando datos…</span></div>
+        <div class="topbar-meta"><span class="data-badge"><i></i> Fase 2 · Recolección inteligente</span><span id="generated-date">Cargando datos…</span><button type="button" class="glossary-button" id="open-glossary" aria-haspopup="dialog">? Glosario</button></div>
       </header>
 
       <div id="load-error" class="load-error" hidden></div>
@@ -72,7 +73,7 @@
 
       <section class="view" id="view-entregables" aria-labelledby="title-entregables">
         <div class="page-heading">
-          <div><p class="eyebrow">LO QUE VALORAN LOS CLIENTES</p><h1 id="title-entregables">Cobertura por entregable</h1><p class="subheading">Qué documentos candidatos hay por municipio para cada entregable de Péntica. Candidato significa documento hallado por su nombre o descripción; aún no está leído ni validado.</p></div>
+          <div><p class="eyebrow">LO QUE VALORAN LOS CLIENTES</p><h1 id="title-entregables">Cobertura por entregable</h1><p class="subheading">Qué documentos candidatos hay por municipio para cada entregable de Péntica. Candidato significa documento hallado por su nombre o descripción; aún no está leído ni validado. <button type="button" class="text-button inline-glossary" data-glossary="entregables">Qué significa cada entregable (E1 a E10)</button></p></div>
         </div>
         <div class="kpi-grid" id="f2-kpis"></div>
         <div class="three-column">
@@ -174,7 +175,12 @@
         <article class="panel heatmap-panel"><div class="panel-heading"><div><p class="eyebrow">DISTRIBUCIÓN DE HALLAZGOS</p><h2>Mapa de calor por departamento</h2><p class="panel-description">Municipios con contenido detectado sobre el total con API.</p></div></div><div class="table-wrap heatmap-wrap"><table><thead id="heatmap-head"></thead><tbody id="heatmap-body"></tbody></table></div></article>
       </section>
 
-      <footer class="app-footer"><span>MTIP · Dashboard de Fase 2</span><span>Los datos reflejan los archivos locales generados</span></footer>
+      <dialog id="glossary" class="glossary" aria-labelledby="glossary-title">
+        <div class="glossary-head"><h2 id="glossary-title">Glosario</h2><button type="button" class="glossary-close" id="close-glossary" aria-label="Cerrar">×</button></div>
+        <div class="glossary-body" id="glossary-body"></div>
+      </dialog>
+
+      <footer class="app-footer"><span class="footer-credit"><strong>MTIP</strong> · Propuesta para Péntica <span class="footer-sep">·</span> Diseño y desarrollo: <a href="https://www.linkedin.com/in/javierespitia/" target="_blank" rel="noopener author">Javier Espitia</a> · <a href="https://www.linkedin.com/in/javierespitia/" target="_blank" rel="noopener">LinkedIn</a> <span class="footer-sep">·</span> © 2026</span><span>Los datos reflejan los archivos locales generados</span></footer>
     </main>
   </div>
 </body>

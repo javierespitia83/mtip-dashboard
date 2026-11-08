@@ -1326,5 +1326,98 @@
     }
   }
 
+  // ---------- Glosario: entregables (E1 a E10) y términos de la app ----------
+  const GLOSARIO_ENTREGABLES = [
+    ["E1", "Tarifas de ICA por actividad", "Tarifa (por mil) que cobra el municipio a cada actividad económica, con su código y el artículo que la fija. Alimenta la Matriz ICA y la liquidación del impuesto."],
+    ["E2", "Reglas de ReteICA", "Quién es agente de retención o autorretenedor, base mínima, tarifa, periodicidad y formulario."],
+    ["E3", "Fechas y descuentos del calendario", "Fechas límite de declaración y pago (por dígito de NIT o tipo de contribuyente) y descuentos por pronto pago."],
+    ["E4", "Qué cambió y desde cuándo", "Norma nueva, qué artículo modifica o deroga y desde qué fecha aplica. Base de las alertas de cambio normativo."],
+    ["E5", "Beneficios y amnistías", "Descuentos extraordinarios, condonación de intereses o sanciones e incentivos por actividad o zona."],
+    ["E6", "Sanciones, plazos de corrección y UVT", "Sanción mínima, intereses, plazo para corregir y valor de la UVT del año."],
+    ["E7", "Canal de presentación y pago", "Portal tributario o sede electrónica, formulario, bancos y medio obligatorio."],
+    ["E8", "Exógena o medios magnéticos", "Quién debe reportar información de terceros al municipio, qué, cuándo y en qué formato."],
+    ["E9", "Territorialidad y régimen SIMPLE", "Dónde se causa el ICA según la actividad y cómo se integra al régimen SIMPLE."],
+    ["E10", "Alerta temprana del Concejo", "Proyectos de acuerdo que reformarían el estatuto antes de aprobarse. Aún no se recolecta."],
+  ];
+  const GLOSARIO_TERMINOS = [
+    ["Candidato", "Documento hallado por su nombre o descripción. Todavía no se ha leído ni validado."],
+    ["Probable", "Candidato con señales débiles (por ejemplo, un estatuto que solo se menciona). Necesita revisión humana."],
+    ["Validado", "Documento que una persona confirmó como correcto en la hoja Validaciones."],
+    ["Con API / Sin API", "Con API: el sitio usa Mi Colombia Digital y se consulta sin navegador. Sin API: otra plataforma (SharePoint, Nexura, WordPress…), con su propia técnica."],
+    ["Nuevo", "Documento creado desde la captura anterior."],
+    ["Primera vista", "Documento que ya existía y apenas entró a la ventana de captura. Se lista, pero no cuenta como cambio."],
+    ["Modificado", "Documento ya conocido al que le cambió el nombre, la descripción, el archivo o solo la fecha."],
+    ["Retirado", "Documento que estaba en la captura anterior y ya no aparece."],
+    ["Por revisar", "Cambio tributario (no noticia), nuevo o modificado, no duplicado, que pide lectura."],
+    ["Huella", "Resumen (hash) de un documento o página. Si no cambia, no se vuelve a leer."],
+    ["Ventana insuficiente", "La captura no alcanzó a llegar hasta la captura anterior; puede faltar algún cambio de ese sitio."],
+    ["Portal tributario", "Aplicación aparte donde el municipio recibe declaraciones y pagos. Pasarela: botón de pago genérico (PSE, Wompi)."],
+  ];
+  const NOMBRE_ENTREGABLE = Object.fromEntries(GLOSARIO_ENTREGABLES.map(([c, n]) => [c, n]));
+
+  function buildGlossary() {
+    const body = document.getElementById("glossary-body");
+    if (!body || body.childElementCount) return;
+    const seccion = (id, titulo, filas) => {
+      const box = node("section", "glossary-section");
+      box.id = "glossary-" + id;
+      appendText(box, "h3", titulo);
+      const dl = node("dl", "glossary-list");
+      filas.forEach(([t, n, d]) => {
+        const dt = node("dt");
+        dt.id = "glossary-item-" + t.replace(/\W+/g, "-").toLowerCase();
+        dt.textContent = d ? `${t} · ${n}` : t;
+        const dd = node("dd");
+        dd.textContent = d || n;
+        dl.append(dt, dd);
+      });
+      box.append(dl);
+      body.append(box);
+    };
+    seccion("entregables", "Entregables (lo que valoran los clientes de Péntica)", GLOSARIO_ENTREGABLES);
+    seccion("terminos", "Términos de la app", GLOSARIO_TERMINOS.map(([t, d]) => [t, d]));
+  }
+
+  function openGlossary(target) {
+    buildGlossary();
+    const dlg = document.getElementById("glossary");
+    if (!dlg) return;
+    if (!dlg.open) dlg.showModal ? dlg.showModal() : dlg.setAttribute("open", "");
+    const el = target && document.getElementById(target);
+    if (el) { el.scrollIntoView({ block: "start" }); el.classList.add("glossary-flash"); setTimeout(() => el.classList.remove("glossary-flash"), 1600); }
+  }
+
+  const CODIGOS_RX = /^\s*E(10|[1-9])(\s*[·,]\s*E(10|[1-9]))*\s*$/;
+  function annotateCodes(root) {
+    root.querySelectorAll("td, th, span, strong, small").forEach((el) => {
+      if (el.dataset.codeHint || el.childElementCount) return;
+      const txt = el.textContent || "";
+      if (txt.length > 40 || !CODIGOS_RX.test(txt)) return;
+      const codigos = txt.match(/E(10|[1-9])/g) || [];
+      el.dataset.codeHint = "1";
+      el.classList.add("code-hint");
+      el.title = codigos.map((c) => `${c} · ${NOMBRE_ENTREGABLE[c] || ""}`).join("\n") + "\n(clic para ver el glosario)";
+      el.addEventListener("click", (ev) => { ev.stopPropagation(); openGlossary("glossary-item-" + codigos[0].toLowerCase()); });
+    });
+  }
+
+  function startGlossary() {
+    const btn = document.getElementById("open-glossary");
+    if (btn) btn.addEventListener("click", () => openGlossary());
+    const close = document.getElementById("close-glossary");
+    const dlg = document.getElementById("glossary");
+    if (close && dlg) close.addEventListener("click", () => (dlg.close ? dlg.close() : dlg.removeAttribute("open")));
+    if (dlg) dlg.addEventListener("click", (ev) => { if (ev.target === dlg && dlg.close) dlg.close(); });
+    document.querySelectorAll("[data-glossary]").forEach((b) => b.addEventListener("click", () => openGlossary("glossary-" + b.dataset.glossary)));
+    const main = document.querySelector(".main-content");
+    if (main) {
+      let pendiente = null;
+      new MutationObserver(() => { clearTimeout(pendiente); pendiente = setTimeout(() => annotateCodes(main), 150); })
+        .observe(main, { childList: true, subtree: true });
+      annotateCodes(main);
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", start);
+  document.addEventListener("DOMContentLoaded", startGlossary);
 })();
