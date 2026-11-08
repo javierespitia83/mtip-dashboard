@@ -92,27 +92,46 @@
   }
 
   const GROUPS = {
-    inicio: { label: "Inicio", views: ["resumen"] },
+    inicio: { label: "Inicio", views: ["novedades", "resumen"] },
     semana: { label: "Esta semana", views: ["semana", "validacion"] },
     municipios: { label: "Municipios", views: ["buscador", "pendientes"] },
     cobertura: { label: "Cobertura", views: ["entregables", "calidad", "salud"] },
   };
-  const VIEW_LABELS = { resumen: "Resumen", entregables: "Entregables", semana: "Cambios de la semana", validacion: "Validar documentos", buscador: "Buscar un municipio", pendientes: "Lista de municipios", calidad: "Plataforma y calidad", salud: "Salud tributaria" };
+  const VIEW_LABELS = { novedades: "Novedades", resumen: "Resumen operativo", entregables: "Entregables", semana: "Cambios de la semana", validacion: "Validar documentos", buscador: "Buscar un municipio", pendientes: "Lista de municipios", calidad: "Plataforma y calidad", salud: "Salud tributaria" };
   const groupOf = (view) => Object.keys(GROUPS).find((key) => GROUPS[key].views.includes(view)) || "inicio";
 
+  // Modo Cliente (lo que se vende) / Operacion (estadisticas internas de recoleccion)
+  const OP_VIEWS = new Set(["resumen", "semana", "validacion", "pendientes", "entregables", "calidad", "salud"]);
+  let mode = "cliente";
+  try { mode = localStorage.getItem("mtip-modo") === "operacion" ? "operacion" : "cliente"; } catch { /* sin almacenamiento */ }
+  if (/[?&]modo=operacion/.test(window.location.search)) mode = "operacion";
+  const visibleViews = (group) => GROUPS[group].views.filter((v) => mode === "operacion" || !OP_VIEWS.has(v));
+
+  function setMode(next) {
+    mode = next === "operacion" ? "operacion" : "cliente";
+    document.body.dataset.mode = mode;
+    try { localStorage.setItem("mtip-modo", mode); } catch { /* sin almacenamiento */ }
+    $$("[data-mode-set]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.modeSet === mode)));
+    const current = (window.location.hash || "").replace("#", "").split("/")[0];
+    activateTab(current && $(`#view-${current}`) ? current : "novedades");
+    if (selectedMunicipality && $("#view-buscador").classList.contains("active")) showMunicipality(selectedMunicipality);
+  }
+
   function activateTab(name) {
+    if (mode === "cliente" && OP_VIEWS.has(name)) name = "novedades";
     const view = $(`#view-${name}`);
     if (!view) return;
     const group = groupOf(name);
     $$(".view").forEach((item) => item.classList.toggle("active", item === view));
     $$(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.group === group));
-    $("#subtabs").hidden = GROUPS[group].views.length < 2;
+    $("#subtabs").hidden = visibleViews(group).length < 2;
     $$(".subtab").forEach((item) => {
       item.hidden = item.dataset.group !== group;
       item.classList.toggle("active", item.dataset.tab === name);
     });
-    $("#topbar-section").textContent = GROUPS[group].views.length < 2 ? GROUPS[group].label : `${GROUPS[group].label} · ${VIEW_LABELS[name]}`;
-    if (window.location.hash !== `#${name}`) history.replaceState(null, "", `#${name}`);
+    $("#topbar-section").textContent = visibleViews(group).length < 2 ? GROUPS[group].label : `${GROUPS[group].label} · ${VIEW_LABELS[name]}`;
+    const keep = name === "buscador" && selectedMunicipality ? `#buscador/${selectedMunicipality.divipola}` : `#${name}`;
+    if (window.location.hash !== keep) history.replaceState(null, "", keep);
     if (name === "pendientes") renderPendingTable();
   }
 
@@ -698,6 +717,7 @@
   function showMunicipality(item) {
     selectedMunicipality = item;
     if (!$("#view-buscador").classList.contains("active")) activateTab("buscador");
+    history.replaceState(null, "", `#buscador/${item.divipola}`);
     const container = $("#municipality-detail");
     clear(container);
     container.className = "municipality-detail panel";
@@ -710,8 +730,19 @@
     appendText(identity, "h2", item.municipio);
     appendText(identity, "div", `${item.departamento} · ${formatNumber(item.poblacion)} habitantes`, "detail-location");
     appendText(identity, "div", `DIVIPOLA ${item.divipola}`, "detail-code");
+    const ult = item.ultima_actualizacion;
+    appendText(identity, "div", ult ? `Última publicación tributaria detectada: ${ult} (${haceTexto(ult)})`
+      : item.curaduria ? `Fuentes revisadas a mano el ${item.curaduria.fecha_revision}` : "Sin publicaciones tributarias detectadas todavía", "detail-updated");
     heading.append(identity);
+    const clienteBadges = node("div", "badge-row");
+    clienteBadges.dataset.mode = "cliente";
+    const nNov = (item.novedades_semana || []).length;
+    if (nNov) setBadge(clienteBadges, `${formatNumber(nNov)} ${nNov === 1 ? "cambio" : "cambios"} en la última captura`, "success");
+    if ((item.alertas || []).length) setBadge(clienteBadges, "Alerta: reforma o nuevas tarifas", "warning");
+    if (item.curaduria) setBadge(clienteBadges, "Fuentes revisadas a mano", "");
+    heading.append(clienteBadges);
     const badges = node("div", "badge-row");
+    badges.dataset.mode = "operacion";
     if (item.estado !== "identificado") setBadge(badges, "Sin sitio hallado", "danger");
     else setBadge(badges, `Se recolecta con: ${item.tecnica || "sin técnica asignada"}`, collected ? "success" : "warning");
     setBadge(badges, collected ? "Con documentos recolectados" : "Sin recolección todavía", collected ? "success" : "danger");
@@ -729,8 +760,19 @@
     }
     container.append(links);
 
+    (item.alertas || []).forEach((a) => {
+      const note = node("div", "detail-note ficha-alerta");
+      appendText(note, "strong", "Alerta: ");
+      appendText(note, "span", a.texto.charAt(0).toUpperCase() + a.texto.slice(1));
+      if (a.url) { appendText(note, "span", " · "); addLink(note, "ver fuente", a.url, "doc-link"); }
+      container.append(note);
+    });
+    renderEsenciales(container, item);
+    renderNovedadesFicha(container, item);
+
     if (item.estado === "pendiente") {
       const notice = node("div", "detail-note");
+      notice.dataset.mode = "operacion";
       appendText(notice, "strong", "Motivo: ");
       appendText(notice, "span", item.metodo_hallazgo || "El registro indica que no se encontró un sitio.");
       appendText(notice, "br", "");
@@ -739,8 +781,15 @@
       container.append(notice);
     }
 
+    if (!collected && !item.curaduria) {
+      const cl = node("div", "detail-note");
+      cl.dataset.mode = "cliente";
+      appendText(cl, "span", "Aún no hay documentos tributarios recolectados de este municipio. Mientras tanto, consulte los enlaces oficiales de arriba.");
+      container.append(cl);
+    }
     if (!collected && item.estado === "identificado") {
       const sin = node("div", "detail-note");
+      sin.dataset.mode = "operacion";
       appendText(sin, "strong", "Este municipio aún no se recolecta. ");
       appendText(sin, "span", item.plataforma === "api"
         ? "Tiene API de Mi Colombia Digital, pero todavía no aparece en la cosecha."
@@ -750,6 +799,7 @@
 
     if (collected) {
       const resumen = fichaSection(container, "En resumen", "Documentos candidatos hallados por nombre o descripción; aún no validados");
+      resumen.dataset.mode = "operacion";
       const cards = node("div", "summary-cards");
       Object.keys(CLASE_ROTULO).forEach((clase) => {
         const c = counts[clase] || { total: 0, firmes: 0 };
@@ -774,9 +824,9 @@
       resumen.append(chips);
     }
 
-    const docsBlock = fichaSection(container, "Documentos tributarios", "Calendario, estatuto, ICA y ReteICA");
+    const docsBlock = fichaSection(container, "Todos los documentos tributarios", "Calendario, estatuto, ICA, ReteICA y medios magnéticos");
     if (collected) renderFichaDocs(docsBlock, item);
-    else appendText(docsBlock, "p", "Sin documentos: este municipio todavía no se recolecta.", "panel-description");
+    else appendText(docsBlock, "p", "Sin documentos recolectados todavía.", "panel-description");
 
     if (collected) {
       const reglas = fichaSection(container, "Reglas extraídas", "Próxima fase: lectura de los documentos");
@@ -806,7 +856,8 @@
       reglas.append(wrap);
     }
 
-    const registro = fichaDetails(container, "Datos del registro y de la recolección");
+    const registro = fichaDetails(container, "Datos internos: registro y recolección");
+    registro.dataset.mode = "operacion";
     const meta = node("div", "detail-meta");
     addMeta(meta, "Método de hallazgo del sitio", item.metodo_hallazgo);
     addMeta(meta, "Contenido verificado", item.contenido_verificado);
@@ -836,6 +887,7 @@
     const recent = item.documentos_recientes || { normatividad: [], otros: [] };
     if ((recent.normatividad && recent.normatividad.length) || (recent.otros && recent.otros.length)) {
       const recentSection = fichaDetails(container, "Últimas publicaciones del sitio (de cualquier tema)");
+      recentSection.dataset.mode = "operacion";
       const normBlock = node("div", "section-block");
       appendText(normBlock, "h4", "Normatividad");
       if (recent.normatividad && recent.normatividad.length) {
@@ -859,6 +911,9 @@
         recentSection.append(block);
       });
     }
+    const fuente = node("p", "ficha-fuente");
+    fuente.textContent = "Fuente: sitios oficiales de la alcaldía y su portal tributario. Documentos identificados automáticamente o revisados a mano; información de referencia, verifique siempre con la norma oficial.";
+    container.append(fuente);
   }
 
   function renderSuggestions(query) {
@@ -950,12 +1005,19 @@
   }
 
   function setupTabs() {
+    const [hash, codigo] = window.location.hash.replace("#", "").split("/");
     $$(".nav-item").forEach((button) => button.addEventListener("click", () => activateTab(GROUPS[button.dataset.group].views[0])));
     $$(".subtab").forEach((button) => button.addEventListener("click", () => activateTab(button.dataset.tab)));
-    activateTab("resumen");
+    $$("[data-mode-set]").forEach((b) => b.addEventListener("click", () => setMode(b.dataset.modeSet)));
+    document.body.dataset.mode = mode;
+    $$("[data-mode-set]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.modeSet === mode)));
+    activateTab("novedades");
     $$('[data-go-tab="pendientes"]').forEach((button) => button.addEventListener("click", () => navigatePending("all")));
-    const hash = window.location.hash.replace("#", "");
-    if (["resumen", "entregables", "semana", "validacion", "buscador", "pendientes", "calidad", "salud"].includes(hash)) activateTab(hash);
+    if (hash === "buscador" && codigo) {
+      const m = municipalities.find((x) => x.divipola === codigo);
+      if (m) { showMunicipality(m); return; }
+    }
+    if (["novedades", "resumen", "entregables", "semana", "validacion", "buscador", "pendientes", "calidad", "salud"].includes(hash)) activateTab(hash);
   }
 
   function staticKpi({ label, value, foot, color }) {
@@ -1093,7 +1155,11 @@
     const body = $("#wk-body");
     clear(body);
     const rows = weekRows();
-    $("#wk-count").textContent = `${formatNumber(rows.length)} cambios`;
+    const totalCambios = summary.fase2 && summary.fase2.cambios ? summary.fase2.cambios.total : rows.length;
+    const exportadas = summary.fase2 && summary.fase2.cambios ? (summary.fase2.cambios.filas || []).length : rows.length;
+    $("#wk-count").textContent = exportadas < totalCambios
+      ? `${formatNumber(rows.length)} cambios (la app recibe ${formatNumber(exportadas)} de ${formatNumber(totalCambios)}: primero los tributarios)`
+      : `${formatNumber(rows.length)} cambios`;
     rows.slice(0, weekVisible).forEach((row) => {
       const tr = node("tr");
       appendText(tr, "td", row.municipio);
@@ -1299,6 +1365,234 @@
     renderMatrix();
   }
 
+  // ---------- Capa de cliente: novedades, alertas y ficha esencial ----------
+  const TIPO_DOC = { calendario: "Calendario", estatuto: "Estatuto", ica: "ICA", reteica: "ReteICA", exogena: "Medios magnéticos", norma: "Norma tributaria" };
+  const NO_DATO_RX = /por confirmar|sin datos|no hallado|sin lectura|no publicado|^$/i;
+  let novedadesVisibles = 40;
+
+  function contenidoCliente(c) {
+    if (!c) return "";
+    if (c.startsWith("cambió: mismo archivo")) return "PDF reemplazado";
+    if (c.startsWith("cambió: archivo nuevo")) return "archivo nuevo o reemplazado";
+    if (c.startsWith("cambió: texto")) return "texto de la publicación actualizado";
+    if (c.startsWith("cambió: tamaño")) return "archivo actualizado";
+    if (c.startsWith("línea base")) return "documento nuevo";
+    return "";
+  }
+
+  function diasDesde(fecha) {
+    if (!fecha || !summary) return null;
+    const ref = new Date(`${String(summary.fecha_generacion || "").slice(0, 10)}T00:00:00`);
+    const d = new Date(`${String(fecha).slice(0, 10)}T00:00:00`);
+    const n = Math.round((ref - d) / 86400000);
+    return Number.isNaN(n) ? null : n;
+  }
+
+  function haceTexto(fecha) {
+    const n = diasDesde(fecha);
+    if (n === null) return "";
+    if (n <= 0) return "hoy";
+    if (n === 1) return "hace 1 día";
+    if (n < 60) return `hace ${n} días`;
+    const meses = Math.round(n / 30);
+    return meses < 24 ? `hace ${meses} meses` : `hace ${Math.round(n / 365)} años`;
+  }
+
+  function recientesTributarios(dias = 30) {
+    const grupos = [];
+    municipalities.forEach((m) => {
+      const items = (m.documentos_tributarios || [])
+        .filter((d) => { const n = diasDesde(d.fecha); return n !== null && n >= 0 && n <= dias && ["alta", "probable"].includes(d.confianza) && TIPO_DOC[d.clase]; })
+        .map((d) => ({ nombre: d.nombre, clase: d.clase, fecha: d.fecha, url: d.url_pagina, descripcion: d.descripcion || "",
+          detalle: d.validacion === "validado" ? "verificado" : "" }))
+        .sort((a, b) => (b.fecha || "").localeCompare(a.fecha || ""));
+      if (items.length) grupos.push({ divipola: m.divipola, municipio: m.municipio, departamento: m.departamento, items });
+    });
+    grupos.sort((a, b) => (b.items[0].fecha || "").localeCompare(a.items[0].fecha || "") || a.municipio.localeCompare(b.municipio, "es"));
+    return grupos;
+  }
+
+  function feedNovedades() {
+    const cli = (summary.fase2 && summary.fase2.cliente) || {};
+    if ((cli.novedades || []).length) {
+      return { tipo: "captura", grupos: cli.novedades.map((g) => ({ ...g, items: g.items.map((i) => ({
+        nombre: i.nombre, clase: i.clase, fecha: i.fecha, url: i.url, descripcion: "",
+        detalle: [i.cambio === "nuevo" ? "nuevo" : "modificado", contenidoCliente(i.contenido)].filter(Boolean).join(" · ") })) })) };
+    }
+    return { tipo: "recientes", grupos: recientesTributarios(30) };
+  }
+
+  function abrirMunicipio(divipolaCode) {
+    const m = municipalities.find((x) => x.divipola === divipolaCode);
+    if (m) { showMunicipality(m); window.scrollTo({ top: 0, behavior: "smooth" }); }
+  }
+
+  function renderNovedades() {
+    if (!$("#view-novedades")) return;
+    const cli = (summary.fase2 && summary.fase2.cliente) || {};
+    const camb = (summary.fase2 && summary.fase2.cambios) || {};
+    const recientes = recientesTributarios(30);
+    const nRecientes = recientes.reduce((s, g) => s + g.items.length, 0);
+    const kpis = $("#nov-kpis");
+    clear(kpis);
+    kpis.append(
+      staticKpi({ label: "Municipios con cambios", value: formatNumber(cli.municipios_con_novedades || 0), foot: cli.captura ? `Última captura: ${cli.captura}` : "Última captura", color: "#6DB500" }),
+      staticKpi({ label: "Cambios tributarios", value: formatNumber(cli.novedades_total || 0), foot: "Nuevos o modificados, sin duplicados", color: "#395B0C" }),
+      staticKpi({ label: "Publicaciones tributarias (30 días)", value: formatNumber(nRecientes), foot: `En ${formatNumber(recientes.length)} municipios`, color: "#ADFB20" }),
+      staticKpi({ label: "Municipios vigilados", value: formatNumber(camb.municipios_monitoreados || 0), foot: "Revisión semanal de los sitios oficiales", color: "#2D3431" }),
+      staticKpi({ label: "Alertas", value: formatNumber((cli.alertas || []).length), foot: "Reformas y nuevas tarifas", color: "#D69E00" }),
+    );
+    const al = $("#nov-alertas");
+    clear(al);
+    if (!(cli.alertas || []).length) appendText(al, "p", "Sin alertas registradas.", "panel-description");
+    (cli.alertas || []).forEach((a) => {
+      const row = node("div", "nov-alerta");
+      const b = node("button", "link-button", a.municipio);
+      b.type = "button";
+      b.addEventListener("click", () => abrirMunicipio(a.divipola));
+      row.append(b);
+      appendText(row, "span", a.departamento, "nov-depto");
+      appendText(row, "p", a.texto.charAt(0).toUpperCase() + a.texto.slice(1), "nov-alerta-texto");
+      if (a.url) addLink(row, "Ver fuente", a.url, "doc-link");
+      al.append(row);
+    });
+    const feed = feedNovedades();
+    const sel = $("#nov-depto");
+    if (sel.options.length < 2) {
+      [...new Set(municipalities.map((m) => m.departamento))].sort((x, y) => x.localeCompare(y, "es")).forEach((d) => sel.append(new Option(d, d)));
+      Object.entries(TIPO_DOC).forEach(([k, v]) => $("#nov-clase").append(new Option(v, k)));
+      ["#nov-depto", "#nov-clase"].forEach((id) => $(id).addEventListener("change", () => { novedadesVisibles = 40; renderNovedadesFeed(); }));
+      $("#nov-q").addEventListener("input", () => { novedadesVisibles = 40; renderNovedadesFeed(); });
+    }
+    if (feed.tipo === "captura") {
+      $("#nov-feed-eyebrow").textContent = "ÚLTIMA CAPTURA";
+      $("#nov-feed-title").textContent = "Cambios tributarios por municipio";
+      $("#nov-feed-note").textContent = `Documentos tributarios nuevos o modificados en los sitios oficiales (captura del ${cli.captura}).`;
+    } else {
+      $("#nov-feed-eyebrow").textContent = "ÚLTIMOS 30 DÍAS";
+      $("#nov-feed-title").textContent = "Publicaciones tributarias recientes";
+      $("#nov-feed-note").textContent = `La última captura (${cli.captura || "sin fecha"}) no trajo cambios tributarios nuevos. Se muestran los documentos tributarios publicados en los últimos 30 días.`;
+    }
+    renderNovedadesFeed.feed = feed;
+    renderNovedadesFeed();
+  }
+
+  function renderNovedadesFeed() {
+    const feed = renderNovedadesFeed.feed || { grupos: [] };
+    const depto = $("#nov-depto").value;
+    const clase = $("#nov-clase").value;
+    const q = normalize($("#nov-q").value);
+    const grupos = feed.grupos
+      .filter((g) => (!depto || g.departamento === depto) && (!q || normalize(g.municipio).includes(q)))
+      .map((g) => ({ ...g, items: clase ? g.items.filter((i) => i.clase === clase) : g.items }))
+      .filter((g) => g.items.length);
+    const box = $("#nov-feed");
+    clear(box);
+    if (!grupos.length) { appendText(box, "p", "No hay documentos para este filtro.", "panel-description"); return; }
+    grupos.slice(0, novedadesVisibles).forEach((g) => {
+      const card = node("div", "nov-group");
+      const head = node("div", "nov-group-head");
+      const b = node("button", "link-button nov-muni", g.municipio);
+      b.type = "button";
+      b.addEventListener("click", () => abrirMunicipio(g.divipola));
+      head.append(b);
+      appendText(head, "span", `${g.departamento} · ${formatNumber(g.items.length)} ${g.items.length === 1 ? "documento" : "documentos"}`, "nov-depto");
+      card.append(head);
+      const list = node("ul", "nov-items");
+      g.items.slice(0, 6).forEach((i) => {
+        const li = node("li");
+        appendText(li, "span", TIPO_DOC[i.clase] || i.clase, `doc-type tipo-${i.clase}`);
+        const body = node("div", "nov-item-body");
+        if (i.url) addLink(body, i.nombre, i.url, "doc-link");
+        else appendText(body, "span", i.nombre);
+        if (i.descripcion) appendText(body, "div", i.descripcion, "doc-meta");
+        appendText(body, "div", [i.fecha ? `${i.fecha} (${haceTexto(i.fecha)})` : "", i.detalle].filter(Boolean).join(" · "), "doc-meta");
+        li.append(body);
+        list.append(li);
+      });
+      if (g.items.length > 6) appendText(list, "li", `y ${formatNumber(g.items.length - 6)} más en la ficha del municipio`, "doc-meta");
+      card.append(list);
+      box.append(card);
+    });
+    if (grupos.length > novedadesVisibles) {
+      const more = node("button", "text-button", `Mostrar más municipios (${formatNumber(grupos.length - novedadesVisibles)} restantes)`);
+      more.type = "button";
+      more.addEventListener("click", () => { novedadesVisibles += 40; renderNovedadesFeed(); });
+      box.append(more);
+    }
+  }
+
+  function estadoDoc(doc) {
+    if (!doc) return null;
+    if (doc.revisado) return ["Revisado a mano", "success"];
+    if (doc.validacion === "validado") return ["Verificado", "success"];
+    if (doc.confianza === "alta") return ["Candidato", ""];
+    return ["Por verificar", "warning"];
+  }
+
+  function esencialCard(grid, titulo, codigo, doc, pie) {
+    const card = node("div", `esencial-card${doc ? " has" : ""}`);
+    const head = node("div", "esencial-head");
+    appendText(head, "h4", titulo);
+    appendText(head, "span", codigo, "esencial-code");
+    card.append(head);
+    if (doc) {
+      if (doc.url) addLink(card, doc.nombre, doc.url, "doc-link esencial-link");
+      else appendText(card, "div", doc.nombre, "table-name");
+      if (doc.descripcion) appendText(card, "div", doc.descripcion, "doc-meta");
+      const meta = node("div", "esencial-meta");
+      const est = estadoDoc(doc);
+      if (est) setBadge(meta, est[0], est[1]);
+      if (doc.fecha) appendText(meta, "span", `${doc.fecha} · ${haceTexto(doc.fecha)}`, "doc-meta");
+      card.append(meta);
+    } else appendText(card, "div", "Sin documento identificado todavía", "doc-meta esencial-vacio");
+    if (pie) appendText(card, "div", pie, "esencial-pie");
+    grid.append(card);
+  }
+
+  function claveDoc(item, clase) {
+    const k = (item.documentos_clave || {})[clase];
+    return k ? { nombre: k.nombre, url: k.url_pagina, descripcion: k.descripcion || "", fecha: k.fecha, confianza: k.confianza, validacion: k.validacion } : null;
+  }
+
+  function renderEsenciales(container, item) {
+    const sec = fichaSection(container, "Lo esencial", "El documento principal de cada tema, con su fuente oficial");
+    const grid = node("div", "esencial-grid");
+    const cur = item.curaduria || {};
+    const curDoc = (texto, url) => (url && !NO_DATO_RX.test(texto || "") ? { nombre: texto, url, revisado: true, fecha: "" } : null);
+    const cal = curDoc(cur.calendario_2026, cur.url_calendario_2026) || claveDoc(item, "calendario");
+    const vig = item.cosecha && item.cosecha.calendario_vigente ? `Calendario del año vigente: ${item.cosecha.calendario_vigente}` : "";
+    esencialCard(grid, "Calendario tributario", "E3", cal, vig);
+    esencialCard(grid, "Estatuto tributario", "E1 · E4", curDoc(cur.estatuto, cur.url_estatuto) || claveDoc(item, "estatuto"), "");
+    const tarifa = claveDoc(item, "tarifa");
+    const ica = tarifa || claveDoc(item, "ica");
+    esencialCard(grid, "Tarifas de ICA", "E1", ica, tarifa ? "" : ica ? "Documento de ICA; aún sin documento específico de tarifas" : "");
+    esencialCard(grid, "ReteICA y autorretención", "E2", claveDoc(item, "reteica"), item.n_autorreteica ? `${formatNumber(item.n_autorreteica)} documentos de autorretención` : "");
+    esencialCard(grid, "Medios magnéticos", "E8", claveDoc(item, "exogena"), "");
+    const portal = item.portal_tributario || (cur.portal_tributario || "");
+    const canal = portal ? { nombre: item.tipo_portal === "pasarela" ? "Pago en línea (pasarela)" : "Portal tributario", url: portal,
+      revisado: item.estado_portal === "confirmado" || Boolean(cur.portal_tributario), confianza: item.estado_portal === "confirmado" ? "alta" : "probable", fecha: "" } : null;
+    esencialCard(grid, "Canal de presentación y pago", "E7", canal, item.url_calendario ? "" : "");
+    sec.append(grid);
+  }
+
+  function renderNovedadesFicha(container, item) {
+    const nov = item.novedades_semana || [];
+    if (!nov.length) return;
+    const sec = fichaSection(container, "Cambios en la última captura", "Documentos tributarios nuevos o modificados");
+    const list = node("ul", "nov-items");
+    nov.forEach((i) => {
+      const li = node("li");
+      appendText(li, "span", TIPO_DOC[i.clase] || i.clase, `doc-type tipo-${i.clase}`);
+      const body = node("div", "nov-item-body");
+      if (i.url) addLink(body, i.nombre, i.url, "doc-link"); else appendText(body, "span", i.nombre);
+      appendText(body, "div", [i.fecha, i.cambio === "nuevo" ? "nuevo" : "modificado", contenidoCliente(i.contenido)].filter(Boolean).join(" · "), "doc-meta");
+      li.append(body);
+      list.append(li);
+    });
+    sec.append(list);
+  }
+
   function renderAll() {
     $("#generated-date").textContent = `Datos al ${summary.fecha_generacion}`;
     const groupTotal = summary.grupo_trabajo.filter((item) => item.nombre !== "ok").reduce((sum, item) => sum + item.cantidad, 0);
@@ -1310,6 +1604,7 @@
     renderPlatformQuality();
     renderHealth();
     renderFase2();
+    renderNovedades();
     setupPendingFilters();
     setupSearch();
     setupTabs();

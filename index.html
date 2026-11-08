@@ -20,34 +20,48 @@
         <span class="brand-mark">M</span>
         <span><strong>MTIP</strong><small>Propuesta para Péntica</small><small class="brand-author">por Javier Espitia</small></span>
       </a>
-      <div class="sidebar-label">FASE 2</div>
+      <div class="sidebar-label" data-mode="operacion">FASE 2</div>
       <nav class="main-nav" aria-label="Secciones del dashboard">
         <button class="nav-item active" data-group="inicio"><span class="nav-icon">▦</span>Inicio</button>
-        <button class="nav-item" data-group="semana"><span class="nav-icon">◷</span>Esta semana<span class="nav-count" id="nav-validacion-count">—</span></button>
+        <button class="nav-item" data-group="semana" data-mode="operacion"><span class="nav-icon">◷</span>Esta semana<span class="nav-count" id="nav-validacion-count">—</span></button>
         <button class="nav-item" data-group="municipios"><span class="nav-icon">⌕</span>Municipios</button>
-        <button class="nav-item" data-group="cobertura"><span class="nav-icon">▤</span>Cobertura</button>
+        <button class="nav-item" data-group="cobertura" data-mode="operacion"><span class="nav-icon">▤</span>Cobertura</button>
       </nav>
       <div class="sidebar-bottom">
-        <span class="live-dot"></span><span>Datos locales · solo lectura</span>
+        <span class="live-dot"></span><span>Fuentes oficiales · actualización semanal</span>
       </div>
     </aside>
 
     <main class="main-content">
       <header class="topbar">
         <div class="crumb"><span>MTIP</span><span class="crumb-sep">/</span><strong id="topbar-section">Resumen</strong></div>
-        <div class="topbar-meta"><span class="data-badge"><i></i> Fase 2 · Recolección inteligente</span><span id="generated-date">Cargando datos…</span><button type="button" class="glossary-button" id="open-glossary" aria-haspopup="dialog">? Glosario</button></div>
+        <div class="topbar-meta"><div class="mode-switch" role="group" aria-label="Vista de la app"><button type="button" data-mode-set="cliente" aria-pressed="true">Cliente</button><button type="button" data-mode-set="operacion" aria-pressed="false">Operación</button></div><span class="data-badge" data-mode="operacion"><i></i> Fase 2 · Recolección inteligente</span><span id="generated-date">Cargando datos…</span><button type="button" class="glossary-button" id="open-glossary" aria-haspopup="dialog">? Glosario</button></div>
       </header>
 
       <div id="load-error" class="load-error" hidden></div>
       <nav class="subtabs" id="subtabs" aria-label="Vistas de la sección">
+        <button type="button" class="subtab" data-group="inicio" data-tab="novedades">Novedades</button>
+        <button type="button" class="subtab" data-group="inicio" data-tab="resumen" data-mode="operacion">Resumen operativo</button>
         <button type="button" class="subtab" data-group="semana" data-tab="semana">Cambios de la semana</button>
-        <button type="button" class="subtab" data-group="semana" data-tab="validacion">Validar documentos</button>
+        <button type="button" class="subtab" data-group="semana" data-tab="validacion" data-mode="operacion">Validar documentos</button>
         <button type="button" class="subtab" data-group="municipios" data-tab="buscador">Buscar un municipio</button>
-        <button type="button" class="subtab" data-group="municipios" data-tab="pendientes">Lista de municipios <span class="nav-count" id="nav-pending-count">—</span></button>
+        <button type="button" class="subtab" data-group="municipios" data-tab="pendientes" data-mode="operacion">Lista de municipios <span class="nav-count" id="nav-pending-count">—</span></button>
         <button type="button" class="subtab" data-group="cobertura" data-tab="entregables" id="nav-entregables">Entregables</button>
         <button type="button" class="subtab" data-group="cobertura" data-tab="calidad">Plataforma y calidad</button>
         <button type="button" class="subtab" data-group="cobertura" data-tab="salud">Salud tributaria</button>
       </nav>
+
+      <section class="view" id="view-novedades" aria-labelledby="title-novedades">
+        <div class="page-heading">
+          <div><p class="eyebrow">NOVEDADES TRIBUTARIAS MUNICIPALES</p><h1 id="title-novedades">Qué cambió en los municipios</h1><p class="subheading" id="nov-subheading">Cambios tributarios detectados en los sitios oficiales de las alcaldías: calendarios, estatutos, tarifas, ReteICA y medios magnéticos.</p></div>
+        </div>
+        <div class="kpi-grid" id="nov-kpis"></div>
+        <article class="panel nov-alert-panel"><div class="panel-heading"><div><p class="eyebrow">ALERTAS</p><h2>Reformas y cambios a vigilar</h2><p class="panel-description">Reformas de estatuto aprobadas o en trámite y nuevas tarifas con fecha de inicio, identificadas en la revisión de las fuentes.</p></div></div><div id="nov-alertas" class="nov-alertas"></div></article>
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow" id="nov-feed-eyebrow">ÚLTIMA CAPTURA</p><h2 id="nov-feed-title">Cambios por municipio</h2><p class="panel-description" id="nov-feed-note"></p></div></div>
+          <div class="filters-row nov-filters"><label>Departamento<select id="nov-depto"><option value="">Todos</option></select></label><label>Municipio<input id="nov-q" type="search" placeholder="Filtrar por municipio" autocomplete="off"></label><label>Tipo<select id="nov-clase"><option value="">Todos</option></select></label></div>
+          <div id="nov-feed" class="nov-feed"></div>
+        </article>
+      </section>
 
       <section class="view active" id="view-resumen" aria-labelledby="title-resumen">
         <div class="page-heading">
@@ -81,7 +95,7 @@
           <article class="panel"><div class="panel-heading"><div><p class="eyebrow">POBLACIÓN</p><h2>Habitantes con candidato</h2><p class="panel-description">Sobre la población total de los 1.104 municipios.</p></div></div><div id="f2-ent-poblacion" class="bar-list"></div></article>
           <article class="panel"><div class="panel-heading"><div><p class="eyebrow">NORMA BASE</p><h2>Estatuto y calendario</h2><p class="panel-description">«Probable» es un candidato por palabras clave: hay que validarlo a mano.</p></div></div><div class="section-block"><h4>Estatuto tributario</h4><div id="f2-estatuto" class="bar-list"></div></div><div class="section-block"><h4>Calendario tributario</h4><div id="f2-calendario" class="bar-list"></div></div></article>
         </div>
-        <article class="panel sin-api-panel"><div class="panel-heading"><div><p class="eyebrow">LO QUE AÚN NO SE RECOLECTA</p><h2>Municipios sin API, por técnica de recolección</h2><p class="panel-description">Hoy tienen 0 % de recolección. Es el trabajo principal de la Fase 2.</p></div></div><div id="f2-sin-api" class="bar-list"></div></article>
+        <article class="panel sin-api-panel"><div class="panel-heading"><div><p class="eyebrow">LO QUE AÚN NO SE RECOLECTA</p><h2>Municipios sin API, por técnica de recolección</h2><p class="panel-description">SharePoint ya se recolecta con su adaptador; Nexura, WordPress y sitios propios tienen curaduría manual y adaptador pendiente.</p></div></div><div id="f2-sin-api" class="bar-list"></div></article>
         <article class="panel matrix-panel">
           <div class="panel-heading"><div><p class="eyebrow">MATRIZ</p><h2>Municipio por entregable</h2><p class="panel-description" id="f2-matrix-note"></p></div></div>
           <div class="filters-row">
@@ -180,7 +194,7 @@
         <div class="glossary-body" id="glossary-body"></div>
       </dialog>
 
-      <footer class="app-footer"><span class="footer-credit"><strong>MTIP</strong> · Propuesta para Péntica <span class="footer-sep">·</span> Diseño y desarrollo: <a href="https://www.linkedin.com/in/javierespitia/" target="_blank" rel="noopener author">Javier Espitia</a> · <a href="https://www.linkedin.com/in/javierespitia/" target="_blank" rel="noopener">LinkedIn</a> <span class="footer-sep">·</span> © 2026</span><span>Los datos reflejan los archivos locales generados</span></footer>
+      <footer class="app-footer"><span class="footer-credit"><strong>MTIP</strong> · Propuesta para Péntica <span class="footer-sep">·</span> Diseño y desarrollo: <a href="https://www.linkedin.com/in/javierespitia/" target="_blank" rel="noopener author">Javier Espitia</a> · <a href="https://www.linkedin.com/in/javierespitia/" target="_blank" rel="noopener">LinkedIn</a> <span class="footer-sep">·</span> © 2026</span><span>Fuente: sitios oficiales de las alcaldías · información de referencia, verifique siempre con la norma oficial</span></footer>
     </main>
   </div>
 </body>
