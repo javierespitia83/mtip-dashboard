@@ -1059,7 +1059,8 @@
     }
   }
 
-  const CLASE_LABELS = { ica: "ICA", reteica: "ReteICA", estatuto: "Estatuto", calendario: "Calendario", otro: "Otro" };
+  const CLASE_LABELS = { ica: "ICA", reteica: "ReteICA", estatuto: "Estatuto", calendario: "Calendario", norma: "Norma tributaria (posible E4)", otro: "Otro" };
+  const CAMBIO_LABELS = { nuevo: "nuevo", modificado: "modificado", desaparecido: "retirado", primera_vista: "primera vista" };
   let weekVisible = 100;
 
   function weekRows() {
@@ -1091,7 +1092,16 @@
       appendText(tr, "td", row.fuente === "SharePoint" ? "SharePoint" : "API");
       appendText(tr, "td", (row.entregables || []).join(" · ") || "—");
       const kindCell = node("td");
-      setBadge(kindCell, row.cambio === "modificado" && row.nivel === "solo_fecha" ? "modificado (solo fecha)" : row.cambio, row.cambio === "nuevo" ? "success" : row.cambio === "desaparecido" ? "danger" : "warning");
+      const etiqueta = row.cambio === "modificado" && row.nivel === "solo_fecha" ? "modificado (solo fecha)"
+        : row.cambio === "nuevo" && row.nivel === "norma_antigua" ? "nuevo (norma antigua)" : (CAMBIO_LABELS[row.cambio] || row.cambio);
+      setBadge(kindCell, etiqueta, row.cambio === "nuevo" ? "success" : row.cambio === "desaparecido" ? "danger" : row.cambio === "primera_vista" ? "muted" : "warning");
+      if (row.duplicado_de) kindCell.append(node("div", "panel-description", `Duplicado de la publicación ${row.duplicado_de}`));
+      if (row.contenido) {
+        const cambio = row.contenido.startsWith("cambió");
+        const note = node("div", "panel-description", `Archivo: ${row.contenido}`);
+        if (cambio) note.style.fontWeight = "600";
+        kindCell.append(note);
+      }
       tr.append(kindCell);
       appendText(tr, "td", row.fecha || "—");
       const link = node("td");
@@ -1131,12 +1141,13 @@
       staticKpi({ label: "Modificados con cambio real", value: formatNumber(lvl.atributos || 0), foot: "Cambió nombre, descripción o archivo", color: "#be842f" }),
       staticKpi({ label: "Modificados solo de fecha", value: formatNumber(lvl.solo_fecha || 0), foot: "Probable edición sin cambio visible", color: "#8b989e" }),
       staticKpi({ label: "Retirados", value: formatNumber(by.desaparecido || 0), foot: "Dejaron de aparecer", color: "#bd655b" }),
-      staticKpi({ label: "Tributarios en la lista", value: formatNumber(tax), foot: week.municipios_sin_captura ? `${formatNumber(week.municipios_sin_captura)} municipios sin captura buena` : "De ICA, ReteICA, estatuto o calendario", color: "#4e7eaa" }),
+      staticKpi({ label: "Primera vista", value: formatNumber(by.primera_vista || 0), foot: "Ya existían; entraron a la ventana (no cuentan como cambio)", color: "#8b989e" }),
+      staticKpi({ label: "Por revisar (tributarios)", value: formatNumber(week.por_revisar ?? tax), foot: week.municipios_monitoreados ? `${formatNumber(week.municipios_por_revisar)} de ${formatNumber(week.municipios_monitoreados)} municipios; ${formatNumber(week.municipios_monitoreados - week.municipios_por_revisar)} sin trabajo esta semana` : "De ICA, ReteICA, estatuto, calendario o norma", color: "#4e7eaa" }),
     );
     if (!$("#wk-clase").dataset.ready) {
       $("#wk-clase").dataset.ready = "1";
-      [["tributarias", "Solo tributarias"], ["todas", "Todas"], ["ica", "ICA"], ["reteica", "ReteICA"], ["estatuto", "Estatuto"], ["calendario", "Calendario"]].forEach(([value, label]) => $("#wk-clase").append(new Option(label, value)));
-      [["all", "Todos"], ["nuevo", "Nuevo"], ["modificado", "Modificado"], ["desaparecido", "Retirado"]].forEach(([value, label]) => $("#wk-cambio").append(new Option(label, value)));
+      [["tributarias", "Solo tributarias"], ["todas", "Todas"], ["ica", "ICA"], ["reteica", "ReteICA"], ["estatuto", "Estatuto"], ["calendario", "Calendario"], ["norma", "Norma tributaria (E4)"]].forEach(([value, label]) => $("#wk-clase").append(new Option(label, value)));
+      [["all", "Todos"], ["nuevo", "Nuevo"], ["modificado", "Modificado"], ["desaparecido", "Retirado"], ["primera_vista", "Primera vista"]].forEach(([value, label]) => $("#wk-cambio").append(new Option(label, value)));
       [["all", "Todos"], ["atributos", "Cambio real"], ["solo_fecha", "Solo fecha"]].forEach(([value, label]) => $("#wk-nivel").append(new Option(label, value)));
       ["#wk-clase", "#wk-cambio", "#wk-nivel"].forEach((id) => $(id).addEventListener("change", () => { weekVisible = 100; renderWeekTable(); }));
       $("#wk-texto").addEventListener("input", () => { weekVisible = 100; renderWeekTable(); });
