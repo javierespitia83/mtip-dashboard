@@ -717,6 +717,11 @@
     if (item.sitio_url) addLink(links, "Sitio municipal", item.sitio_url, "detail-link");
     if (item.url_normativa) addLink(links, "Normatividad", item.url_normativa, "detail-link");
     if (item.url_calendario) addLink(links, "Hacienda / calendario", item.url_calendario, "detail-link");
+    if (item.portal_tributario && item.portal_tributario !== item.url_calendario) {
+      const rotulo = item.tipo_portal === "pasarela" ? "Pago en línea (pasarela)" : "Portal tributario";
+      const sufijo = item.estado_portal === "confirmado" ? "" : " · por confirmar";
+      addLink(links, rotulo + sufijo, item.portal_tributario, "detail-link");
+    }
     container.append(links);
 
     if (item.estado === "pendiente") {
