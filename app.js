@@ -714,10 +714,36 @@
     paint();
   }
 
-  function showMunicipality(item) {
+  // Detalle de cada municipio en dashboard_data/municipios/DIVIPOLA.json (se pide al abrir la ficha y queda en memoria)
+  async function cargarDetalle(item) {
+    if (item._detalle) return true;
+    try {
+      const res = await fetch(`dashboard_data/municipios/${item.divipola}.json`, { cache: "no-store" });
+      if (!res.ok) return false;
+      Object.assign(item, await res.json());
+      item._detalle = true;
+      return true;
+    } catch { return false; }
+  }
+
+  async function showMunicipality(item) {
     selectedMunicipality = item;
     if (!$("#view-buscador").classList.contains("active")) activateTab("buscador");
     history.replaceState(null, "", `#buscador/${item.divipola}`);
+    const container = $("#municipality-detail");
+    if (!item._detalle) {
+      clear(container);
+      container.className = "municipality-detail panel";
+      appendText(container, "h2", item.municipio);
+      appendText(container, "p", "Cargando la ficha…", "panel-description");
+      const ok = await cargarDetalle(item);
+      if (selectedMunicipality !== item) return;   // el usuario ya abrio otro municipio
+      if (!ok) { clear(container); appendText(container, "h2", item.municipio); appendText(container, "p", "No se pudo cargar la ficha. Revise la conexión e intente de nuevo.", "load-error"); return; }
+    }
+    renderMunicipality(item);
+  }
+
+  function renderMunicipality(item) {
     const container = $("#municipality-detail");
     clear(container);
     container.className = "municipality-detail panel";
@@ -1398,19 +1424,11 @@
     return meses < 24 ? `hace ${meses} meses` : `hace ${Math.round(n / 365)} años`;
   }
 
-  function recientesTributarios(dias = 30) {
-    const grupos = [];
-    municipalities.forEach((m) => {
-      const items = (m.documentos_tributarios || [])
-        .filter((d) => { const n = diasDesde(d.fecha); return n !== null && n >= 0 && n <= dias && ["alta", "probable"].includes(d.confianza) && TIPO_DOC[d.clase]; })
-        .map((d) => ({ nombre: d.nombre, clase: d.clase, fecha: d.fecha, url: d.url_pagina, descripcion: d.descripcion || "",
-          detalle: d.validacion === "validado" ? "verificado" : "" }))
-        .sort((a, b) => (b.fecha || "").localeCompare(a.fecha || ""));
-      if (items.length) grupos.push({ divipola: m.divipola, municipio: m.municipio, departamento: m.departamento, items });
-    });
-    grupos.sort((a, b) => (b.items[0].fecha || "").localeCompare(a.items[0].fecha || "") || a.municipio.localeCompare(b.municipio, "es"));
-    return grupos;
+  function recientesTributarios() {
+    // Calculadas en el exportador (la app ya no descarga los documentos de todos los municipios al abrir)
+    return ((summary.fase2 && summary.fase2.cliente && summary.fase2.cliente.recientes) || []);
   }
+
 
   function feedNovedades() {
     const cli = (summary.fase2 && summary.fase2.cliente) || {};
@@ -1419,7 +1437,7 @@
         nombre: i.nombre, clase: i.clase, fecha: i.fecha, url: i.url, descripcion: "",
         detalle: [i.cambio === "nuevo" ? "nuevo" : "modificado", contenidoCliente(i.contenido)].filter(Boolean).join(" · ") })) })) };
     }
-    return { tipo: "recientes", grupos: recientesTributarios(30) };
+    return { tipo: "recientes", grupos: recientesTributarios() };
   }
 
   function abrirMunicipio(divipolaCode) {
@@ -1431,7 +1449,7 @@
     if (!$("#view-novedades")) return;
     const cli = (summary.fase2 && summary.fase2.cliente) || {};
     const camb = (summary.fase2 && summary.fase2.cambios) || {};
-    const recientes = recientesTributarios(30);
+    const recientes = recientesTributarios();
     const nRecientes = recientes.reduce((s, g) => s + g.items.length, 0);
     const kpis = $("#nov-kpis");
     clear(kpis);
