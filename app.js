@@ -794,6 +794,7 @@
       container.append(note);
     });
     renderEsenciales(container, item);
+    renderCalendario(container, item);
     renderNovedadesFicha(container, item);
 
     if (item.estado === "pendiente") {
@@ -1566,6 +1567,7 @@
     } else appendText(card, "div", "Sin documento identificado todavía", "doc-meta esencial-vacio");
     if (pie) appendText(card, "div", pie, "esencial-pie");
     grid.append(card);
+    return card;
   }
 
   function claveDoc(item, clase) {
@@ -1580,7 +1582,8 @@
     const curDoc = (texto, url) => (url && !NO_DATO_RX.test(texto || "") ? { nombre: texto, url, revisado: true, fecha: "" } : null);
     const cal = curDoc(cur.calendario_2026, cur.url_calendario_2026) || claveDoc(item, "calendario");
     const vig = item.cosecha && item.cosecha.calendario_vigente ? `Calendario del año vigente: ${item.cosecha.calendario_vigente}` : "";
-    esencialCard(grid, "Calendario tributario", "E3", cal, vig);
+    const calCard = esencialCard(grid, "Calendario tributario", "E3", cal, vig);
+    proximosEnTarjeta(calCard, item);
     esencialCard(grid, "Estatuto tributario", "E1 · E4", curDoc(cur.estatuto, cur.url_estatuto) || claveDoc(item, "estatuto"), "");
     const tarifa = claveDoc(item, "tarifa");
     const ica = tarifa || claveDoc(item, "ica");
@@ -1592,6 +1595,177 @@
       revisado: item.estado_portal === "confirmado" || Boolean(cur.portal_tributario), confianza: item.estado_portal === "confirmado" ? "alta" : "probable", fecha: "" } : null;
     esencialCard(grid, "Canal de presentación y pago", "E7", canal, item.url_calendario ? "" : "");
     sec.append(grid);
+  }
+
+  // ---- Calendario extraido (fase 3, piloto): reglas leidas del documento oficial, con evidencia ----
+  const IMPUESTO_CAL = { ica: "ICA", reteica: "ReteICA", autorreteica: "Autorretención", exogena: "Medios magnéticos" };
+  const TIPO_CAL = { declaracion: "Declaración", pago: "Pago", declaracion_y_pago: "Declaración y pago", anticipo: "Anticipo", reporte: "Reporte" };
+  const ESTADO_CAL = { validado: ["Validado", "success"], corregir: ["Por corregir", "danger"], por_validar: ["Por validar", "warning"] };
+  const MESES_CORTOS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  let calFiltro = { impuesto: "todos", digito: "", vencidas: false };
+
+  function hoyISO() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }
+  function fechaCorta(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+    return m ? `${Number(m[3])} ${MESES_CORTOS[Number(m[2]) - 1]} ${m[1]}` : iso || "";
+  }
+  function diasHasta(iso) {
+    const a = new Date(`${hoyISO()}T00:00:00`), b = new Date(`${iso}T00:00:00`);
+    return Math.round((b - a) / 86400000);
+  }
+  // "1", "1-2", "0-9" (pareja), "1,2,3", "7,8,9,0", "todos": digitos sueltos; "01-20": rango de los dos ultimos digitos
+  function aplicaDigito(digitos, d) {
+    if (d === "" || !digitos || digitos === "todos") return true;
+    const txt = String(digitos);
+    if (/\d{2}/.test(txt)) return true;   // rango por dos digitos: con un solo digito no se puede descartar
+    return (txt.match(/\d/g) || []).includes(d);
+  }
+  function fechasVisibles(o) {
+    return o.fechas.filter((f) => aplicaDigito(f.d, calFiltro.digito));
+  }
+  function proximosVencimientos(item, n) {
+    const cal = item.calendario_extraido;
+    if (!cal) return [];
+    const hoy = hoyISO(), out = [];
+    cal.obligaciones.forEach((o) => {
+      const fut = o.fechas.filter((f) => f.f >= hoy).map((f) => f.f).sort();
+      if (fut.length) out.push({ o, desde: fut[0], hasta: fut[fut.length - 1] });
+    });
+    return out.sort((a, b) => a.desde.localeCompare(b.desde)).slice(0, n);
+  }
+  function proximosEnTarjeta(card, item) {
+    const cal = item.calendario_extraido;
+    if (!card || !cal) return;
+    const prox = proximosVencimientos(item, 3);
+    const box = node("div", "cal-mini");
+    appendText(box, "div", prox.length ? "Próximos vencimientos" : "Sin vencimientos pendientes en el calendario leído", "cal-mini-title");
+    prox.forEach(({ o, desde, hasta }) => {
+      const row = node("div", "cal-mini-row");
+      appendText(row, "span", fechaCorta(desde) + (hasta !== desde ? ` – ${fechaCorta(hasta)}` : ""), "cal-mini-fecha");
+      appendText(row, "span", `${IMPUESTO_CAL[o.impuesto] || o.impuesto} · ${o.periodo}`, "cal-mini-que");
+      box.append(row);
+    });
+    const ver = node("button", "text-button", "Ver calendario completo");
+    ver.type = "button";
+    ver.addEventListener("click", () => { const s = document.getElementById("ficha-calendario"); if (s) s.scrollIntoView({ behavior: "smooth", block: "start" }); });
+    box.append(ver);
+    card.append(box);
+  }
+
+  function renderCalendario(container, item) {
+    const cal = item.calendario_extraido;
+    if (!cal) return;
+    const sec = fichaSection(container, `Calendario tributario ${cal.vigencia || ""}`.trim(), "ICA, ReteICA, autorretención y medios magnéticos, leídos del documento oficial");
+    sec.id = "ficha-calendario";
+    const fuente = node("div", "cal-fuente");
+    appendText(fuente, "span", "Fuente: ");
+    if (cal.url_origen) addLink(fuente, cal.norma || "documento oficial", cal.url_origen, "doc-link");
+    else appendText(fuente, "span", cal.norma || "documento oficial");
+    sec.append(fuente);
+    const pendientes = cal.obligaciones.filter((o) => o.estado !== "validado").length;
+    appendText(sec, "div", pendientes
+      ? "Fechas extraídas automáticamente del documento oficial y pendientes de validación humana. Verifique siempre con la norma antes de declarar."
+      : "Fechas extraídas del documento oficial y validadas por el equipo.", `cal-aviso${pendientes ? "" : " ok"}`);
+
+    const controles = node("div", "cal-controles");
+    const chips = node("div", "entregable-chips");
+    const presentes = ["todos", ...Object.keys(IMPUESTO_CAL).filter((k) => cal.obligaciones.some((o) => o.impuesto === k))];
+    presentes.forEach((k) => {
+      const b = node("button", `filter-chip${calFiltro.impuesto === k ? " active" : ""}`, k === "todos" ? "Todos" : IMPUESTO_CAL[k]);
+      b.type = "button";
+      b.addEventListener("click", () => { calFiltro.impuesto = k; rehacer(); });
+      chips.append(b);
+    });
+    controles.append(chips);
+    const dig = node("label", "cal-digito");
+    appendText(dig, "span", "Último dígito del NIT");
+    const sel = node("select");
+    sel.append(new Option("Todos", ""));
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].forEach((d) => sel.append(new Option(d, d)));
+    sel.value = calFiltro.digito;
+    sel.addEventListener("change", () => { calFiltro.digito = sel.value; rehacer(); });
+    dig.append(sel);
+    controles.append(dig);
+    const venc = node("label", "cal-vencidas");
+    const chk = node("input"); chk.type = "checkbox"; chk.checked = calFiltro.vencidas;
+    chk.addEventListener("change", () => { calFiltro.vencidas = chk.checked; rehacer(); });
+    venc.append(chk); appendText(venc, "span", "Mostrar fechas pasadas");
+    controles.append(venc);
+    sec.append(controles);
+
+    const hoy = hoyISO();
+    const filas = cal.obligaciones
+      .filter((o) => calFiltro.impuesto === "todos" || o.impuesto === calFiltro.impuesto)
+      .map((o) => ({ o, fs: fechasVisibles(o) }))
+      .filter(({ fs }) => fs.length)
+      .map(({ o, fs }) => {
+        const fut = fs.filter((f) => f.f >= hoy);
+        return { o, fs, pasada: !fut.length, clave: (fut[0] || fs[fs.length - 1]).f };
+      })
+      .filter((r) => calFiltro.vencidas || !r.pasada)
+      .sort((a, b) => (a.pasada - b.pasada) || a.clave.localeCompare(b.clave));
+
+    const wrap = node("div", "table-wrap");
+    const table = node("table", "cal-table");
+    const thead = node("thead"), hr = node("tr");
+    ["Impuesto", "Obligación", "A quién aplica", "Vence", "Evidencia"].forEach((h) => appendText(hr, "th", h));
+    thead.append(hr); table.append(thead);
+    const tbody = node("tbody");
+    filas.forEach(({ o, fs, pasada }) => {
+      const tr = node("tr", pasada ? "cal-pasada" : "");
+      const tdI = node("td"); appendText(tdI, "span", IMPUESTO_CAL[o.impuesto] || o.impuesto, `doc-type tipo-${o.impuesto === "autorreteica" ? "reteica" : o.impuesto}`); tr.append(tdI);
+      const tdO = node("td");
+      appendText(tdO, "div", `${TIPO_CAL[o.tipo] || o.tipo} · ${o.periodo}`, "table-name");
+      if (o.descuento && o.descuento.porcentaje) appendText(tdO, "div", `Descuento ${o.descuento.porcentaje}% pagando hasta el ${fechaCorta(o.descuento.fecha_limite)}`, "cal-descuento");
+      tr.append(tdO);
+      appendText(tr, "td", o.contribuyentes || "", "doc-meta");
+      const tdF = node("td", "cal-fechas");
+      if (fs.length === 1 && fs[0].d === "todos") {
+        appendText(tdF, "div", fechaCorta(fs[0].f), "cal-fecha-unica");
+        if (!pasada) { const dd = diasHasta(fs[0].f); appendText(tdF, "div", dd === 0 ? "hoy" : `en ${formatNumber(dd)} días`, "doc-meta"); }
+      } else {
+        const ul = node("ul", "cal-digitos");
+        fs.forEach((f) => {
+          const li = node("li", f.f < hoy ? "pasada" : "");
+          appendText(li, "span", f.d === "todos" ? "Todos" : f.d, "cal-dig");
+          appendText(li, "span", fechaCorta(f.f));
+          ul.append(li);
+        });
+        tdF.append(ul);
+      }
+      tr.append(tdF);
+      const tdE = node("td", "cal-evidencia");
+      const est = ESTADO_CAL[o.estado] || ESTADO_CAL.por_validar;
+      setBadge(tdE, est[0], est[1]);
+      if (o.pagina) {
+        const det = node("details");
+        appendText(det, "summary", `Página ${o.pagina}`);
+        appendText(det, "blockquote", o.cita || "", "cal-cita");
+        tdE.append(det);
+      }
+      tr.append(tdE);
+      tbody.append(tr);
+    });
+    table.append(tbody); wrap.append(table);
+    if (filas.length) sec.append(wrap);
+    else appendText(sec, "div", calFiltro.vencidas ? "No hay fechas para ese filtro." : "No quedan fechas pendientes para ese filtro. Active «Mostrar fechas pasadas» para ver el año completo.", "doc-meta");
+
+    const nota = node("div", "detail-note");
+    nota.dataset.mode = "operacion";
+    appendText(nota, "strong", "Notas de la extracción: ");
+    appendText(nota, "span", `${cal.observaciones || "sin notas"} · Texto: ${cal.metodo_texto || "?"} · Extraído por ${cal.modelo || "?"} el ${cal.fecha_extraccion || "?"}`);
+    sec.append(nota);
+
+    function rehacer() {
+      const y = window.scrollY;
+      const nuevo = node("div");
+      renderCalendario(nuevo, item);
+      sec.replaceWith(...nuevo.childNodes);
+      window.scrollTo(0, y);
+    }
   }
 
   function renderNovedadesFicha(container, item) {
